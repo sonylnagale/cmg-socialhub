@@ -56,7 +56,6 @@ for (var i = 0; i < opts.length; i++){
 }
 
 //initialize
-console.log($('#general'));
 $('#general').addClass('active');
 window.collection_general.pipe(window.wall_general);
 window.collection_general.initialized = true;
@@ -66,7 +65,7 @@ function switchWall(name){
     
     $("body").find('.wall').removeClass('active');
 
-    window['collections_'+name].pause();
+    window['collection_'+name].pause();
     $(prev).hide();
     
     if (opts[name].initialized){
