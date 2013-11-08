@@ -1,7 +1,7 @@
 var Collection = Livefyre.require("streamhub-sdk/collection");
 var WallView = Livefyre.require("streamhub-wall");
 
-var opts = [
+var collections = [
     {
         "name": "brasil",
         "network": "unilever.fyre.co",
@@ -34,45 +34,50 @@ var opts = [
         "articleId": "custom-1383690820330"
     }];
 
-for (var i = 0; i < opts.length; i++){
-    var n = opts[i].name;
-    window['collection_'+n] = new Collection({
-        "network": opts[i].network,
-        "siteId": opts[i].siteId,
-        "articleId": opts[i].articleId
-    });
-    
-    window['wall_'+n] = new WallView({
+var walls = collections.reduce(function (prev, next) {
+    var name = next.name;
+    var wall = prev[name] = {};
+    wall.collection = new Collection(next);
+    wall.view = new WallView({
         initial: 10,
         showMore: 2,
-        el: document.getElementById(n)
+        el: document.getElementById(name)
     });
-    window['collection_'+n].pipe(window['wall_'+n]);
-    window['collection_'+n].pause();
-}
+    wall.piped = false;
+    return prev;
+}, {});
 
-//initialize
-$('.wall').hide();
-switchWall('general');
+var WallSwitcher = {
+    currentWall: null,
+    switchTo: function (name) {
+        var currentWall = this.currentWall;
+        var newWall = walls[name];
+        if ( ! newWall) {
+            throw new Error('WallSwitcher.switchTo passed unknown wall name');
+        }
+        if (currentWall) {
+            currentWall.collection.pause();
+            currentWall.view.$el.hide();
+        }
+        if (newWall.piped) {
+            newWall.collection.resume();
+        } else {
+            newWall.collection.pipe(newWall.view);
+            newWall.piped = true;
+        }
+        newWall.view.$el.show();
+        this.currentWall = newWall;
+    }
+};
 
-function switchWall(name){
-    var prev = $("body").find('.active').attr('id');
-    
-    $("body").find('.active').hide();
-    $("body").find('.wall').removeClass('active');
-
-    window['collection_'+name].pause();
-    $(prev).hide();
-    
-    window['collection_'+name].resume();
-    $('#'+name).addClass('active');
-    $('#'+name).show();
-}
 
 $(function ($) {
+    // Start off on 'general' wall
+    WallSwitcher.switchTo('general');
+    // On click of a link, switch to that
     $('body').on('click', '*[data-wall-name]', function (e) {
         var $target = $(this);
         var wallName = $target.attr('data-wall-name');
-        switchWall(wallName);
+        WallSwitcher.switchTo(wallName);
     });
 });
