@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta property="twitter:account_id" content="18448279" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css" />
+    <link rel="stylesheet" href="css/boilerplate.css" />
+    <link rel="stylesheet" href="http://livefyre-cdn.s3.amazonaws.com/libs/sdk/v2.0.1/builds/263/streamhub-sdk.min.css" />
+    <link rel="stylesheet" href="css/xfactor.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://zor.livefyre.com/wjs/v3.0/javascripts/livefyre.js"></script>
+    <script src="http://livefyre-cdn.s3.amazonaws.com/libs/sdk/v2.0.3/streamhub-sdk.min.js"></script>
+    <script src="http://cdn.livefyre.com/libs/apps/Livefyre/streamhub-wall/v2.0.0-build.83/streamhub-wall.min.js"></script>
+</head>
+<body>
+<header>
+    <div class="mainheader center-cropped"></div>
+</header>
+<div class="xf-nav">
+    <div class="xf-navbar">
+        <div>
+        <ul>
+            <li><a class="active" href="http://www.thesun.co.uk/xfactorlive/xfactor.html">#XFACTOR</a><span></span></li>
+            <li><a href="http://www.thesun.co.uk/xfactorlive/judges.html">JUDGES</a><span></span></li>
+            <li><a href=" http://www.thesun.co.uk/xfactorlive/xfactor/contestants.html">CONTESTANTS</a><span class="active"></span></li>
+            <li><a href="http://www.thesun.co.uk" target="_blank">X FACTOR NEWS IN <img src="images/the-sun.png" width="45" height="15" /></a><span></span></li>
+        </ul>
+        </div>
+        <div class="social">
+            <ul>
+                <li><a href="http://www.thesun.co.uk/join/" target="_blank"><img src="images/sun-button.png" width="136" height="26" /></a></li>
+                <li><a class="social-facebook" href="#" 
+                  onclick="
+                    window.open(
+                      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href), 
+                      'facebook', 
+                      'width=626,height=436');
+                    return false;"><img src="images/fb-icon.png" width="26" height="26" /></a></li>
+                <li><a class="social-twitter" href="#" onclick="
+                    window.open('https://twitter.com/share?url=http%3A%2F%2Fvlt.me%2Fthesunxfactor&text=Oh%20yeah%2C%20it%27s%20going%20down%20right%20now%20on%20XFactor%20Central%20by%20%40thesunxfactor%20http%3A%2F%2Fvlt.me%2Fthesunxfactor',
+                      'twitter', 
+                      'width=626,height=436'); 
+                    return false;"><img src="images/twitter-icon.png" width="26" height="26" /></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="xf-content">
+    <div class="xf-main">
+        <div class="xf-left">
+            <div class="xf-contestants">
+                <ul></ul>
+            </div>
+        </div>
+        <div class="xf-right">
+            <div id="wall0"></div>
+            <div id="wall1" class="hide"></div>
+            <div id="wall2" class="hide"></div>
+            <div id="wall3" class="hide"></div>
+            <div id="wall4" class="hide"></div>
+            <div id="wall5" class="hide"></div>
+            <div id="wall6" class="hide"></div>
+            <div id="wall7" class="hide"></div>
+            <div id="wall8" class="hide"></div>
+            <div id="wall9" class="hide"></div>
+            <div id="wall10" class="hide"></div>
+            <div id="wall11" class="hide"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+var CONTESTANTS = [{
+    id: 0,
+    url: "images/sam_callahan_65x65.jpg",
+    name: "Sam Callahan",
+    network: "thesun.fyre.co",
+    siteId: "289969",
+    articleId: "X-Factor_Contestants_SamCallahan"
+},{
+    id: 1,
+    url: "images/nicholas_mcdonald_65x65.jpg",
+    name: "Nicholas McDonald",
+    network: "thesun.fyre.co",
+    siteId: "289969",
+    articleId: "X-Factor_Contestants_NicolasMcDonald"
+},{
+    id: 2,
+    url: "images/luke_friend_65x65.jpg",
+    name: "Luke Friend",
+    network: "thesun.fyre.co",
+    siteId: "289969",
+    articleId: "X-Factor_Contestants_LukeFriend"
+},{
+    id: 3,
+    url: "images/tamera_foster_65x65.jpg",
+    name: "Tamera Foster",
+    network: "thesun.fyre.co",
+    siteId: "289969",
+    articleId: "X-Factor_Contestants_TameraFoster"
+},{
+    id: 4,
+    url: "images/hannah_barrett_65x65.jpg",
+    name: "Hannah Barrett",
+    network: "thesun.fyre.co",
+    siteId: "289969",
+    articleId: "X-Factor_Contestants_HannahBarrett"
+},{
+    id: 5,
+    url: "images/abi_alton_65x65.jpg",
+    name: "Abi Alton",
+    network: "thesun.fyre.co",
+    siteId: "289969",
+    articleId: "X-Factor_Contestants_AbiAlton"
+},{
+    id: 6,
+    url: "images/rough_copy_65x65.jpg",
+    name: "Rough Copy",
+    network: "thesun.fyre.co",
+    siteId: "289969",
+    articleId: "X-Factor_Contestants_RoughCopy"
+},{
+    id: 7,
+    url: "images/miss_dynamix_65x65.jpg",
+    name: "Miss Dynamix",
+    network: "thesun.fyre.co",
+    siteId: "289969",
+    articleId: "X-Factor_Contestants_MissDynamix"
+},{
+    id: 8,
+    url: "images/kingsland_road_65x65.jpg",
+    name: "Kingsland Road",
+    network: "thesun.fyre.co",
+    siteId: "289969",
+    articleId: "X-Factor_Contestants_KingslandRoad"
+},{
+    id: 9,
+    url: "images/sam_bailey_65x65.jpg",
+    name: "Sam Bailey",
+    network: "thesun.fyre.co",
+    siteId: "289969",
+    articleId: "X-Factor_Contestants_SamBailey"
+},{
+    id: 10,
+    url: "images/shelley_smith_65x65.jpg",
+    name: "Shelley Smith",
+    network: "thesun.fyre.co",
+    siteId: "289969",
+    articleId: "X-Factor_Contestants_ShelleySmith"
+},{
+    id: 11,
+    url: "images/lorna_simpson_65x65.jpg",
+    name: "Lorna Simpson",
+    network: "thesun.fyre.co",
+    siteId: "289969",
+    articleId: "X-Factor_Contestants_LornaSimpson"
+}]
+
+/**
+* Prepare Social Scores
+*/
+var XF_MIN = 100;
+var XF_MAX = 0;
+var XF_HOTTEST_URL = 'http://bootstrap.thesun.fyre.co/api/v3.0/hottest/?number=100&tag=Contestants';
+var HEAT_MAP = [];
+
+/*
+* Updates Scores
+*
+*/
+function update_score(arr){
+    for (var i=0; i< arr.length; i++){
+        $('#'+arr[i].article).text(arr[i].scaled_heat);
+    }
+}
+/*
+* Normalize
+*
+* source: http://stackoverflow.com/questions/1471370/normalizing-from-0-5-1-to-0-1
+*
+*/
+function normalize(arr, min, max){
+    var SCALE_UPPER = 100,
+        SCALE_LOWER = 25,
+        scaled_heat;
+
+    for (var i=0; i < arr.length; i++){
+        scaled_heat = (((SCALE_UPPER-SCALE_LOWER) * (arr[i].heat - min))/(max -min )) + SCALE_LOWER
+        arr[i].scaled_heat = Math.round(scaled_heat);
+    }
+}
+
+$.ajax({
+    type: 'GET',
+    cache: false,
+    url: XF_HOTTEST_URL,
+    dataType : 'jsonp',
+    success: function(resp){
+        for (var i=0; i< resp.data.length; i++){
+            var heat = resp.data[i].heat,
+                article = resp.data[i].articleId;
+        
+            XF_MIN = XF_MIN > heat ? heat : XF_MIN;
+            XF_MAX = XF_MAX < heat ? heat : XF_MAX;
+
+            HEAT_MAP.push({heat: heat, article: article});
+        };
+        normalize(HEAT_MAP, XF_MIN, XF_MAX);
+        update_score(HEAT_MAP);
+    }
+});
+
+/**
+* MediaWall / ListView Code
+*/
+Livefyre.require([
+    'streamhub-sdk/collection',
+    'streamhub-wall'],
+
+function (Collection, WallView) {
+    for (var i = 0; i < CONTESTANTS.length; i++){
+        var id = CONTESTANTS[i].id;
+        
+        window['collection'+id] = new Collection({
+            "network": CONTESTANTS[i].network,
+            "siteId": CONTESTANTS[i].siteId,
+            "articleId": CONTESTANTS[i].articleId,
+            "environment": CONTESTANTS[i].environment
+        });
+        var img_url = CONTESTANTS[i].url, 
+            name = CONTESTANTS[i].name,
+            article_id = CONTESTANTS[i].articleId,
+            score = 100, 
+            state = i==0 ? 'active':'';
+        
+        $('.xf-contestants ul').append('<li id="'+
+            id+'" class="'+
+            state+'"><div id="'+
+            id+'_id"><div class="crop"><img src='+
+            img_url+' /></div><span>'+
+            name+'</span><div class="social-score"><div class="score-title">Social Score</div><div id="'+
+            article_id+'" class="score-value">'+
+            score+'</div></div></li>');
+
+        window['wallView'+id] = new WallView({
+            el: document.getElementById('wall'+id),
+            minContentWidth: 215,
+            columns: 3
+        });
+    };
+    window.collection0.pipe(window.wallView0);
+    CONTESTANTS[0].initialized = true;
+});
+
+(function($){
+    $(window).load(function(){
+        /**
+        * Scrollbar Styling
+        */
+        $(".xf-contestants").mCustomScrollbar({
+            theme:"dark-thick",
+            scrollButtons:{
+                enable:true
+            }
+        });
+
+        /**
+        * Contestant Toggle Code
+        */
+        $(".xf-contestants li").click(function(e){
+            var prev = $(".xf-contestants").find('.active').attr('id'),
+                cur = $(this).attr('id');
+
+            //Change clickable list item
+            $(".xf-contestants li").removeClass('active');
+            $(this).addClass('active');
+            
+            //Change wall
+            $('#wall'+prev).hide();
+            // window['collection'+prev].pause();
+            
+            if (CONTESTANTS[cur].initialized){
+                // window['collection'+cur].resume();
+            }else{
+                window['collection'+cur].pipe(window['wallView'+cur]);
+                CONTESTANTS[cur].initialized = true;
+            }
+            $('#wall'+cur).fadeIn('fast');
+            
+        });
+
+        /**
+        * Make Contestants Div Sticky
+        */
+        $(".xf-contestants").sticky({topSpacing:115});
+    });
+})(jQuery);
+
+</script>
+<!-- Scripts -->
+<script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="js/jquery.sticky.js"></script>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ ga('create', 'UA-41154665-9', 'thesun.co.uk');
+ ga('send', 'pageview');
+ 
+ var _gaq = _gaq || [];
+ _gaq.push(['_setAccount', 'UA-41154665-9']);
+ 
+ $('a.social-twitter').click(function() {
+    _gaq.push(['_trackEvent', 'Social', 'Click', 'Share to Twitter']);
+ });
+
+ $('a.social-facebook').click(function() {
+    _gaq.push(['_trackEvent', 'Social', 'Click', 'Share to Facebook']);
+ });
+
+ window.twttr = (function (d,s,id) {
+  var t, js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return; js=d.createElement(s); js.id=id;
+  js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+  return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+}(document, "script", "twitter-wjs"));
+</script>
+</body>
+</html>

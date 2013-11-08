@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta property="twitter:account_id" content="18448279" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css" />
+    <link rel="stylesheet" href="css/boilerplate.css" />
+    <link rel="stylesheet" href="http://livefyre-cdn.s3.amazonaws.com/libs/sdk/v2.0.1/builds/263/streamhub-sdk.min.css" />
+    <link rel="stylesheet" href="css/xfactor.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://zor.livefyre.com/wjs/v3.0/javascripts/livefyre.js"></script>
+    <script src="http://livefyre-cdn.s3.amazonaws.com/libs/sdk/v2.0.3/streamhub-sdk.min.js"></script>
+    <script src="http://cdn.livefyre.com/libs/apps/Livefyre/streamhub-wall/v2.0.0-build.83/streamhub-wall.min.js"></script>
+</head>
+<body>
+<header>
+    <div class="mainheader center-cropped"></div>
+</header>
+<div class="xf-nav">
+    <div class="xf-navbar">
+        <div>
+        <ul>
+            <li><a class="active" href="http://www.thesun.co.uk/xfactorlive/xfactor.html">#XFACTOR</a><span class="active"></span></li>
+            <li><a href="http://www.thesun.co.uk/xfactorlive/judges.html">JUDGES</a><span></span></li>
+            <li><a href="http://www.thesun.co.uk/xfactorlive/contestants.html">CONTESTANTS</a><span></span></li>
+            <li><a href="http://www.thesun.co.uk" target="_blank">X FACTOR NEWS IN <img src="images/the-sun.png" width="45" height="15" /></a><span></span></li>
+        </ul>
+        </div>
+
+        <div class="social">
+            <ul>
+                <li><a href="http://www.thesun.co.uk/join/" target="_blank"><img src="images/sun-button.png" width="136" height="26" /></a></li>
+                <li><a class="social-facebook" href="#" 
+                  onclick="
+                    window.open(
+                      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href), 
+                      'facebook', 
+                      'width=626,height=436');
+                    return false;"><img src="images/fb-icon.png" width="26" height="26" /></a></li>
+                <li><a class="social-twitter" href="#" onclick="
+                    window.open('https://twitter.com/share?url=http%3A%2F%2Fvlt.me%2Fthesunxfactor&text=Oh%20yeah%2C%20it%27s%20going%20down%20right%20now%20on%20XFactor%20Central%20by%20%40thesunxfactor%20http%3A%2F%2Fvlt.me%2Fthesunxfactor',
+                      'twitter', 
+                      'width=626,height=436'); 
+                    return false;"><img src="images/twitter-icon.png" width="26" height="26" /></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="xf-content">
+    <div class="xf-main">
+        <div class="xf-left">
+            <a href=" http://www.thesun.co.uk/sol/homepage/article5213908.ece" class="xf-promo">
+                <img src="images/wintickets-ad.jpg" width="221" height="150" />
+            </a>
+            <div class="xf-feedview">
+                <a href="#" onclick="
+                    window.open('https://twitter.com/share?url='+encodeURIComponent(location.href)+'&text=Oh%20yeah%2C%20it%27s%20going%20down%20right%20now%20on%20XFactor%20Central%20by%20%40thesunxfactor%20http%3A%2F%2Fvlt.me%2Fthesunxfactor',
+                      'twitter', 
+                      'width=626,height=436');
+                    return false;" class="social-tweet xf-feedview-title">
+                    <span class="tweet"></span>JOIN THE CONVERSATION
+                </a>
+                <div class="xf-feedview-body">
+                    <div id="feed"></div>
+                </div>
+            </div>
+        </div>
+        <div class="xf-right">
+            <div id="wall"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+/**
+* MediaWall / ListView Code
+*/
+Livefyre.require([
+    'streamhub-sdk/collection',
+    'streamhub-sdk/content/views/content-list-view',
+    'streamhub-wall'],
+function (Collection, ListView, WallView) {
+    var collection1 = new Collection({
+        "network": "thesun.fyre.co",
+        "siteId": "289969",
+        "articleId": "X-Factor_General_MediaWall"
+    });
+
+    var wallView = new WallView({
+        el: document.getElementById("wall"),
+        minContentWidth: 220
+    });
+    collection1.pipe(wallView);
+
+    var listView = new ListView({
+        el: document.getElementById("feed"),
+        minContentWidth: 220
+    });
+
+    var collection2 = new Collection({
+        "network": "thesun.fyre.co",
+        "siteId": "289969",
+        "articleId": "X-Factor_General_Liveblog"
+    });
+    collection2.pipe(listView);
+});
+
+(function($){
+    $(window).load(function(){
+        /**
+        * Scrollbar Styling
+        */
+        function delayScrollbar(){
+            $(".xf-feedview-body").mCustomScrollbar({
+                theme:"dark-thick",
+                scrollButtons:{
+                    enable:true
+                }
+            });
+        }
+        setTimeout(delayScrollbar,1000);
+    });
+
+})(jQuery);
+</script>
+<!-- Scripts -->
+<script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ ga('create', 'UA-41154665-9', 'thesun.co.uk');
+ ga('send', 'pageview');
+
+ var _gaq = _gaq || [];
+ _gaq.push(['_setAccount', 'UA-41154665-9']);
+ 
+ $('a.social-twitter').click(function() {
+    _gaq.push(['_trackEvent', 'Social', 'Click', 'Share to Twitter']);
+ });
+
+ $('a.social-facebook').click(function() {
+    _gaq.push(['_trackEvent', 'Social', 'Click', 'Share to Facebook']);
+ });
+
+ window.twttr = (function (d,s,id) {
+  var t, js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return; js=d.createElement(s); js.id=id;
+  js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+  return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+}(document, "script", "twitter-wjs"));
+</script>
+</body>
+</html>
