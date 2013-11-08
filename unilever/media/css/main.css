@@ -1,0 +1,4 @@
+*[data-wall-name] {
+    text-decoration: underline;
+    cursor: pointer;
+}

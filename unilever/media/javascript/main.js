@@ -68,3 +68,11 @@ function switchWall(name){
     $('#'+name).addClass('active');
     $('#'+name).show();
 }
+
+$(function ($) {
+    $('body').on('click', '*[data-wall-name]', function (e) {
+        var $target = $(this);
+        var wallName = $target.attr('data-wall-name');
+        switchWall(wallName);
+    });
+});
