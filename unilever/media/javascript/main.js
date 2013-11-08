@@ -6,38 +6,32 @@ var opts = [
         "name": "brasil",
         "network": "unilever.fyre.co",
         "siteId": "347150",
-        "articleId": "custom-1383691195832",
-        "initialized": false
+        "articleId": "custom-1383691195832"
     },{
         "name": "usa",
         "network": "unilever.fyre.co",
         "siteId": "347150",
-        "articleId": "custom-1383691177331",
-        "initialized": false
+        "articleId": "custom-1383691177331"
     },{
         "name": "uk",
         "network": "unilever.fyre.co",
         "siteId": "347150",
-        "articleId": "custom-1383691147587",
-        "initialized": false
+        "articleId": "custom-1383691147587"
     },{
         "name": "india",
         "network": "unilever.fyre.co",
         "siteId": "347150",
-        "articleId": "custom-1383691007431",
-        "initialized": false
+        "articleId": "custom-1383691007431"
     },{
         "name": "indonesia",
         "network": "unilever.fyre.co",
         "siteId": "347150",
-        "articleId": "custom-1383690895328",
-        "initialized": false
+        "articleId": "custom-1383690895328"
     },{
         "name": "general",
         "network": "unilever.fyre.co",
         "siteId": "347150",
-        "articleId": "custom-1383690820330",
-        "initialized": false
+        "articleId": "custom-1383690820330"
     }];
 
 for (var i = 0; i < opts.length; i++){
@@ -53,26 +47,24 @@ for (var i = 0; i < opts.length; i++){
         showMore: 2,
         el: document.getElementById(n)
     });
+    window['collection_'+n].pipe(window['wall_'+n]);
+    window['collection_'+n].pause();
 }
 
 //initialize
-$('#general').addClass('active');
-window.collection_general.pipe(window.wall_general);
-window.collection_general.initialized = true;
+$('.wall').hide();
+switchWall('general');
 
 function switchWall(name){
     var prev = $("body").find('.active').attr('id');
     
+    $("body").find('.active').hide();
     $("body").find('.wall').removeClass('active');
 
     window['collection_'+name].pause();
     $(prev).hide();
     
-    if (opts[name].initialized){
-        window['collection_'+name].resume();
-        $('#'+name).addClass('active');
-    }else{
-        window['collection_'+name].pipe(window['wall_'+name]);
-        opts[name].initialized = true;
-    }
+    window['collection_'+name].resume();
+    $('#'+name).addClass('active');
+    $('#'+name).show();
 }
