@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CMG SocialHub</title>
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="menu.css" />
+<script src="http://livefyre-cdn.s3.amazonaws.com/libs/sdk/v2.2.0/streamhub-sdk.min.js"></script>
+<script src="http://cdn.livefyre.com/libs/apps/Livefyre/streamhub-wall/v2.0.0-build.85/streamhub-wall.min.js"></script>
+<link rel="stylesheet" href="http://cdn.livefyre.com/libs/sdk/v2.0.3/streamhub-sdk.min.css" />
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="socialhub.js"></script>
+</head>
+<body>
+	<div id="socialHub">
+		<header>
+			<a id="newsLink">News</a>
+			<a id="expertsLink">Experts</a>
+			<a id="reactionsLink">Your Reactions</a>
+		</header>
+		
+		<div id="sort">
+			<ul id="menu">
+				<li><a class="title" href="#">Sort</a>
+					<ul>
+						<li><a class="all current">All</a></li>
+						<li><a class="filter" data-source="news">News</a></li>
+						<li><a class="filter" data-source="experts">Experts</a></li>
+						<li><a class="filter" data-source="reactions">Reactions</a></li>
+					</ul>
+				</li>
+				
+			</ul>
+		</div>
+		
+		<div id="wall"></div>
+		
+		<div id="hub">
+			<div id="newsFeed" class="feed"></div>
+			<div id="expertsFeed" class="feed"></div>
+			<div id="reactionsFeed" class="feed"></div>
+		</div>
+	</div>
+</body>
+</html>
