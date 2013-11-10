@@ -1,6 +1,6 @@
-Build Three Column Media Wall Experience
-========================================
+Cox Media Group
+===============
 
-For [CUS-3296](https://livefyre.atlassian.net/browse/CUS-3296)
+Index:
+   `three-column-social-hub/` : [CUS-3296](https://livefyre.atlassian.net/browse/CUS-3296)
 
-Just a beginning.
