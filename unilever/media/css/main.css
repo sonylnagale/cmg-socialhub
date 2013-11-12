@@ -1,4 +1,416 @@
+body{
+	background: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(#fff), color-stop(0.05, #fff));
+	min-height:800px;
+}
+
+.claire{
+	font-family: 'claire_handlight';
+}
+
 *[data-wall-name] {
-    text-decoration: underline;
     cursor: pointer;
+}
+
+.wall-container{
+	width: 998px;
+	margin: 0 auto;
+}
+
+.wall-hero{
+	position: relative;
+}
+
+.wall-hero h1{
+	font-family: 'claire_handlight';
+	font-size: 36px;
+	text-align: center;
+	margin-bottom: 8px;
+}
+
+.wall-hero h1 span{
+	font-family: 'claire_handlight';
+	font-size: 36px;
+	color: #0067B1;
+}
+
+.wall-hero img.left{
+	position: absolute;
+	top: 0px;
+	left: 10px;
+}
+
+.wall-hero img.right{
+	position: absolute;
+	top: 40px;
+}
+
+.wall-world{
+	width: 216px;
+	margin: 0 auto 25px auto;
+	text-align: center;
+	text-decoration: none;
+}
+
+.world-top-text{
+	width: 100%;
+	height: 20px;
+	font-family: Arial, Helvetica, sans-serif;	
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.world-top-text img{
+	float: left;
+}
+
+.world-top-text span.blue{
+	color: #0067B1;
+}
+
+.world-top-text span{
+	float: left;
+	font-size: 13px;
+	padding-left: 8px;
+}
+
+.world-card{
+	height: 194px;
+	border-radius: 6px;
+	background: #efefef;
+	box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.20);
+	cursor: pointer;
+}
+
+.world-card div{
+	padding: 15px;
+}
+
+.world-card p{
+	font-family: 'claire_handlight';
+}
+
+.world-card:hover{
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.20);
+}
+.world-card p{
+	font-size: 24px;
+	margin: 10px 0px 5px 0px;
+}
+
+.world-card p.small{
+	font-size: 14px;
+	color: #0067B1;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.wall-sun{
+	width: 900px;
+	margin: 0 auto;
+	position: relative;
+	z-index: 9999;
+	background-color: #e9eff4;
+}
+
+.wall-sun .color{
+	width: 900px;
+	background-color: #ffcd34; 
+}
+
+.wall-sun .color.india-active{
+	width: 210px;
+}
+
+.wall-sun .color.indonesia-active{
+	width: 10px;
+}
+
+.wall-sun .color.uk-active{
+	width: 406px;
+}
+
+.wall-sun .color.brasil-active{
+	width: 605px;
+}
+
+.wall-sun .color.usa-active{
+	width: 805px;
+}
+
+.wall-sun .sun{
+	background-image: url('../images/sun.png');
+	position: absolute;
+	width: 74px;
+	height: 84px;
+}
+
+.wall-sun .sun.center{
+	top: -30px;
+	left: 410px;
+}
+
+.wall-sun .sun.uk-active{
+	top: -32px;
+	left: 396px;
+}
+
+.wall-sun .sun.india-active{
+	top: -15px;
+	left: 205px;
+}
+
+.wall-sun .sun.indonesia-active{
+	top: 15px;
+	left: 5px;
+}
+
+.wall-sun .sun.brasil-active{
+	top: -15px;
+	left: 595px;
+}
+
+.wall-sun .sun.usa-active{
+	top: 12px;
+	left: 795px;
+}
+
+.world-top-text span.at-mention{
+	color: #818B93;
+}
+
+.wall-nav{
+	width: 100%;
+	height: 280px;
+	margin-top: 20px;
+}
+
+.wall-nav div{
+	float: left;
+	border-radius: 6px;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0,0.20);
+	position: relative;
+}
+
+.wall-nav span{
+	top:0;
+	position: absolute;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	width: 176px;
+	height: 53px;
+	background-color: rgba(0,0,0,0.50);
+	text-align: center;
+	font-family: 'claire_handlight';
+	color: #fff;
+	font-size: 24px;
+	padding-top: 15px;
+}
+
+.wall-nav div:hover{  
+	-webkit-transform: scale(1.1);  /* Saf3.1+, Chrome */
+	-moz-transform: scale(1.1);  /* FF3.5+ */
+	-ms-transform: scale(1.1);  /* IE9 */
+	-o-transform: scale(1.1);  /* Opera 10.5+ */
+	transform: scale(1.1);   /* IE8+ - must be on one line, unfortunately */ 
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=1.1, M12=0, M21=0, M22=1.1, SizingMethod='auto expand')";
+
+	/* IE6 and 7 */ 
+	filter: progid:DXImageTransform.Microsoft.Matrix(
+	        M11=1.1,
+	        M12=0,
+	        M21=0,
+	        M22=1.1,
+	    SizingMethod='auto expand');
+}
+
+.wall-nav div{
+	margin: 0 10px;
+}
+
+.india.active,
+.india:hover{
+	background-image: url('../images/kid_india.png');
+	width: 176px;
+	height: 244px;
+}
+
+.india.active span,
+.india:hover span{
+	background-color: rgba(252,179,67,0.80);
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);
+}
+
+.india{
+	background-image: url('../images/kid_india_bw.png');
+	width: 176px;
+	height: 244px;
+}
+
+.indonesia.active,
+.indonesia:hover{
+	background-image: url('../images/kid_indonesia.png');
+	width: 176px;
+	height: 244px;
+}
+
+.indonesia.active span,
+.indonesia:hover span{
+	background-color: rgba(243,118,31,0.80);
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);
+}
+
+.indonesia{
+	background-image: url('../images/kid_indonesia_bw.png');
+	width: 176px;
+	height: 244px;
+}
+
+.uk.active,
+.uk:hover{
+	background-image: url('../images/kid_uk.png');
+	width: 176px;
+	height: 244px;
+}
+
+.uk.active span,
+.uk:hover span{
+	background-color: rgba(238,48,34,0.80);
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);
+}
+
+.uk{
+	background-image: url('../images/kid_uk_bw.png');
+	width: 176px;
+	height: 244px;
+}
+
+.brasil.active,
+.brasil:hover{
+	background-image: url('../images/kid_brazil.png');
+	width: 176px;
+	height: 244px;
+}
+
+.brasil.active span,
+.brasil:hover span{
+	background-color: rgba(208,24,70,0.80);
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);
+}
+
+.brasil{
+	background-image: url('../images/kid_brazil_bw.png');
+	width: 176px;
+	height: 244px;
+}
+
+.usa.active,
+.usa:hover{
+	background-image: url('../images/kid_usa.png');
+	width: 176px;
+	height: 244px;
+}
+
+.usa.active span,
+.usa:hover span{
+	background-color: rgba(152,4,55,0.80);
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);
+}
+
+.usa{
+	background-image: url('../images/kid_usa_bw.png');
+	width: 176px;
+	height: 244px;
+}
+
+.wall-interior{
+	background-color: #efefef;
+	padding: 10px;
+	border: 1px solid #d6d6d6;
+	border-radius: 6px;
+}
+
+/* Generated by Font Squirrel (http://www.fontsquirrel.com) on November 11, 2013 */
+@font-face {
+    font-family: 'claire_handbold';
+    src: url('clairehandbold-webfont.eot');
+    src: url('clairehandbold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('clairehandbold-webfont.woff') format('woff'),
+         url('clairehandbold-webfont.ttf') format('truetype'),
+         url('clairehandbold-webfont.svg#claire_handbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+
+@font-face {
+    font-family: 'claire_handbold';
+    src: url('clairehandbold-webfont.eot');
+    src: url('clairehandbold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('clairehandbold-webfont.woff') format('woff'),
+         url('clairehandbold-webfont.ttf') format('truetype'),
+         url('clairehandbold-webfont.svg#claire_handbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'claire_handlight';
+    src: url('clairehandlight-webfont.eot');
+    src: url('clairehandlight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('clairehandlight-webfont.woff') format('woff'),
+         url('clairehandlight-webfont.ttf') format('truetype'),
+         url('clairehandlight-webfont.svg#claire_handlight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'claire_handlight';
+    src: url('clairehandlight-webfont.eot');
+    src: url('clairehandlight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('clairehandlight-webfont.woff') format('woff'),
+         url('clairehandlight-webfont.ttf') format('truetype'),
+         url('clairehandlight-webfont.svg#claire_handlight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'claire_handregular';
+    src: url('clairehandregular-webfont.eot');
+    src: url('clairehandregular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('clairehandregular-webfont.woff') format('woff'),
+         url('clairehandregular-webfont.ttf') format('truetype'),
+         url('clairehandregular-webfont.svg#claire_handregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'claire_handregular';
+    src: url('clairehandregular-webfont.eot');
+    src: url('clairehandregular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('clairehandregular-webfont.woff') format('woff'),
+         url('clairehandregular-webfont.ttf') format('truetype'),
+         url('clairehandregular-webfont.svg#claire_handregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }
