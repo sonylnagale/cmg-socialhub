@@ -70,6 +70,28 @@ var WallSwitcher = {
     }
 };
 
+var NavDisplay = {
+    clearDisplay: function (){
+        var cls = $('.color').attr('class'),
+            active = cls.split(/[ ,]+/)[1], // update width of sun bar
+            s_cls = $('.sun').attr('class'),
+            s_active = s_cls.split(/[ ,]+/)[1]; // update placement of sun
+
+        //sun bar
+        if (cls && active){
+            $('.color').removeClass(active);
+        }
+
+        //color bar
+        if (s_cls && s_active){
+            $('.sun').removeClass(s_active);
+        }
+    },
+    updateDisplay: function (target){
+        $('.color').addClass(target + '-active');
+        $('.sun').addClass(target + '-active');
+    }
+};
 
 $(function ($) {
     // Start off on 'general' wall
@@ -81,29 +103,23 @@ $(function ($) {
         WallSwitcher.switchTo(wallName);
 
         $('.wall-nav div').removeClass('active');
-        $(this).addClass('active');
+        $('[data-wall-name='+wallName+']').addClass('active');
+
+        NavDisplay.clearDisplay();
+        NavDisplay.updateDisplay(wallName);
     });
 
+    // Update sun styling on hover
+    $('.wall-nav div').on('mouseover', function () {
+        NavDisplay.clearDisplay();
+        NavDisplay.updateDisplay($(this).attr('data-wall-name'));
+    });
 
     // Update sun styling on hover
-    $(".wall-nav div").on("mouseover", function () {
-        var cls = $('.color').attr('class'),
-            active = cls.split(/[ ,]+/)[1], // update width of sun bar
-            s_cls = $('.sun').attr('class'),
-            s_active = s_cls.split(/[ ,]+/)[1]; // update placement of sun
+    $('.wall-nav').on('mouseleave', function () {
+        var target = $(this).find('.active').attr('data-wall-name');
 
-        //sun bar
-        if (cls && active){
-            $('.color').removeClass(active);
-        }
-
-        if (s_cls && s_active){
-            $('.sun').removeClass(s_active);
-        }
-
-        $('.color').addClass($(this).attr('data-wall-name') + '-active');
-        $('.sun').addClass($(this).attr('data-wall-name')+ '-active');
-
-
+        NavDisplay.clearDisplay();
+        NavDisplay.updateDisplay(target);
     });
 });

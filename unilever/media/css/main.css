@@ -112,8 +112,11 @@ body{
 }
 
 .wall-sun .color{
-	width: 900px;
 	background-color: #ffcd34; 
+}
+
+.wall-sun .color.general-active{
+	width: 900px;
 }
 
 .wall-sun .color.india-active{
@@ -136,6 +139,10 @@ body{
 	width: 805px;
 }
 
+.wall-sun .color.general{
+	width: 900px;
+}
+
 .wall-sun .sun{
 	background-image: url('../images/sun.png');
 	position: absolute;
@@ -143,7 +150,7 @@ body{
 	height: 84px;
 }
 
-.wall-sun .sun.center{
+.wall-sun .sun.general-active{
 	top: -30px;
 	left: 410px;
 }
