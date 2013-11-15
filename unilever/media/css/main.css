@@ -118,14 +118,12 @@ body{
 
 .world-card p{
 	font-family: 'claire_handlight';
+	font-size: 24px;
+	margin: 5px 0px 5px 0px;
 }
 
 .world-card:hover{
 	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.20);
-}
-.world-card p{
-	font-size: 24px;
-	margin: 10px 0px 5px 0px;
 }
 
 .world-card p.small{

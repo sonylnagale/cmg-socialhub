@@ -3,7 +3,7 @@ var WallView = Livefyre.require("streamhub-wall");
 
 var Tweets = {
     //country: ['lead text', 'author name', 'author handle']
-    "indonesia": ["The future is NOW! I’m in and doing my bit today to make sure we have a <span class='blue'>#brightfuture</span>", "Sergio", "@sdelprado"],
+    "indonesia": ["Kita bisa wujudkan esok yang lebih cerah bagi anak kita. Sekaranglah saat yang paling tepat untuk memulainya! <span class='blue'>#brightfuture</span>", "Marc Mathieu", "@marcfmath"],
     "india": ["I’m making sure the next generation have a world that is worth living in <span class='blue'>#brightfuture</span>", "Virginia Hine", "@MyKindaHine"],
     "uk": ["It is ALL about the children today #UNChildrensday so I’m getting involved by supporting <span class='blue'>#brightfuture</span> to make sure they have one ", "Polly", "@PollySwain"],
     "brasil": ["Temos a oportunidade de ajudar criar um <span class='blue'>#futuromelhor</span> para as crianças que estão por vir. Nunca houve um momento tão bom!", "Marc Mathieu", "@marcfmath"],
@@ -16,6 +16,10 @@ var CustomCountry = {
     "brasil": {
         "nav": ["Indonésia", "Índia", "Reino Unido", "Brasil", "EUA"],
         "card": ["O Mundo", "Veja pessoas ao redor do mundo criando um #futuromelhor"]
+    },
+    "indonesia": {
+        "nav": ["Indonesia", "India", "Inggris", "Brasil", "Amerika Serikat"],
+        "card": ["Dunia", "ihat bagaimana orang-orang dari seluruh dunia mewujudkan masa depan yang lebih cerah #brightfuture"]
     },
     "all": {
         "nav": ["Indonesia", "India", "UK", "Brazil", "USA"],
@@ -102,7 +106,7 @@ var NavDisplay = {
         NavDisplay.updateDisplay(wallName);
         SmoothScroll.update();
 
-        CustomText.update($target.attr('data-wall-name'));
+        CustomText.update(wallName);
     },
     clearDisplay: function (){
         var cls = $('.color').attr('class'),
@@ -141,9 +145,18 @@ var SmoothScroll = {
 var CustomText = {
     update: function(target){
         var rq = "<span class='xl'>&rdquo;</span>",
-            lq = "<span class='xl'>&ldquo;</span>",
-            key = target == "brasil" ?  "brasil" : "all";
+            lq = "<span class='xl'>&ldquo;</span>";
 
+        switch(target){
+            case "brasil":
+                key = "brasil";
+                break;
+            case "indonesia":
+                key = "indonesia";
+                break;
+            default:
+                key = "all";
+        }
         
         $('.wall-hero h1').html(lq+Tweets[target][0]+rq);
 
@@ -152,8 +165,6 @@ var CustomText = {
         
         $('#world-copy').html(CustomCountry[key]['card'][0]);
         $('#world-sub-copy').html(CustomCountry[key]['card'][1]);
-
-        console.log($('.wall-nav').find('div'));
     }
 };
 
