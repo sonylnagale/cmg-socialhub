@@ -1,6 +1,28 @@
 var Collection = Livefyre.require("streamhub-sdk/collection");
 var WallView = Livefyre.require("streamhub-wall");
 
+var Tweets = {
+    //country: ['lead text', 'author name', 'author handle']
+    "indonesia": ["The future is NOW! I’m in and doing my bit today to make sure we have a <span class='blue'>#brightfuture</span>", "Sergio", "@sdelprado"],
+    "india": ["I’m making sure the next generation have a world that is worth living in <span class='blue'>#brightfuture</span>", "Virginia Hine", "@MyKindaHine"],
+    "uk": ["It is ALL about the children today #UNChildrensday so I’m getting involved by supporting <span class='blue'>#brightfuture</span> to make sure they have one ", "Polly", "@PollySwain"],
+    "brasil": ["Temos a oportunidade de ajudar criar um <span class='blue'>#futuromelhor</span> para as crianças que estão por vir. Nunca houve um momento tão bom!", "Marc Mathieu", "@marcfmath"],
+    "usa": ["Small actions = BIG difference <span class='blue'>#brightfuture</span>", "Megan Lehmann", "@TheCultureOf_"],
+    "general": ["We have the opportunity to help create a <span class='blue'>#brightfuture</span> for children yet to come. There’s never been a better time!", "Marc Mathieu", "@marcfmath"]
+};
+
+
+var CustomCountry = {
+    "brasil": {
+        "nav": ["Indonésia", "Índia", "Reino Unido", "Brasil", "EUA"],
+        "card": ["O Mundo", "Veja pessoas ao redor do mundo criando um #futuromelhor"]
+    },
+    "all": {
+        "nav": ["Indonesia", "India", "UK", "Brazil", "USA"],
+        "card": ["The World", "See the people around the world creating a #brightfuture"]
+    }
+};
+
 var collections = [
     {
         "name": "brasil",
@@ -39,7 +61,6 @@ var walls = collections.reduce(function (prev, next) {
     var wall = prev[name] = {};
     wall.collection = new Collection(next);
     wall.view = new WallView({
-        columns: 3,
         showMore: 2,
         el: document.getElementById(name)
     });
@@ -71,6 +92,18 @@ var WallSwitcher = {
 };
 
 var NavDisplay = {
+    init: function(wallName){
+        WallSwitcher.switchTo(wallName);
+
+        $('.wall-nav div').removeClass('active');
+        $('[data-wall-name='+wallName+']').addClass('active');
+
+        NavDisplay.clearDisplay();
+        NavDisplay.updateDisplay(wallName);
+        SmoothScroll.update();
+
+        CustomText.update($target.attr('data-wall-name'));
+    },
     clearDisplay: function (){
         var cls = $('.color').attr('class'),
             active = cls.split(/[ ,]+/)[1], // update width of sun bar
@@ -93,6 +126,38 @@ var NavDisplay = {
     }
 };
 
+var SmoothScroll = {
+    update: function (){
+        target = $('.wall-interior');
+        if (target.length) {
+            $('html,body').animate({
+              scrollTop: target.offset().top
+            }, 1000);
+            return false;
+        }
+    }
+};
+
+var CustomText = {
+    update: function(target){
+        var rq = "<span class='xl'>&rdquo;</span>",
+            lq = "<span class='xl'>&ldquo;</span>",
+            key = target == "brasil" ?  "brasil" : "all";
+
+        
+        $('.wall-hero h1').html(lq+Tweets[target][0]+rq);
+
+        $('#world-author').html(Tweets[target][1]);
+        $('#world-author-handle').html(Tweets[target][2]);
+        
+        $('#world-copy').html(CustomCountry[key]['card'][0]);
+        $('#world-sub-copy').html(CustomCountry[key]['card'][1]);
+
+        console.log($('.wall-nav').find('div'));
+    }
+};
+
+
 $(function ($) {
     // Start off on 'general' wall
     WallSwitcher.switchTo('general');
@@ -100,13 +165,14 @@ $(function ($) {
     $('body').on('click', '*[data-wall-name]', function (e) {
         var $target = $(this);
         var wallName = $target.attr('data-wall-name');
-        WallSwitcher.switchTo(wallName);
+        
+        NavDisplay.init(wallName);
+    });
 
-        $('.wall-nav div').removeClass('active');
-        $('[data-wall-name='+wallName+']').addClass('active');
-
-        NavDisplay.clearDisplay();
-        NavDisplay.updateDisplay(wallName);
+    $('select').on('change', function() {
+        var wallName = $(this).val();
+        NavDisplay.init(wallName);
+        
     });
 
     // Update sun styling on hover
