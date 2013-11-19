@@ -16,7 +16,8 @@ LF.lfpopular = function(opts) {
 		'tag': 'heatindex',
 		'siteId': null,
 		'number': null,
-		'network': 'client-solutions.fyre.co'
+		'network': 'client-solutions.fyre.co',
+		'truncate': '55'
 	};
 	
 	this.opts = opts || {};
@@ -90,7 +91,30 @@ LF.lfpopular.prototype._getContent = function(data) {
  * @param {Object} data
  */
 LF.lfpopular.prototype._setContent = function(data) {
-	this.$el.html(data.headDocument.content[0].content.bodyHtml);
+	this.$el.html(this._truncateTitle(data.headDocument.content[0].content.bodyHtml));
+	
+	this.$retweet = $('#lf-retweetAction');
+
+	this.$retweet.click(function(e) {
+		console.log(e);
+		var url = "https://twitter.com/intent/retweet?tweet_id=";
+		var tweetId = data.headDocument.content[0].content.id.replace('tweet-','');
+		tweetId = tweetId.replace('\@twitter.com','');
+		window.open(url + tweetId, 'new',"width=500,height=300,left=" + (screen.width/2) + ",top=" + (screen.height/2));
+	});
 };
+
+/**
+ * @private
+ * Truncates data on wordbreaks
+ * @param data
+ * @return {String} truncated data
+ */
+
+LF.lfpopular.prototype._truncateTitle = function(data) {
+	return $.trim(data).substring(0, this.opts.truncate)
+    .split(" ").slice(0, -1).join(" ") + " &hellip;";
+};
+
 
 })(Livefyre.require('streamhub-sdk/jquery'));
