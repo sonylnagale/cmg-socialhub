@@ -3,10 +3,10 @@ var WallView = Livefyre.require("streamhub-wall");
 
 var Tweets = {
     //country: ['lead text', 'author name', 'author handle']
-    "indonesia": ["Kita bisa wujudkan esok yang lebih cerah bagi anak kita. Sekaranglah saat yang paling tepat untuk memulainya! <span class='blue'>#brightfuture</span>", "Marc Mathieu", "@marcfmath"],
-    "india": ["I'm making sure the next generation have a world that is worth living in <span class='blue'>#brightfuture</span>", "Virginia Hine", "@MyKindaHine"],
-    "uk": ["It is ALL about the children today #UNChildrensday so I'm getting involved by supporting <span class='blue'>#brightfuture</span> to make sure they have one ", "Polly", "@PollySwain"],
-    "brasil": ["Temos a oportunidade de ajudar criar um <span class='blue'>#futuromelhor</span> para as crianças que estão por vir. Nunca houve um momento tão bom!", "Marc Mathieu", "@marcfmath"],
+    "indonesia": ["Kita bisa wujudkan esok yang lebih cerah bagi anak kita. Sekaranglah saat yang paling tepat untuk memulainya! <span class='blue'>#brightfuture</span>", "Virginia Hine", "@MyKindaHine"],
+    "india": ["It is ALL about the children today #UNChildrensday, so I'm getting involved by supporting <span class='blue'>#brightfuture</span> to make sure they have one", "Sanjiv Mehta", "@sanjivmehta"],
+    "uk": ["I'm making sure the next generation have a world that is worth living in <span class='blue'>#brightfuture</span>", "Polly", "@PollySwain"],
+    "brasil": ["Temos a oportunidade de ajudar criar um <span class='blue'>#futuromelhor</span> para as crianças que estão por vir. Nunca houve um momento tão bom!", "Sergio del Prado", "@sdelprado"],
     "usa": ["Small actions = BIG difference <span class='blue'>#brightfuture</span>", "Megan Lehmann", "@TheCultureOf_"],
     "general": ["We have the opportunity to help create a <span class='blue'>#brightfuture</span> for children yet to come. There's never been a better time!", "Marc Mathieu", "@marcfmath"]
 };
@@ -165,6 +165,12 @@ var CustomText = {
         
         $('#world-copy').html(CustomCountry[key]['card'][0]);
         $('#world-sub-copy').html(CustomCountry[key]['card'][1]);
+
+        $('.wall-nav span').each(function(index){
+            if (index > 0){
+                $(this).text(CustomCountry[key]['nav'][index-1]);
+            }
+        });
     }
 };
 

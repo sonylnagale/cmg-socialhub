@@ -188,18 +188,22 @@ body{
 	}
 
 	.wall-nav span{
-		top:0;
+		bottom:-5px;
 		position: absolute;
 		border-top-left-radius: 6px;
 		border-top-right-radius: 6px;
 		width: 176px;
 		height: 53px;
-		background-color: rgba(0,0,0,0.50);
+		/*background-color: rgba(0,0,0,0.50);*/
+		background-image: url('../images/blob_bw.png');
+		background-position:center top;
+		background-repeat: no-repeat;
 		text-align: center;
+		vertical-align: text-bottom;
 		font-family: 'claire_handlight';
 		color: #fff;
 		font-size: 24px;
-		padding-top: 15px;
+		padding-top: 12px;
 	}
 
 	.wall-nav div:hover{  
@@ -232,8 +236,9 @@ body{
 
 	.india.active span,
 	.india:hover span{
-		background-color: rgba(252,179,67,0.80);
-		box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);
+		/*background-color: rgba(252,179,67,0.80);*/
+		/*box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);*/
+		background-image: url('../images/blob_yellow.png');
 	}
 
 	.india{
@@ -251,8 +256,9 @@ body{
 
 	.indonesia.active span,
 	.indonesia:hover span{
-		background-color: rgba(243,118,31,0.80);
-		box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);
+		/*background-color: rgba(243,118,31,0.80);*/
+		/*box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);*/
+		background-image: url('../images/blob_red.png');
 	}
 
 	.indonesia{
@@ -270,8 +276,9 @@ body{
 
 	.uk.active span,
 	.uk:hover span{
-		background-color: rgba(238,48,34,0.80);
-		box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);
+		/*background-color: rgba(238,48,34,0.80);*/
+		/*box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);*/
+		background-image: url('../images/blob_orange.png');
 	}
 
 	.uk{
@@ -289,8 +296,9 @@ body{
 
 	.brasil.active span,
 	.brasil:hover span{
-		background-color: rgba(208,24,70,0.80);
-		box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);
+		/*background-color: rgba(208,24,70,0.80);*/
+		/*box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);*/
+		background-image: url('../images/blob_pink.png');
 	}
 
 	.brasil{
@@ -308,8 +316,9 @@ body{
 
 	.usa.active span,
 	.usa:hover span{
-		background-color: rgba(152,4,55,0.80);
-		box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);
+		/*background-color: rgba(152,4,55,0.80);*/
+		/*box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);*/
+		background-image: url('../images/blob_blue.png');
 	}
 
 	.usa{
