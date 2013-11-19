@@ -1,0 +1,16 @@
+{
+    "plugins": [ "plugins/markdown" ],
+
+    "opts": {
+        "recurse": "true",
+        "destination": "docs/api"
+    },
+    
+    "markdown": {
+        "parser": "gfm"
+    },
+
+    "source": {
+        "include": [ "src" ]
+    }
+}

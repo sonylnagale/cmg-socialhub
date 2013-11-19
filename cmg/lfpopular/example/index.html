@@ -1,32 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>CMG SocialHub</title>
-<link rel="stylesheet" href="styles.css" />
-
-<script type="text/javascript" src="http://cdn.livefyre.com/libs/sdk/v2.3.1/streamhub-sdk.min.js"></script>
-<link rel="stylesheet" href="http://cdn.livefyre.com/libs/sdk/v2.3.1/streamhub-sdk.min.css" />
-<script src="../src/lfpopular.js"></script>
-<script>
-/* requirejs.config({
-    baseUrl: '../src/'
-});
- */</script>
+    
 </head>
 <body>
-	<div id="popular">
-		<div id="header">Popular</div>
-		<div id="socialPopular"></div>
-		<div id="footer"><a id="lf-retweetAction"><span>Retweet</span></a></div>
-	</div>
-	
-	<script>
-		var popular = new LF.lfpopular({
-			'el':'#socialPopular',
-			'tag': 'heatindex',
-			'network': 'client-solutions.fyre.co'
-		});
-	</script>
+    <h1>streamhub-trending example</h1>
+    <div id="view" class="ps4"></div>
+    <div id="view1"></div>
+    <div id="view2"></div>
+<!-- Scripts -->
+<script src="../src/lib/requirejs/require.js"></script>
+<script src="../src/requirejs.conf.js"></script>
+<link rel="stylesheet" href="../../lib/streamhub-sdk/src/css/style.css" />
+<script>
+requirejs.config({
+    baseUrl: '../src'
+});
+</script>
+<script>
+
+require([
+	'streamhub-popular'
+         ],
+function(PopularView) {
+	var popularView = new PopularView();
+});
+/* require([
+    'streamhub-hot-collections',
+    'streamhub-metrics/views/metric-list-view',
+    'streamhub-hot-collections/streams/hot-collections',
+    'streamhub-hot-collections/streams/collection-to-heat-metric'],
+function (HotCollectionsApp, MetricListView, HotCollections, CollectionToHeatMetric) {
+
+    new HotCollectionsApp({
+        network: 'thedailybeast.fyre.co',
+        el: document.getElementById('view1')
+    }).start();
+
+    var view = window.app = new MetricListView({
+        el: document.getElementById('view'),
+        initial: 1,
+        showMore: 2
+    });
+
+    // Make wobbling Bars
+    var ogCreateMetricView1 = view._createMetricView;
+    view._createMetricView = function (metric) {
+        var barView = ogCreateMetricView1.apply(this, arguments);
+        barView._wobble({
+            maxMultiplier: .04
+        });
+        return barView;
+    }
+
+    var hotCollections = window.hc = new HotCollections({
+        network: 'techcrunch.fyre.co'
+    });
+
+    hotCollections
+        .pipe(new CollectionToHeatMetric())
+        .pipe(view);
+}); */
+</script>
+
+<div id="popular">
+        <div id="header">Popular</div>
+        <div id="socialPopular"></div>
+        <div id="footer"><a id="lf-retweetAction"><span>Retweet</span></a></div>
+</div>
+
+<script>
+       /*  var popular = new LF.lfpopular({
+                'el':'#socialPopular',
+                'tag': 'heatindex',
+                'network': 'client-solutions.fyre.co'
+        }); */
+</script>
+</html>
 </body>
 </html>

@@ -1,0 +1,21 @@
+{
+  "name": "event-emitter",
+  "main": [
+    "./src/event-emitter.js"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.5"
+  },
+  "devDependencies": {
+    "jasmine": "*"
+  },
+  "homepage": "https://github.com/Livefyre/event-emitter",
+  "_release": "933274c9e4",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "933274c9e47e8eb445c56d4075dc9dad42f70d7a"
+  },
+  "_source": "git://github.com/Livefyre/event-emitter.git",
+  "_target": "*"
+}

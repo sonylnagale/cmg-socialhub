@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Streamhub-sdk tests</title>
+    <link rel="stylesheet" type="text/css" href="../lib/jasmine/lib/jasmine-core/jasmine.css">
+</head>
+    <body>
+        <script src="../lib/requirejs/require.js" type="text/javascript"></script>
+        <script src="/requirejs.conf.js" type="text/javascript"></script>
+        
+        <script type="text/javascript">
+            require([
+                'jasmine-html',
+                'jasmine-jquery',
+                'jquery',
+                '/tests/xunit-console-reporter.js'],
+            function (jasmine, jasmineJQuery, $) {
+                var jasmineEnv = jasmine.getEnv();
+                jasmineEnv.updateInterval = 1000;
+                
+                var htmlReporter = new jasmine.HtmlReporter();
+                var consoleReporter = new jasmine.XUnitConsoleReporter();
+
+                jasmineEnv.addReporter(htmlReporter);
+                //jasmineEnv.addReporter(tapReporter);
+                jasmineEnv.addReporter(consoleReporter);
+
+                jasmineEnv.specFilter = function(spec) {
+                    return htmlReporter.specFilter(spec);
+                };
+
+                var specs = [];
+                specs.push('tests/spec/main');
+                specs.push('tests/spec/debug');
+                specs.push('tests/spec/util');
+                specs.push('tests/spec/view');
+
+                specs.push('tests/spec/views/show-more-button');
+                specs.push('tests/spec/views/streams/more');
+
+                specs.push('tests/spec/collection/main');
+                specs.push('tests/spec/collection/clients/stream-client');
+                specs.push('tests/spec/collection/clients/bootstrap-client');
+                specs.push('tests/spec/collection/clients/write-client');
+                specs.push('tests/spec/collection/streams/archive');
+                specs.push('tests/spec/collection/streams/updater');
+                specs.push('tests/spec/collection/streams/writer');
+
+                specs.push('tests/spec/auth/main');
+
+                specs.push('tests/spec/content/state-to-content');
+                specs.push('tests/spec/content/main');
+                specs.push('tests/spec/content/types/livefyre-content');
+                specs.push('tests/spec/content/types/livefyre-facebook-content');
+                specs.push('tests/spec/content/types/oembed');
+                specs.push('tests/spec/content/types/livefyre-oembed');
+
+                specs.push('tests/spec/content/content-view-factory');
+                specs.push('tests/spec/content/views/content-view');
+                specs.push('tests/spec/content/views/oembed-view');
+                specs.push('tests/spec/content/views/attachment-list-view');
+                specs.push('tests/spec/content/views/tiled-attachment-list-view');
+                specs.push('tests/spec/content/views/gallery-attachment-list-view');
+                specs.push('tests/spec/content/views/content-list-view');
+
+                specs.push('tests/spec/modal/main');
+                specs.push('tests/spec/modal/views/attachment-gallery-modal');
+
+                $(function(){
+                    require(specs, function(){
+                        jasmineEnv.execute();
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

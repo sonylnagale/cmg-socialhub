@@ -1,0 +1,21 @@
+{
+  "name": "inherits",
+  "main": [
+    "./src/main.js"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.5"
+  },
+  "devDependencies": {
+    "jasmine": "*"
+  },
+  "homepage": "https://github.com/Livefyre/inherits",
+  "_release": "d02a45fd80",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "d02a45fd80d79acab163c0757358e52ec10220a0"
+  },
+  "_source": "git://github.com/Livefyre/inherits.git",
+  "_target": "*"
+}
