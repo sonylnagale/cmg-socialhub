@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CMG SocialHub</title>
+<link rel="stylesheet" href="styles.css" />
+<script src="http://livefyre-cdn.s3.amazonaws.com/libs/sdk/v2.2.0/streamhub-sdk.min.js"></script>
+<script src="../src/lfpopular.js"></script>
+
+</head>
+<body>
+	<div id="popular">
+		<div id="header">Popular</div>
+		<div id="socialPopular"></div>
+		<div id="footer"><a id="lf-retweetAction"><span>Retweet</span></a></div>
+	</div>
+	
+	<script>
+		var popular = new LF.lfpopular({
+			'el':'#socialPopular',
+			'tag': 'heatindex',
+			'network': 'client-solutions.fyre.co'
+		});
+	</script>
+</body>
+</html>
