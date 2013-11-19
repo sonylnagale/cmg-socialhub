@@ -6,8 +6,11 @@ var LF = LF || {};
  * lfpopular
  * Takes an object of options, finds the highest heat from that,
  * and sets a DOM element's contents to that content
+ * @author Sonyl Nagale <sonyl@livefyre.com>
+ * @version 0.1
  * @param {Object} opts
  * @see defaults for structure for opts
+ * @todo error handling
  * @returns {LF.lfpopular} this instance
  */
 LF.lfpopular = function(opts) {
@@ -96,7 +99,6 @@ LF.lfpopular.prototype._setContent = function(data) {
 	this.$retweet = $('#lf-retweetAction');
 
 	this.$retweet.click(function(e) {
-		console.log(e);
 		var url = "https://twitter.com/intent/retweet?tweet_id=";
 		var tweetId = data.headDocument.content[0].content.id.replace('tweet-','');
 		tweetId = tweetId.replace('\@twitter.com','');
@@ -107,6 +109,7 @@ LF.lfpopular.prototype._setContent = function(data) {
 /**
  * @private
  * Truncates data on wordbreaks
+ * @todo make this not break in the middle of HTML (I bet it will)
  * @param data
  * @return {String} truncated data
  */
