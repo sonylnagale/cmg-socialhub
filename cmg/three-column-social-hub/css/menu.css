@@ -24,13 +24,13 @@
 #socialHub #menu .title {
 	width: 100px;
 	height: 15px;
-	background: url(sprite.png) -50px -15px no-repeat;
+	background: url(../img/sprite.png) -50px -15px no-repeat;
 	line-height:15px;
 	display:block;
 }
 
 #socialHub #menu .title:hover {
-	background: url(sprite.png) -50px 0 no-repeat;
+	background: url(../img/sprite.png) -50px 0 no-repeat;
 }
 
 #socialHub #menu li{
