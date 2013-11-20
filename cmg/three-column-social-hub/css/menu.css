@@ -1,99 +1,55 @@
 @CHARSET "UTF-8";
 
 /* Main */
-#socialHub #menu {
+#socialHub #socialmenu {
 	list-style: none;  
-	margin: 0 0 0 50px;
+	margin: 0 0 0 90px;
 	padding: 10px 0 0 0;
-	
-	/* width: 100%;
-	background: #111;
-	background: -moz-linear-gradient(#444, #111); 
-        background: -webkit-gradient(linear,left bottom,left top,color-stop(0, #111),color-stop(1, #444));	
-	background: -webkit-linear-gradient(#444, #111);	
-	background: -o-linear-gradient(#444, #111);
-	background: -ms-linear-gradient(#444, #111);
-	background: linear-gradient(#444, #111);
-	-moz-border-radius: 50px;
-	border-radius: 50px;
-	-moz-box-shadow: 0 2px 1px #9c9c9c;
-	-webkit-box-shadow: 0 2px 1px #9c9c9c;
-	box-shadow: 0 2px 1px #9c9c9c; */
 }
 
-#socialHub #menu .title {
-	width: 100px;
-	height: 15px;
-	background: url(../img/sprite.png) -50px -15px no-repeat;
-	line-height:15px;
+#socialHub #socialmenu .title {
+	width: 85px;
+	height: 18px;
+	margin-bottom:22px;
+	background: url(../img/sprite.png) 65px -18px no-repeat;
+	line-height:18px;
 	display:block;
 }
 
-#socialHub #menu .title:hover {
-	background: url(../img/sprite.png) -50px 0 no-repeat;
+#socialHub #socialmenu .title:hover {
+	background: url(../img/sprite.png) 65px 0 no-repeat;
 }
 
-#socialHub #menu li{
+#socialHub #socialmenu li{
 	float: left;
 	padding: 0 0 10px 0;
 	position: relative;
 }
 
-#socialHub #menu > li a {
+#socialHub #socialmenu > li a {
 	color: #000;
-	font: 10px Helvetica, Arial, sans-serif;
+	font: 10px Arial, sans-serif;
 	text-transform: uppercase;
 	text-decoration: none;
 }
-
-#socialHub #menu li ul li a{
-	/* float: left;
-	height: 25px;
-	padding: 0 25px;
-	color: #999;
-	text-transform: uppercase;
-	font: bold 12px/25px Arial, Helvetica;
-	text-decoration: none;
-	text-shadow: 0 1px 0 #000; */
-}
-
-#socialHub #menu li:hover > a{
-/* 	color: #fafafa;
- */}
-
-*html #socialHub #menu li a:hover{ /* IE6 */
-	color: #fafafa;
-}
-
-#socialHub #menu li:hover > ul{
+#socialHub #socialmenu li:hover > ul{
 	display: block;
 }
 
 /* Sub-menu */
 
-#socialHub #menu ul{
+#socialHub #socialmenu ul{
     list-style: none;
     margin: 0;
     padding: 0;    
     display: none;
     position: absolute;
-    top: 25px;
-    left: 0;
+    top: 50px;
     z-index: 99999;    
     background: #dbdbdb;
-    
-   /*  background: #444;
-    background: -moz-linear-gradient(#444, #111);
-    background: -webkit-gradient(linear,left bottom,left top,color-stop(0, #111),color-stop(1, #444));
-    background: -webkit-linear-gradient(#444, #111);    
-    background: -o-linear-gradient(#444, #111);	
-    background: -ms-linear-gradient(#444, #111);	
-    background: linear-gradient(#444, #111);	
-    -moz-border-radius: 5px;
-    border-radius: 5px; */
 }
 
-#socialHub #menu ul li{
+#socialHub #socialmenu ul li{
     float: none;
     margin: 0;
     padding: 0;
@@ -107,14 +63,14 @@
     box-shadow: 0 1px 0 #111111, 0 2px 0 #777777; */
 }
 
-#socialHub #menu ul li:last-child{   
+#socialHub #socialmenu ul li:last-child{   
  /*    -moz-box-shadow: none;
     -webkit-box-shadow: none;
     box-shadow: none;  */   
 }
 
-#socialHub #menu ul a {
-	width:187px;
+#socialHub #socialmenu ul a {
+	width:150px;
     padding: 15px;
     line-height: 1;
     display: block;
@@ -125,17 +81,17 @@
     background: #dbdbdb;
 }
 
-*html #socialHub #menu ul a{ /* IE6 */   
+*html #socialHub #socialmenu ul a{ /* IE6 */   
 	height: 10px;
 	width: 150px;
 }
 
-*:first-child+html #socialHub #menu ul a{ /* IE7 */    
+*:first-child+html #socialHub #socialmenu ul a{ /* IE7 */    
 	height: 10px;
 	width: 150px;
 }
 
-#socialHub #menu ul a:hover{
+#socialHub #socialmenu ul a:hover{
         background: #ededed;
 	/* background: -moz-linear-gradient(#04acec,  #0186ba);	
 	background: -webkit-gradient(linear, left top, left bottom, from(#04acec), to(#0186ba));
@@ -145,13 +101,13 @@
 	background: linear-gradient(#04acec,  #0186ba); */
 }
 
-#socialHub #menu ul li:first-child a{
+#socialHub #socialmenu ul li:first-child a{
    /*  -moz-border-radius: 5px 5px 0 0;
     -webkit-border-radius: 5px 5px 0 0;
     border-radius: 5px 5px 0 0; */
 }
 
-#socialHub #menu ul li:first-child a:after{
+#socialHub #socialmenu ul li:first-child a:after{
     /* content: '';
     position: absolute;
     left: 30px;
@@ -163,18 +119,18 @@
     border-bottom: 8px solid #444; */
 }
 
-#socialHub #menu ul li:first-child a:hover:after{
+#socialHub #socialmenu ul li:first-child a:hover:after{
     border-bottom-color: #04acec; 
 }
 
-#socialHub #menu ul li:last-child a{
+#socialHub #socialmenu ul li:last-child a{
     -moz-border-radius: 0 0 5px 5px;
     -webkit-border-radius: 0 0 5px 5px;
     border-radius: 0 0 5px 5px;
 }
 
 /* Clear floated elements */
-#socialHub #menu:after{
+#socialHub #socialmenu:after{
 	visibility: hidden;
 	display: block;
 	font-size: 0;
@@ -183,5 +139,5 @@
 	height: 0;
 }
 
-* html #socialHub #menu             { zoom: 1; } /* IE6 */
-*:first-child+html #socialHub #menu { zoom: 1; } /* IE7 */
+* html #socialHub #socialmenu             { zoom: 1; } /* IE6 */
+*:first-child+html #socialHub #socialmenu { zoom: 1; } /* IE7 */

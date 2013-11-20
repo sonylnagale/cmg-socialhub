@@ -15,14 +15,19 @@ body {
 	color: #003399;
 }
 
-#socialHub #header {
+#socialHub #socialheader {
 	height: 35px;
-	background: linear-gradient(0deg, #002772 100%, #023299 0%);
+	background: linear-gradient(to bottom, #01256e, #003399);
 	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
 	overflow:hidden;
 }
 
-#socialHub #header a {
+#socialHub #socialheader div {
+	width: 1030px;
+	margin: 0 auto;
+}
+
+#socialHub #socialheader a {
 	display: block;
 	width: 343px;
 	float:left;
@@ -30,12 +35,12 @@ body {
 	height: 35px;
 	text-transform: uppercase;
 	color: #fff;
-	font: bold 14px/35px Helvetica, Arial, sans-serif;
+	font: bold 21px/35px Arial, sans-serif;
 }
 
 #socialHub #hub, #socialHub #wall {
 	width: 1030px;
-	margin: 40px auto 0;
+	margin: 0 auto;
 	overflow:auto;
 }
 
@@ -45,11 +50,11 @@ body {
 	margin: 0 7px;
 }
 
-#socialHub #sort {
-	margin: 15px 50px 0;
+#socialHub #socialsort {
+	margin-top: 20px;
 }
 
-#socialHub #sort a {
+#socialHub #socialsort a {
 	cursor:pointer;
 }
 
@@ -79,3 +84,7 @@ body {
 	color: #fff;
 }
 
+#socialHub .content-author-avatar img {
+	mask-image: url(../img/mask.png);
+	-webkit-mask-image: url(../img/mask.png);
+}

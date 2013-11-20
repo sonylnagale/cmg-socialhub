@@ -98,7 +98,7 @@
 				resizeFunction();
 			});
 			
-			$("#socialHub #menu .all").click(function() {
+			$("#socialHub #socialmenu .all").click(function() {
 				$("#socialHub #wall").fadeOut();
 				for (var i = 0; i < collections.length; ++i) {
 					collections[i].resume(); // restart the other long polls
@@ -111,7 +111,7 @@
 				$("#socialHub #hub").fadeIn();
 			});
 			
-			$("#socialHub #menu .filter").click(function(){
+			$("#socialHub #socialmenu .filter").click(function(){
 				$("#socialHub #hub").fadeOut();
 				
 				for (var i = 0; i < collections.length; ++i) {
