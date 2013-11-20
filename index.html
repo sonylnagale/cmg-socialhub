@@ -5,19 +5,49 @@
 <title>CMG SocialHub</title>
 <link rel="stylesheet" href="css/styles.css" />
 <link rel="stylesheet" href="css/menu.css" />
+<link rel="stylesheet" href="css/popular.css" />
 <script src="http://livefyre-cdn.s3.amazonaws.com/libs/sdk/v2.2.0/streamhub-sdk.min.js"></script>
 <script src="http://cdn.livefyre.com/libs/apps/Livefyre/streamhub-wall/v2.0.0-build.85/streamhub-wall.min.js"></script>
 <link rel="stylesheet" href="http://cdn.livefyre.com/libs/sdk/v2.0.3/streamhub-sdk.min.css" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="js/socialhub.js"></script>
+<script src="js/lfpopular.js"></script>
+
 </head>
 <body>
+	
 	<div id="socialHub">
-		<header>
+		<div id="three-modules">
+			<style>
+			/* for mockup purposes only */
+			#socialHub #three-modules {
+				height:200px;
+				background: #fafafa no-repeat center url(img/3modules-mock.png);
+				padding-top:55px;
+			}
+			#popular {
+				margin: 0 auto;
+			}
+			</style>
+			<div id="popular">
+				<div id="popularheader">Popular</div>
+				<div id="socialPopular"></div>
+				<div id="popularfooter"><a id="lf-retweetAction"><span>Retweet</span></a></div>
+			</div>
+			
+			<script>
+				var popular = new LF.lfpopular({
+					'el':'#socialPopular',
+					'tag': 'heatindex',
+					'network': 'client-solutions.fyre.co'
+				});
+			</script>
+		</div>
+		<div id="header">
 			<a id="newsLink">News</a>
 			<a id="expertsLink">Experts</a>
 			<a id="reactionsLink">Your Reactions</a>
-		</header>
+		</div>
 		
 		<div id="sort">
 			<ul id="menu">
