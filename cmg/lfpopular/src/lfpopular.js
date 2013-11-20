@@ -8,24 +8,33 @@ var LF = LF || {};
  * and sets a DOM element's contents to that content
  * @author Sonyl Nagale <sonyl@livefyre.com>
  * @version 0.1
- * @param {Object} opts
- * @see defaults for structure for opts
- * @todo error handling
+ * @param {Object} opts = {
+ * 		el: String (required)
+ * 		tag: String 
+ * 		siteId: String
+ * 		network: String (required)
+ * 		truncate: String
+ * }
  * @returns {LF.lfpopular} this instance
  */
 LF.lfpopular = function(opts) {
 	var defaults = {
-		'el':'#socialPopular',
-		'tag': 'heatindex',
+		'el':null,
+		'tag': null,
 		'siteId': null,
-		'number': null,
-		'network': 'client-solutions.fyre.co',
+		'network': null,
 		'truncate': '55'
 	};
 	
 	this.opts = opts || {};
 	this.opts = $.extend(defaults, this.opts);
 
+	// error handling
+	if (this.opts.el == null || this.opts.network == null || (this.opts.tag == null && this.opts.siteId == null)) {
+		throw "Not enough parameters defined";
+		return;
+	}
+	
 	this.$el = $(this.opts.el);
 	
 	this._getHeat();
@@ -185,7 +194,7 @@ $.truncate.defaults = {
   stripTags: false,
 
   // Only truncate at word boundaries.
-  words: false,
+  words: true,
 
   // Replace instances of <br> with a single space.
   noBreaks: false,
@@ -197,7 +206,7 @@ $.truncate.defaults = {
   // used to prevent a hanging ellipsis, but displays incorrectly in Chrome
   // on Windows 7.
   // http://code.google.com/p/chromium/issues/detail?id=68323
-  ellipsis: '\u2026' // '\u2060\u2026'
+  ellipsis: ' \u2026' // '\u2060\u2026'
 
 };
 
