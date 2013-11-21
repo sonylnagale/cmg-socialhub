@@ -37,6 +37,23 @@ LF.lfsocialhub = function(opts) {
 	this.$el = $(this.opts.el);
 	
 	this._prepData();
+
+	// cache this dom reference
+	this.$header = $('#socialheader');
+	
+	//now stick our header to the top as we scroll
+	$(document).ready($.proxy(function() {
+		this.$header.originalTop = this.$header.position().top;
+		
+		$(window).scroll($.proxy(function() {
+			if ($(window).scrollTop() >= this.$header.originalTop) {
+				this.$header.addClass('scroll');
+			} else {
+				this.$header.removeClass('scroll');
+			}
+
+		},this))
+	},this));
 	
 };
 	
@@ -85,7 +102,7 @@ LF.lfsocialhub.prototype._setEvents = function() {
 		
 		for (var i = 0; i < this.links.length; ++i) {
 			$('#' + this.links[i] + 'Link').fadeIn().animate({
-				width: "343"
+				width: "342"
 			});
 		}
 		
@@ -109,10 +126,13 @@ LF.lfsocialhub.prototype._setEvents = function() {
 			
 			if (this.links[i] != $(desiredLink).attr('id').replace('Link','')) {
 				$('#' + this.links[i] + 'Link').fadeOut(250);
+				$('#' + this.links[i] + 'Link').removeClass('only');
+
 			} else {
 				$('#' + this.links[i] + 'Link').delay(500).fadeIn().animate({
 					width: "1030"
 				});
+				$('#' + this.links[i] + 'Link').addClass('only');
 			}
 		}
 	},this));
