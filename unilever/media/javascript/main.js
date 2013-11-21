@@ -32,7 +32,7 @@ var collections = [
         "name": "brasil",
         "network": "unilever.fyre.co",
         "siteId": "347150",
-        "articleId": "custom-1383691195832"
+        "articleId": "custom-1384845657590"
     },{
         "name": "usa",
         "network": "unilever.fyre.co",
@@ -65,7 +65,6 @@ var walls = collections.reduce(function (prev, next) {
     var wall = prev[name] = {};
     wall.collection = new Collection(next);
     wall.view = new WallView({
-        showMore: 2,
         el: document.getElementById(name)
     });
     wall.piped = false;
