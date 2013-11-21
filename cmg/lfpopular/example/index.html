@@ -3,23 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <title>CMG SocialHub</title>
-<link rel="stylesheet" href="styles.css" />
 <script type="text/javascript" src="http://cdn.livefyre.com/libs/sdk/v2.3.1/streamhub-sdk.min.js"></script>
 <link rel="stylesheet" href="http://cdn.livefyre.com/libs/sdk/v2.3.1/streamhub-sdk.min.css" />
 <script src="../src/lfpopular.js"></script>
+<link rel="stylesheet" href="styles.css" />
+
 </head>
 <body>
 	<div id="popular">
 		<div id="header">Popular</div>
 		<div id="socialPopular"></div>
-		<div id="footer"><a id="lf-retweetAction"><span>Retweet</span></a></div>
 	</div>
 	
 	<script>
+		var socialHubCollections = [
+			{
+				'name': 'news',
+				'network': 'client-solutions.fyre.co',
+				'siteId': '346298',
+				'articleId':'custom-1383098705234'
+			},
+			{
+				'name':'experts',
+				'network': 'client-solutions.fyre.co',
+				'siteId': '346298',
+				'articleId':'custom-1383098750826'
+			},
+			{
+				'name':'reactions',
+				'network': 'client-solutions.fyre.co',
+				'siteId': '346298',
+				'articleId':'custom-1383101815435'
+			}
+		];
+	
+	
 		var popular = new LF.lfpopular({
 			'el':'#socialPopular',
-			'tag': 'heatindex',
-			'network': 'client-solutions.fyre.co'
+			'collections': socialHubCollections,
+			'items':3
 		});
 	</script>
 </body>
