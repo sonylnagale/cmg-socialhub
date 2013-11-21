@@ -1,0 +1,143 @@
+@CHARSET "UTF-8";
+
+/* Main */
+#socialHub #socialmenu {
+	list-style: none;  
+	margin: 0 0 0 90px;
+	padding: 10px 0 0 0;
+}
+
+#socialHub #socialmenu .title {
+	width: 85px;
+	height: 18px;
+	margin-bottom:22px;
+	background: url(../img/sprite.png) 65px -18px no-repeat;
+	line-height:18px;
+	display:block;
+}
+
+#socialHub #socialmenu .title:hover {
+	background: url(../img/sprite.png) 65px 0 no-repeat;
+}
+
+#socialHub #socialmenu li{
+	float: left;
+	padding: 0 0 10px 0;
+	position: relative;
+}
+
+#socialHub #socialmenu > li a {
+	color: #000;
+	font: 10px Arial, sans-serif;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+#socialHub #socialmenu li:hover > ul{
+	display: block;
+}
+
+/* Sub-menu */
+
+#socialHub #socialmenu ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;    
+    display: none;
+    position: absolute;
+    top: 50px;
+    z-index: 99999;    
+    background: #dbdbdb;
+}
+
+#socialHub #socialmenu ul li{
+    float: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    border: 1px solid #ededed;
+   	box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+    
+    
+    /* -moz-box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
+    -webkit-box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
+    box-shadow: 0 1px 0 #111111, 0 2px 0 #777777; */
+}
+
+#socialHub #socialmenu ul li:last-child{   
+ /*    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;  */   
+}
+
+#socialHub #socialmenu ul a {
+	width:150px;
+    padding: 15px;
+    line-height: 1;
+    display: block;
+    white-space: nowrap;
+    float: none;
+    text-transform: uppercase;
+    font: 14px Helvetica, Arial, sans-serif;
+    background: #dbdbdb;
+}
+
+*html #socialHub #socialmenu ul a{ /* IE6 */   
+	height: 10px;
+	width: 150px;
+}
+
+*:first-child+html #socialHub #socialmenu ul a{ /* IE7 */    
+	height: 10px;
+	width: 150px;
+}
+
+#socialHub #socialmenu ul a:hover{
+        background: #ededed;
+	/* background: -moz-linear-gradient(#04acec,  #0186ba);	
+	background: -webkit-gradient(linear, left top, left bottom, from(#04acec), to(#0186ba));
+	background: -webkit-linear-gradient(#04acec,  #0186ba);
+	background: -o-linear-gradient(#04acec,  #0186ba);
+	background: -ms-linear-gradient(#04acec,  #0186ba);
+	background: linear-gradient(#04acec,  #0186ba); */
+}
+
+#socialHub #socialmenu ul li:first-child a{
+   /*  -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0; */
+}
+
+#socialHub #socialmenu ul li:first-child a:after{
+    /* content: '';
+    position: absolute;
+    left: 30px;
+    top: -8px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid #444; */
+}
+
+#socialHub #socialmenu ul li:first-child a:hover:after{
+    border-bottom-color: #04acec; 
+}
+
+#socialHub #socialmenu ul li:last-child a{
+    -moz-border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
+}
+
+/* Clear floated elements */
+#socialHub #socialmenu:after{
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+* html #socialHub #socialmenu             { zoom: 1; } /* IE6 */
+*:first-child+html #socialHub #socialmenu { zoom: 1; } /* IE7 */

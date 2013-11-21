@@ -23,7 +23,7 @@ LF.lfpopular = function(opts) {
 		'tag': null,
 		'siteId': null,
 		'network': null,
-		'truncate': '55'
+		'truncate': '40'
 	};
 	
 	this.opts = opts || {};
