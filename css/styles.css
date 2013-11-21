@@ -23,14 +23,29 @@ body {
 	overflow:hidden;
 }
 
+#socialHub #socialheader.scroll {
+	position:fixed;
+	top:0;
+	width: 1200px;
+	z-index: 10;
+	
+}
+
 #socialHub #socialheader div {
 	width: 1030px;
 	margin: 0 auto;
 }
 
+#socialHub #socialheader div a:not(:last-child) {
+	border-right: 1px solid #00226e;
+}
+
+#socialHub #socialheader div a.only {
+	border:none;
+}
 #socialHub #socialheader a {
 	display: block;
-	width: 343px;
+	width: 342px;
 	float:left;
 	text-align: center;
 	height: 35px;
@@ -41,13 +56,14 @@ body {
 
 #socialHub #hub, #socialHub #wall {
 	width: 1050px;
-	margin: -30px auto 0;
-	padding: 30px 10px 0;
+	margin: -20px auto 0;
+	padding: 20px 10px 0;
 	overflow:auto;
 }
 
 #socialHub #wall {
 	margin: 0 auto;
+	padding: 20px 0 0;
 	display:none;
 }
 #socialHub #hub .feed {
@@ -57,7 +73,7 @@ body {
 }
 
 #socialHub #socialsort {
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 #socialHub #socialsort a {
