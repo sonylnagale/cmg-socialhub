@@ -39,8 +39,9 @@ body {
 }
 
 #socialHub #hub, #socialHub #wall {
-	width: 1030px;
-	margin: 0 auto;
+	width: 1050px;
+	margin: -30px auto 0;
+	padding: 30px 10px 0;
 	overflow:auto;
 }
 

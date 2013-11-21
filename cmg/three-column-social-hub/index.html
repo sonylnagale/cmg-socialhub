@@ -22,7 +22,6 @@
 			/* for mockup purposes only */
 			#socialHub #three-modules {
 				height:200px;
-				background: #fafafa no-repeat center url(img/3modules-mock.png);
 				padding-top:55px;
 			}
 			#popular {
@@ -30,18 +29,39 @@
 			}
 			</style>
 			<div id="popular">
-				<div id="popularheader">Popular</div>
+				<div id="header">Popular</div>
 				<div id="socialPopular"></div>
-				<div id="popularfooter"><a id="lf-retweetAction"><span>Retweet</span></a></div>
 			</div>
 			
 			<script>
-				var popular = new LF.lfpopular({
-					'el':'#socialPopular',
-					'tag': 'heatindex',
-					'network': 'client-solutions.fyre.co'
-				});
-			</script>
+			var socialHubCollections = [
+				{
+					'name': 'news',
+					'network': 'client-solutions.fyre.co',
+					'siteId': '346298',
+					'articleId':'custom-1383098705234'
+				},
+				{
+					'name':'experts',
+					'network': 'client-solutions.fyre.co',
+					'siteId': '346298',
+					'articleId':'custom-1383098750826'
+				},
+				{
+					'name':'reactions',
+					'network': 'client-solutions.fyre.co',
+					'siteId': '346298',
+					'articleId':'custom-1383101815435'
+				}
+			];
+		
+		
+			var popular = new LF.lfpopular({
+				'el':'#socialPopular',
+				'collections': socialHubCollections,
+				'items':3
+			});
+		</script>
 		</div>
 		<div id="socialheader">
 			<div>
