@@ -18,6 +18,7 @@ body {
 #socialHub #socialheader {
 	height: 35px;
 	background: linear-gradient(to bottom, #01256e, #003399);
+	background: -webkit-linear-gradient(top, #01256e, #003399);
 	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
 	overflow:hidden;
 }
@@ -45,6 +46,10 @@ body {
 	overflow:auto;
 }
 
+#socialHub #wall {
+	margin: 0 auto;
+	display:none;
+}
 #socialHub #hub .feed {
 	width: 329px;
  	float: left;
@@ -76,7 +81,7 @@ body {
 }
 
 #socialHub .content-author-name a, #socialHub a.content-author-username {
-	font: italic 10px Helvetica, Arial, sans-serif;
+	font: italic 12px/20px Helvetica, Arial, sans-serif;
 	color: #999;
 }
 

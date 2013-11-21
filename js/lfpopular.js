@@ -23,8 +23,7 @@ LF.lfpopular = function(opts) {
 	var $ = Livefyre.require('streamhub-sdk/jquery');
 	var defaults = {
 		'el':null,
-		'collections': null,
-		'items': 3
+		'collections': null
 	};
 	
 	this.opts = opts || {};
