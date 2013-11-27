@@ -10,10 +10,11 @@
 #socialHub #socialmenu .title {
 	width: 85px;
 	height: 18px;
-	margin-bottom:22px;
+	margin-bottom:10px;
 	background: url(../img/sprite.png) 65px -18px no-repeat;
 	line-height:18px;
 	display:block;
+	color: #000;
 }
 
 #socialHub #socialmenu .title:hover {
@@ -44,7 +45,8 @@
     padding: 0;    
     display: none;
     position: absolute;
-    top: 50px;
+    top: 38px;
+    left: -10px;
     z-index: 99999;    
     background: #dbdbdb;
 }
@@ -56,17 +58,6 @@
     display: block;
     border: 1px solid #ededed;
    	box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-    
-    
-    /* -moz-box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
-    -webkit-box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
-    box-shadow: 0 1px 0 #111111, 0 2px 0 #777777; */
-}
-
-#socialHub #socialmenu ul li:last-child{   
- /*    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;  */   
 }
 
 #socialHub #socialmenu ul a {
@@ -81,42 +72,8 @@
     background: #dbdbdb;
 }
 
-*html #socialHub #socialmenu ul a{ /* IE6 */   
-	height: 10px;
-	width: 150px;
-}
-
-*:first-child+html #socialHub #socialmenu ul a{ /* IE7 */    
-	height: 10px;
-	width: 150px;
-}
-
 #socialHub #socialmenu ul a:hover{
-        background: #ededed;
-	/* background: -moz-linear-gradient(#04acec,  #0186ba);	
-	background: -webkit-gradient(linear, left top, left bottom, from(#04acec), to(#0186ba));
-	background: -webkit-linear-gradient(#04acec,  #0186ba);
-	background: -o-linear-gradient(#04acec,  #0186ba);
-	background: -ms-linear-gradient(#04acec,  #0186ba);
-	background: linear-gradient(#04acec,  #0186ba); */
-}
-
-#socialHub #socialmenu ul li:first-child a{
-   /*  -moz-border-radius: 5px 5px 0 0;
-    -webkit-border-radius: 5px 5px 0 0;
-    border-radius: 5px 5px 0 0; */
-}
-
-#socialHub #socialmenu ul li:first-child a:after{
-    /* content: '';
-    position: absolute;
-    left: 30px;
-    top: -8px;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 8px solid #444; */
+    background: #ededed;
 }
 
 #socialHub #socialmenu ul li:first-child a:hover:after{
@@ -138,6 +95,3 @@
 	clear: both;
 	height: 0;
 }
-
-* html #socialHub #socialmenu             { zoom: 1; } /* IE6 */
-*:first-child+html #socialHub #socialmenu { zoom: 1; } /* IE7 */

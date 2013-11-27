@@ -18,8 +18,17 @@ body {
 #socialHub #socialheader {
 	height: 35px;
 	background: linear-gradient(to bottom, #01256e, #003399);
+	background: -webkit-linear-gradient(top, #01256e, #003399);
 	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
 	overflow:hidden;
+}
+
+#socialHub #socialheader.scroll {
+	position:fixed;
+	top:0;
+	width: 1200px;
+	z-index: 10;
+	
 }
 
 #socialHub #socialheader div {
@@ -27,9 +36,16 @@ body {
 	margin: 0 auto;
 }
 
+#socialHub #socialheader div a:not(:last-child) {
+	border-right: 1px solid #00226e;
+}
+
+#socialHub #socialheader div a.only {
+	border:none;
+}
 #socialHub #socialheader a {
 	display: block;
-	width: 343px;
+	width: 342px;
 	float:left;
 	text-align: center;
 	height: 35px;
@@ -39,11 +55,17 @@ body {
 }
 
 #socialHub #hub, #socialHub #wall {
-	width: 1030px;
-	margin: 0 auto;
+	width: 1050px;
+	margin: -20px auto 0;
+	padding: 20px 10px 0;
 	overflow:auto;
 }
 
+#socialHub #wall {
+	margin: 0 auto;
+	padding: 20px 0 0;
+	display:none;
+}
 #socialHub #hub .feed {
 	width: 329px;
  	float: left;
@@ -51,7 +73,7 @@ body {
 }
 
 #socialHub #socialsort {
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 #socialHub #socialsort a {
@@ -75,7 +97,7 @@ body {
 }
 
 #socialHub .content-author-name a, #socialHub a.content-author-username {
-	font: italic 10px Helvetica, Arial, sans-serif;
+	font: italic 12px/20px Helvetica, Arial, sans-serif;
 	color: #999;
 }
 
