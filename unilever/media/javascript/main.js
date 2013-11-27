@@ -15,15 +15,18 @@ var Tweets = {
 var CustomCountry = {
     "brasil": {
         "nav": ["Indonésia", "Índia", "Reino Unido", "Brasil", "EUA"],
-        "card": ["O Mundo", "Clique aqui para ver pessoas ao redor do mundo criando um #futuromelhor"]
+        "card": ["O Mundo", "Clique aqui para ver pessoas ao redor do mundo criando um #futuromelhor"],
+        "more": ["Carregar Mais"]
     },
     "indonesia": {
         "nav": ["Indonesia", "India", "Inggris", "Brasil", "Amerika Serikat"],
-        "card": ["Dunia", "ihat bagaimana orang-orang dari seluruh dunia mewujudkan masa depan yang lebih cerah #brightfuture"]
+        "card": ["Dunia", "ihat bagaimana orang-orang dari seluruh dunia mewujudkan masa depan yang lebih cerah #brightfuture"],
+        "more": ["Menunjukkan lebih"]
     },
     "all": {
         "nav": ["Indonesia", "India", "UK", "Brazil", "USA"],
-        "card": ["The World", "See the people around the world creating a #brightfuture"]
+        "card": ["The World", "See the people around the world creating a #brightfuture"],
+        "more": ["Load More"]
     }
 };
 
@@ -164,6 +167,11 @@ var CustomText = {
         
         $('#world-copy').html(CustomCountry[key]['card'][0]);
         $('#world-sub-copy').html(CustomCountry[key]['card'][1]);
+
+        var more = $('#' + key + ' .hub-list-more');
+        if (more.length > 0){
+            $(more[0]).html(CustomCountry[key]['more'][0]);
+        }
 
         $('.wall-nav span').each(function(index){
             if (index > 0){
