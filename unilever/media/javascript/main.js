@@ -168,7 +168,7 @@ var CustomText = {
         $('#world-copy').html(CustomCountry[key]['card'][0]);
         $('#world-sub-copy').html(CustomCountry[key]['card'][1]);
 
-        var more = $('#' + key + ' .hub-list-more');
+        var more = $('#' + key + ' > .hub-list-footer > .hub-list-more');
         if (more.length > 0){
             $(more[0]).html(CustomCountry[key]['more'][0]);
         }
