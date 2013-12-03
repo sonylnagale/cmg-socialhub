@@ -166,6 +166,7 @@ body{
 	}
 }
 
+/* iPad ----------- */
 @media only screen and (max-width:1020px) and (min-width:480px) {
 	.wall-nav-mobile{
 		display: none;
