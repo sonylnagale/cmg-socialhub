@@ -51,8 +51,19 @@ LF.lfsocialhub = function(opts) {
 			} else {
 				this.$header.removeClass('scroll');
 			}
-
-		},this))
+			
+			var offset = Math.ceil($(window).scrollTop() % $(window).height()/10);
+			console.log(offset);
+			if (offset < 5) {
+				for (var view in this.views) {
+					this.views[view].showMore();
+				}
+				if (typeof this.wallView != "undefined") {
+					this.wallView.showMore();
+				}
+			}
+			
+		},this));
 	},this));
 	
 };
@@ -78,10 +89,10 @@ LF.lfsocialhub.prototype._prepData = function() {
 		});
 				
 		this.views[collection.name + "View"] = new ListView({
-			initial: 5,
-			showMore:5,
+			initial: 50,
 			el: $('#' + collection.name + "Feed")
 		});
+		
 		this.collections[collection.name + "Collection"].pipe(this.views[collection.name + "View"]);
 	}
 	
@@ -149,10 +160,10 @@ LF.lfsocialhub.prototype._setWall = function() {
 		// prep our wall view
 		var WallView = Livefyre.require('streamhub-wall');
 		
-		var wallView = new WallView({
+		this.wallView = new WallView({
 		    el: this.$el
 		});
-		this.desiredCollection.pipe(wallView);
+		this.desiredCollection.pipe(this.wallView);
 	},this));
 };
 })();
