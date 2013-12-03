@@ -110,3 +110,7 @@ body {
 	mask-image: url(../img/mask.png);
 	-webkit-mask-image: url(../img/mask.png);
 }
+
+#socialHub .hub-list-more {
+	display:none !important;
+}
