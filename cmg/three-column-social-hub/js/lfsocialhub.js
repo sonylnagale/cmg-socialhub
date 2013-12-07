@@ -138,7 +138,7 @@ LF.lfsocialhub.prototype._setEvents = function() {
 		
 		for (var i = 0; i < this.links.length; ++i) {
 			$('#' + this.links[i] + 'Link').fadeIn().animate({
-				width: (Math.floor($("#socialHub").width() / 3) - 2)
+				width: "31%"
 			});
 		}
 		
@@ -168,7 +168,7 @@ LF.lfsocialhub.prototype._setEvents = function() {
 
 			} else {
 				$('#' + this.links[i] + 'Link').delay(500).fadeIn().animate({
-					width: $("#socialHub").width()
+					width: "96%"
 				});
 				$('#' + this.links[i] + 'Link').addClass('only');
 			}
@@ -192,6 +192,9 @@ LF.lfsocialhub.prototype._setWall = function() {
 		this.wallView = new WallView({
 		    el: this.$el
 		});
+		
+		this.wallView.column = 5;
+		
 		this.desiredCollection.pipe(this.wallView);
 	},this));
 };
