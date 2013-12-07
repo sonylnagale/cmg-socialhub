@@ -192,9 +192,7 @@ LF.lfsocialhub.prototype._setWall = function() {
 		this.wallView = new WallView({
 		    el: this.$el
 		});
-		
-		this.wallView.column = 5;
-		
+				
 		this.desiredCollection.pipe(this.wallView);
 	},this));
 };
