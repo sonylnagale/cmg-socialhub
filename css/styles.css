@@ -146,6 +146,10 @@ and (max-device-width : 1024px)  {
 	#socialHub .content-body {
 		font: bold 13px/18px Arial, sans-serif;
 	}
+	
+	#socialHub #wall .content-container {
+		max-width: 33.3%;
+	}
 }
 
 /** iPhone 5 portrait & landscape */ 
