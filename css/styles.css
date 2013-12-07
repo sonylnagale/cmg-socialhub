@@ -1,12 +1,32 @@
 @CHARSET "UTF-8";
 
+/** 
+ *	CMG SocialHub CSS
+ *	@version 0.2
+ *	@author Sonyl Nagale <sonyl@livefyre.com>
+ *
+ *	@note Includes responsive elements
+ * 
+ *  @todo Handheld devices
+ */
+ 
 body {
 	margin:0;
 	background-color: #e8e8e8;
 }
 
+#rootContainer {
+	z-index: 100;
+	width: 83%;
+	position: relative;
+	margin: 0 auto 0;
+	background: #fafafa;
+	min-height: 235px;
+	padding-top: 5px;
+}
+
 #socialHub {
-	width: 1200px;
+	width: 100%;
 	margin: 0 auto;
 	box-shadow: -3px 0 5px rgba(204, 204, 204, 0.5), 3px 0 5px rgba(204, 204, 204, 0.5);
 }
@@ -26,13 +46,13 @@ body {
 #socialHub #socialheader.scroll {
 	position:fixed;
 	top:0;
-	width: 1200px;
-	z-index: 10;
+	width: 83%;
+	z-index: 100;
 	
 }
 
 #socialHub #socialheader div {
-	width: 1030px;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -45,7 +65,7 @@ body {
 }
 #socialHub #socialheader a {
 	display: block;
-	width: 342px;
+	width: 33%;
 	float:left;
 	text-align: center;
 	height: 35px;
@@ -55,9 +75,9 @@ body {
 }
 
 #socialHub #hub, #socialHub #wall {
-	width: 1050px;
+	width: 96%;
 	margin: -20px auto 0;
-	padding: 20px 10px 0;
+	padding: 20px 2% 0;
 	overflow:auto;
 }
 
@@ -67,9 +87,9 @@ body {
 	display:none;
 }
 #socialHub #hub .feed {
-	width: 329px;
+	width: 31%;
  	float: left;
-	margin: 0 7px;
+	margin: 0 1%;
 }
 
 #socialHub #socialsort {
@@ -113,4 +133,31 @@ body {
 
 #socialHub .hub-list-more {
 	display:none !important;
+}
+
+/** iPad portrait & landscape */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  { 
+	#socialHub #socialheader a {
+		font: bold 16px/35px Arial, sans-serif;
+	}
+	
+	#socialHub .content-body {
+		font: bold 13px/18px Arial, sans-serif;
+	}
+}
+
+/** iPhone 5 portrait & landscape */ 
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) { 
+	
+}
+
+/** iPhone 2G-4S in portrait & landscape */ 
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) { 
+
 }

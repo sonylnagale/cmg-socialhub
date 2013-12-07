@@ -1,9 +1,17 @@
 @CHARSET "UTF-8";
 
+/** 
+ *	CMG SocialHub Menu CSS
+ *	@version 0.2
+ *	@author Sonyl Nagale <sonyl@livefyre.com>
+ */
+
 /* Main */
+
 #socialHub #socialmenu {
+	width: 100%;
 	list-style: none;  
-	margin: 0 0 0 90px;
+	margin: 0 0 0 5%%;
 	padding: 10px 0 0 0;
 }
 
@@ -15,11 +23,14 @@
 	line-height:18px;
 	display:block;
 	color: #000;
+	text-decoration: none;
+	border: none;
 }
 
 #socialHub #socialmenu .title:hover {
 	background: url(../img/sprite.png) 65px 0 no-repeat;
 }
+
 
 #socialHub #socialmenu li{
 	float: left;
@@ -49,6 +60,10 @@
     left: -10px;
     z-index: 99999;    
     background: #dbdbdb;
+}
+
+#socialHub #socialmenu ul.hidden {
+	display:block;
 }
 
 #socialHub #socialmenu ul li{
@@ -94,4 +109,13 @@
 	content: " ";
 	clear: both;
 	height: 0;
+}
+
+/** handheld */
+@media only screen 
+and (max-device-width : 1024px)  { 
+	
+	#socialHub #socialmenu .title.shown {
+		background: url(../img/sprite.png) 65px 0 no-repeat;
+	}
 }

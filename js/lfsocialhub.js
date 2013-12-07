@@ -9,7 +9,7 @@ var LF = LF || {};
  * lfsocialhub
  * Sets up a three-column social hub experience
  * @author Sonyl Nagale <sonyl@livefyre.com>
- * @version 0.2
+ * @version 0.4
  * @param {Object} opts = {
  * 		el: String (required)
  * 		collections: Array (required) [ name (String): {
@@ -43,6 +43,29 @@ LF.lfsocialhub = function(opts) {
 	
 	//now stick our header to the top as we scroll
 	$(document).ready($.proxy(function() {
+		
+		// handle ipad hovers 
+		
+		$("#socialHub #socialmenu li").on("touchstart", function() {
+			$("#socialHub #socialmenu ul").show();
+			$("#socialHub #socialmenu .title").toggleClass('shown');
+		});
+	
+		$("#socialHub #socialmenu .filter").on("touchend", function(e) {
+			e.preventDefault();
+			$(e.target).trigger('click');
+			$("#socialHub #socialmenu ul").hide();
+
+		});
+		
+		$("#socialHub #socialmenu .all").on("touchend", function(e) {
+			e.preventDefault();
+			$(e.target).trigger('click');
+			$("#socialHub #socialmenu ul").hide();
+
+		});
+
+			
 		this.$header.originalTop = this.$header.position().top;
 		
 		$(window).scroll($.proxy(function() {
@@ -53,7 +76,7 @@ LF.lfsocialhub = function(opts) {
 			}
 			
 			var offset = Math.ceil($(window).scrollTop() % $(window).height()/10);
-			console.log(offset);
+
 			if (offset < 5) {
 				for (var view in this.views) {
 					this.views[view].showMore();
@@ -105,6 +128,8 @@ LF.lfsocialhub.prototype._prepData = function() {
  */
 LF.lfsocialhub.prototype._setEvents = function() {
 	$("#socialHub #socialmenu .all").click($.proxy(function() {
+		$("#socialHub #socialmenu .title").removeClass('shown');
+
 		$("#socialHub #wall").fadeOut();
 		
 		for (var key in this.collections) {
@@ -113,7 +138,7 @@ LF.lfsocialhub.prototype._setEvents = function() {
 		
 		for (var i = 0; i < this.links.length; ++i) {
 			$('#' + this.links[i] + 'Link').fadeIn().animate({
-				width: "342"
+				width: (Math.floor($("#socialHub").width() / 3) - 2)
 			});
 		}
 		
@@ -121,6 +146,8 @@ LF.lfsocialhub.prototype._setEvents = function() {
 	},this));
 	
 	$("#socialHub #socialmenu .filter").click($.proxy(function(e){
+		$("#socialHub #socialmenu .title").removeClass('shown');
+
 		$("#socialHub #hub").fadeOut($.proxy(function() {
 			this._setWall();
 		},this));
@@ -141,11 +168,13 @@ LF.lfsocialhub.prototype._setEvents = function() {
 
 			} else {
 				$('#' + this.links[i] + 'Link').delay(500).fadeIn().animate({
-					width: "1030"
+					width: $("#socialHub").width()
 				});
 				$('#' + this.links[i] + 'Link').addClass('only');
 			}
 		}
+		
+
 	},this));
 };
 

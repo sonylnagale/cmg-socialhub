@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>CMG SocialHub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
+
 <link rel="stylesheet" href="css/styles.css" />
 <link rel="stylesheet" href="css/menu.css" />
 <link rel="stylesheet" href="css/popular.css" />
@@ -14,91 +16,92 @@
 
 </head>
 <body>
-	
-	<div id="three-modules">
-			<style>
-			/* for mockup purposes only */
-			#three-modules {
-				height:200px;
-				padding-top:55px;
-			}
-			.streamhub-popular {
-				margin: 0 auto;
-			}
-			</style>
-			<div class="streamhub-popular">
-				<div class="streamhub-popular-header">Popular</div>
-				<div id="streamhubPopular"></div>
+	<div id="rootContainer">
+		<div id="three-modules">
+				<style>
+				/* for mockup purposes only */
+				#three-modules {
+					height:200px;
+					padding-top:55px;
+				}
+				.streamhub-popular {
+					margin: 0 auto;
+				}
+				</style>
+				<div class="streamhub-popular">
+					<div class="streamhub-popular-header">Popular</div>
+					<div id="streamhubPopular"></div>
+				</div>
+				
+				<script>
+				var socialHubCollections = [
+					{
+						'name': 'news',
+						'network': 'coxnews.fyre.co',
+						'siteId': '347553',
+						'articleId':'custom-1384357362516'
+					},
+					{
+						'name':'experts',
+						'network': 'coxnews.fyre.co',
+						'siteId': '347553',
+						'articleId':'custom-1384354808232'
+					},
+					{
+						'name':'reactions',
+						'network': 'coxnews.fyre.co',
+						'siteId': '347553',
+						'articleId':'custom-1384357362516'
+					}
+				];
+			
+			
+				var popular = new LF.lfpopular({
+					'el':'#streamhubPopular',
+					'collections': socialHubCollections
+				});
+			</script>
+		</div>
+		
+		
+		<div id="socialHub">
+			<div id="socialheader">
+				<div>
+					<a id="newsLink">News</a>
+					<a id="expertsLink">Experts</a>
+					<a id="reactionsLink">Your Reactions</a>
+				</div>
+			</div>
+			
+			<div id="socialsort">
+				<ul id="socialmenu">
+					<li><a class="title" href="#">View Only</a>
+						<ul>
+							<li><a class="all current">All</a></li>
+							<li><a class="filter" data-source="news">News</a></li>
+							<li><a class="filter" data-source="experts">Experts</a></li>
+							<li><a class="filter" data-source="reactions">Your Reactions</a></li>
+						</ul>
+					</li>
+					
+				</ul>
+			</div>
+			
+			<div id="wall"></div>
+			
+			<div id="hub">
+				<div id="newsFeed" class="feed"></div>
+				<div id="expertsFeed" class="feed"></div>
+				<div id="reactionsFeed" class="feed"></div>
 			</div>
 			
 			<script>
-			var socialHubCollections = [
-				{
-					'name': 'news',
-					'network': 'coxnews.fyre.co',
-					'siteId': '347553',
-					'articleId':'custom-1384357362516'
-				},
-				{
-					'name':'experts',
-					'network': 'coxnews.fyre.co',
-					'siteId': '347553',
-					'articleId':'custom-1384354808232'
-				},
-				{
-					'name':'reactions',
-					'network': 'coxnews.fyre.co',
-					'siteId': '347553',
-					'articleId':'custom-1384354753885'
-				}
-			];
-		
-		
-			var popular = new LF.lfpopular({
-				'el':'#streamhubPopular',
-				'collections': socialHubCollections
-			});
-		</script>
-	</div>
-	
-	
-	<div id="socialHub">
-		<div id="socialheader">
-			<div>
-				<a id="newsLink">News</a>
-				<a id="expertsLink">Experts</a>
-				<a id="reactionsLink">Your Reactions</a>
-			</div>
+				var hub = new LF.lfsocialhub({
+					'el':'#wall',
+					'collections':socialHubCollections
+				})
+			</script>
 		</div>
-		
-		<div id="socialsort">
-			<ul id="socialmenu">
-				<li><a class="title" href="#">View Only</a>
-					<ul>
-						<li><a class="all current">All</a></li>
-						<li><a class="filter" data-source="news">News</a></li>
-						<li><a class="filter" data-source="experts">Experts</a></li>
-						<li><a class="filter" data-source="reactions">Your Reactions</a></li>
-					</ul>
-				</li>
-				
-			</ul>
-		</div>
-		
-		<div id="wall"></div>
-		
-		<div id="hub">
-			<div id="newsFeed" class="feed"></div>
-			<div id="expertsFeed" class="feed"></div>
-			<div id="reactionsFeed" class="feed"></div>
-		</div>
-		
-		<script>
-			var hub = new LF.lfsocialhub({
-				'el':'#wall',
-				'collections':socialHubCollections
-			})
-		</script>
 	</div>
 </body>
 </html>
