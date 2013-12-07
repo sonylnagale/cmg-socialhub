@@ -24,7 +24,8 @@ LF.lfpopular = function(opts) {
 	var defaults = {
 		'el':null,
 		'collections': null,
-		'items': 3
+		'items': 3, // unimplemented; placeholder
+		'rotationSpeed' : 5000
 	};
 	
 	this.opts = opts || {};
@@ -78,7 +79,7 @@ LF.lfpopular.prototype._setContent = function(e) {
 	var ListView = Livefyre.require('streamhub-sdk/content/views/content-list-view');
 	var ContentView = Livefyre.require('streamhub-sdk/content/views/content-view');
 	var Content = Livefyre.require('streamhub-sdk/content');	
-					
+					console.log(e.body)
 	var div = $('<p/>', {
 		id: 'tweet' + e.tweetId,
 		html: '<p>' + e.body + '</p><p><a class="lf-retweet-action" id="retweet-' + e.tweetId + '">Retweet</a></p>'
@@ -87,7 +88,6 @@ LF.lfpopular.prototype._setContent = function(e) {
 	this.$el.append(div);
 	
 	$(div).click(function(e) {
-		console.log(e.target);
 		var url = "https://twitter.com/intent/retweet?tweet_id=" + e.target.id.replace('retweet-','');
 		window.open(url, 'new',"width=500,height=300,left=" + (screen.width/2) + ",top=" + (screen.height/2));
 
@@ -108,7 +108,7 @@ LF.lfpopular.prototype._setContent = function(e) {
 				var newitem = $(item).detach().show();
 				this.$el.append(newitem);
 			},this));
-		},this), 5000);
+		},this), this.opts.rotationSpeed);
 	}
 };
 
