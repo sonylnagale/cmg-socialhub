@@ -81,28 +81,30 @@ LF.lfsocialhub = function(opts) {
 		
 		this.$header.originalTop = this.$header.position().top;
 		
-		if (!this.isHandheld && !this.isTablet) { // don't "infinite scroll" or tack header on iphone/ipad for memory purposes
 		
 			$(window).scroll($.proxy(function() {
-				if ($(window).scrollTop() >= this.$header.originalTop) {
+				
+				if (window.pageYOffset >= this.$header.originalTop) {
 					this.$header.addClass('scroll');
 				} else {
 					this.$header.removeClass('scroll');
 				}
-				
-				var offset = Math.ceil($(window).scrollTop() % $(window).height()/10);
-	
-				if (offset < 5) {
-					for (var view in this.views) {
-						this.views[view].showMore();
+		
+				if (!this.isHandheld && !this.isTablet) { // don't do infinite scroll 
+
+					var offset = Math.ceil($(window).scrollTop() % $(window).height()/10);
+		
+					if (offset < 5) {
+						for (var view in this.views) {
+							this.views[view].showMore();
+						}
+						if (typeof this.wallView != "undefined") {
+							this.wallView.showMore();
+						}
 					}
-					if (typeof this.wallView != "undefined") {
-						this.wallView.showMore();
-					}
-				}
-				
+				}			
 			},this));
-		}
+		
 		
 		if (this.isHandheld) { // just use the 1-column view
 			$("#socialHub #socialmenu .filter[data-source='" + this.opts.initialMobileCollection + "']").trigger("click");
