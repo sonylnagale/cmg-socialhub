@@ -82,17 +82,20 @@ LF.lfpopular.prototype._setContent = function(e) {
 					console.log(e.body)
 	var div = $('<p/>', {
 		id: 'tweet' + e.tweetId,
-		html: '<p>' + e.body + '</p><p><a class="lf-retweet-action" id="retweet-' + e.tweetId + '">Retweet</a></p>'
+        html: '<p>' + e.body + '</p><p class="lfTweetIntent"><a class="lf-retweet-action" id="retweet-' + e.tweetId + '">Retweet</a></p>'
 	});
 	
 	this.$el.append(div);
 	
-	$(div).click(function(e) {
-		var url = "https://twitter.com/intent/retweet?tweet_id=" + e.target.id.replace('retweet-','');
-		window.open(url, 'new',"width=500,height=300,left=" + (screen.width/2) + ",top=" + (screen.height/2));
-
-	});
-
+	if (e.target.className === "lf-retweet-action") {
+	
+		$(div).click(function(e) {
+			var url = "https://twitter.com/intent/retweet?tweet_id=" + e.target.id.replace('retweet-','');
+			window.open(url, 'new',"width=500,height=300,left=" + (screen.width/2) + ",top=" + (screen.height/2));
+	
+		});
+	}
+	
 	var content = new Content($(div).html());
 
 	
