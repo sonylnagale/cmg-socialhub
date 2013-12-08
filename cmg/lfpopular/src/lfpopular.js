@@ -79,7 +79,7 @@ LF.lfpopular.prototype._setContent = function(e) {
 	var ListView = Livefyre.require('streamhub-sdk/content/views/content-list-view');
 	var ContentView = Livefyre.require('streamhub-sdk/content/views/content-view');
 	var Content = Livefyre.require('streamhub-sdk/content');	
-					console.log(e.body)
+
 	var div = $('<p/>', {
 		id: 'tweet' + e.tweetId,
         html: '<p>' + e.body + '</p><p class="lfTweetIntent"><a class="lf-retweet-action" id="retweet-' + e.tweetId + '">Retweet</a></p>'
