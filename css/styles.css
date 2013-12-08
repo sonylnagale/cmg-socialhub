@@ -175,6 +175,10 @@ and (max-device-width : 568px) {
 	#socialHub .hub-list-more {
 		display:inherit !important;
 	}
+	
+	#socialHub .feed {
+		display:none;
+	}
 }
 
 /** iPhone 2G-4S in portrait & landscape */ 
