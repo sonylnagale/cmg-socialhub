@@ -22,7 +22,6 @@ var LF = LF || {};
  * @returns {LF.lfsocialhub} this instance
  */	
 LF.lfsocialhub = function(opts) {
-	
 	this.opts = opts;
 	
 	if (opts == null) {
@@ -68,7 +67,7 @@ LF.lfsocialhub = function(opts) {
 		});
 
 		// sone user-agent detection
-		if ( /iPhone|iPod/i.test(navigator.userAgent) ) {
+		if ( /iPhone|iPod/i.test(navigator.userAgent) || (/Android/i.test(navigator.userAgent) && screen.width < 1024)) {
 			this.isHandheld = true;
 			this.$menu = $($('#socialHub #socialmenu .title')[0]);
 			this.$menu.text(this._getCollectionByTitle(this.opts.initialMobileCollection));
