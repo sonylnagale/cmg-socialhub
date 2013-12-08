@@ -9,7 +9,7 @@ var LF = LF || {};
  * lfsocialhub
  * Sets up a three-column social hub experience
  * @author Sonyl Nagale <sonyl@livefyre.com>
- * @version 0.4
+ * @version 0.5
  * @param {Object} opts = {
  * 		el: String (required)
  * 		collections: Array (required) [ name (String): {
@@ -33,6 +33,8 @@ LF.lfsocialhub = function(opts) {
 	this.collections = {};
 	this.views = {};
 	this.links = [];
+	this.isHandheld = false;
+	this.isTablet = false;
 	
 	this.$el = $(this.opts.el);
 	
@@ -65,30 +67,48 @@ LF.lfsocialhub = function(opts) {
 
 		});
 
-			
+		// sone user-agent detection
+		if ( /iPhone|iPod/i.test(navigator.userAgent) ) {
+			this.isHandheld = true;
+			this.$menu = $($('#socialHub #socialmenu .title')[0]);
+			this.$menu.text(this._getCollectionByTitle(this.opts.initialMobileCollection));
+			$('#socialHub .all').detach();	
+		}
+
+		if ( /iPad/i.test(navigator.userAgent) ) {
+			this.isTablet = true;
+		}
+
+		
 		this.$header.originalTop = this.$header.position().top;
 		
-		$(window).scroll($.proxy(function() {
-			if ($(window).scrollTop() >= this.$header.originalTop) {
-				this.$header.addClass('scroll');
-			} else {
-				this.$header.removeClass('scroll');
-			}
-			
-			var offset = Math.ceil($(window).scrollTop() % $(window).height()/10);
-
-			if (offset < 5) {
-				for (var view in this.views) {
-					this.views[view].showMore();
+		if (!this.isHandheld && !this.isTablet) { // don't "infinite scroll" or tack header on iphone/ipad for memory purposes
+		
+			$(window).scroll($.proxy(function() {
+				if ($(window).scrollTop() >= this.$header.originalTop) {
+					this.$header.addClass('scroll');
+				} else {
+					this.$header.removeClass('scroll');
 				}
-				if (typeof this.wallView != "undefined") {
-					this.wallView.showMore();
-				}
-			}
-			
-		},this));
-	},this));
+				
+				var offset = Math.ceil($(window).scrollTop() % $(window).height()/10);
 	
+				if (offset < 5) {
+					for (var view in this.views) {
+						this.views[view].showMore();
+					}
+					if (typeof this.wallView != "undefined") {
+						this.wallView.showMore();
+					}
+				}
+				
+			},this));
+		}
+		
+		if (this.isHandheld) { // just use the 1-column view
+			$("#socialHub #socialmenu .filter[data-source='" + this.opts.initialMobileCollection + "']").trigger("click");
+		}
+	},this));
 };
 	
 /**
@@ -111,12 +131,14 @@ LF.lfsocialhub.prototype._prepData = function() {
 			articleId: collection.articleId
 		});
 				
-		this.views[collection.name + "View"] = new ListView({
-			initial: 50,
-			el: $('#' + collection.name + "Feed")
-		});
-		
-		this.collections[collection.name + "Collection"].pipe(this.views[collection.name + "View"]);
+		if (!this.isHandheld) { // don't do this for handheld since we're going to do a 1-column view
+			this.views[collection.name + "View"] = new ListView({
+				initial: 50,
+				el: $('#' + collection.name + "Feed")
+			});
+			
+			this.collections[collection.name + "Collection"].pipe(this.views[collection.name + "View"]);
+		}
 	}
 	
 	this._setEvents();
@@ -174,6 +196,9 @@ LF.lfsocialhub.prototype._setEvents = function() {
 			}
 		}
 		
+		if (this.isHandheld) {
+			this.$menu.text(this._getCollectionByTitle($(e.target).data('source')));
+		}
 
 	},this));
 };
@@ -196,4 +221,16 @@ LF.lfsocialhub.prototype._setWall = function() {
 		this.desiredCollection.pipe(this.wallView);
 	},this));
 };
+
+/** @private
+ * Small getter for current collection by title
+ */
+LF.lfsocialhub.prototype._getCollectionByTitle = function(title) {
+	for (var collection in this.opts.collections) {
+		if (this.opts.collections[collection].name == title) {
+			return this.opts.collections[collection].name;
+		}		
+	}
+};
+
 })();
