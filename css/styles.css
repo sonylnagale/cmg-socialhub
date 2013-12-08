@@ -156,6 +156,17 @@ and (max-device-width : 1024px)  {
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 568px) { 
+	#socialHub #socialheader a {
+		font: bold 8px/35px Arial, sans-serif;
+	}
+	
+	#socialHub .content-body {
+		font: bold 13px/18px Arial, sans-serif;
+	}
+	
+	#socialHub #wall .content-container {
+		min-width: 100%;
+	}
 	
 }
 
@@ -163,5 +174,5 @@ and (max-device-width : 568px) {
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) { 
-
+ 	/** no rules just for this */
 }
