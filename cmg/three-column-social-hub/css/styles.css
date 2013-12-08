@@ -150,6 +150,10 @@ and (max-device-width : 1024px)  {
 	#socialHub #wall .content-container {
 		max-width: 33.3%;
 	}
+	
+	#socialHub .hub-list-more {
+		display:inherit !important;
+	}
 }
 
 /** iPhone 5 portrait & landscape */ 
@@ -168,6 +172,9 @@ and (max-device-width : 568px) {
 		min-width: 100%;
 	}
 	
+	#socialHub .hub-list-more {
+		display:inherit !important;
+	}
 }
 
 /** iPhone 2G-4S in portrait & landscape */ 
