@@ -23,7 +23,9 @@ LF.lfpopular = function(opts) {
 	var $ = Livefyre.require('streamhub-sdk/jquery');
 	var defaults = {
 		'el':null,
-		'collections': null
+		'collections': null,
+		'items': 3, // unimplemented; placeholder
+		'rotationSpeed' : 5000
 	};
 	
 	this.opts = opts || {};
@@ -77,21 +79,21 @@ LF.lfpopular.prototype._setContent = function(e) {
 	var ListView = Livefyre.require('streamhub-sdk/content/views/content-list-view');
 	var ContentView = Livefyre.require('streamhub-sdk/content/views/content-view');
 	var Content = Livefyre.require('streamhub-sdk/content');	
-					
+
 	var div = $('<p/>', {
 		id: 'tweet' + e.tweetId,
-		html: '<p>' + e.body + '</p><p><a class="lf-retweet-action" id="retweet-' + e.tweetId + '">Retweet</a></p>'
+        html: '<p>' + e.body + '</p><p class="lfTweetIntent"><a class="lf-retweet-action" id="retweet-' + e.tweetId + '">Retweet</a></p>'
 	});
 	
 	this.$el.append(div);
 	
-	$(div).click(function(e) {
-		console.log(e.target);
-		var url = "https://twitter.com/intent/retweet?tweet_id=" + e.target.id.replace('retweet-','');
-		window.open(url, 'new',"width=500,height=300,left=" + (screen.width/2) + ",top=" + (screen.height/2));
-
-	});
-
+		$(div).click(function(e) {
+			if (e.target.className === "lf-retweet-action") {
+				var url = "https://twitter.com/intent/retweet?tweet_id=" + e.target.id.replace('retweet-','');
+				window.open(url, 'new',"width=500,height=300,left=" + (screen.width/2) + ",top=" + (screen.height/2));
+			}	
+		});
+	
 	var content = new Content($(div).html());
 
 	
@@ -107,7 +109,7 @@ LF.lfpopular.prototype._setContent = function(e) {
 				var newitem = $(item).detach().show();
 				this.$el.append(newitem);
 			},this));
-		},this), 5000);
+		},this), this.opts.rotationSpeed);
 	}
 };
 
