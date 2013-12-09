@@ -2,18 +2,13 @@
 
 /** 
  *	CMG SocialHub CSS
- *	@version 0.2
+ *	@version 0.3
  *	@author Sonyl Nagale <sonyl@livefyre.com>
  *
  *	@note Includes responsive elements
  * 
- *  @todo Handheld devices
+ *  @todo Handheld Android devices
  */
- 
-body {
-	margin:0;
-	background-color: #e8e8e8;
-}
 
 #rootContainer {
 	z-index: 100;
