@@ -135,9 +135,16 @@
 	display:none !important;
 }
 
+#socialHub .content-instagram a {
+	font: italic 12px/20px Helvetica, Arial, sans-serif;	
+	color: #fff;
+}
+
 .hub-modals .hub-modal {
 	z-index:500;
 }
+
+
 
 /** iPad portrait & landscape */
 @media only screen 
@@ -191,3 +198,17 @@ and (min-device-width : 320px)
 and (max-device-width : 480px) { 
  	/** no rules just for this */
 }
+
+/** Android S3 (at least) */
+@media screen 
+and (device-width: 320px) 
+and (device-height: 640px) and 
+(-webkit-device-pixel-ratio: 2) {
+	#socialHub .hub-list-more {
+		display:inherit !important;
+	}
+	
+	#socialHub .feed {
+		display:none;
+	}
+}	
