@@ -135,6 +135,10 @@
 	display:none !important;
 }
 
+.hub-modals .hub-modal {
+	z-index:500;
+}
+
 /** iPad portrait & landscape */
 @media only screen 
 and (min-device-width : 768px) 
