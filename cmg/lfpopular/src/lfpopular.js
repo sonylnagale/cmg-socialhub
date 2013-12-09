@@ -87,14 +87,12 @@ LF.lfpopular.prototype._setContent = function(e) {
 	
 	this.$el.append(div);
 	
-	if (e.target.className === "lf-retweet-action") {
-	
 		$(div).click(function(e) {
-			var url = "https://twitter.com/intent/retweet?tweet_id=" + e.target.id.replace('retweet-','');
-			window.open(url, 'new',"width=500,height=300,left=" + (screen.width/2) + ",top=" + (screen.height/2));
-	
+			if (e.target.className === "lf-retweet-action") {
+				var url = "https://twitter.com/intent/retweet?tweet_id=" + e.target.id.replace('retweet-','');
+				window.open(url, 'new',"width=500,height=300,left=" + (screen.width/2) + ",top=" + (screen.height/2));
+			}	
 		});
-	}
 	
 	var content = new Content($(div).html());
 
