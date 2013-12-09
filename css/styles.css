@@ -31,6 +31,11 @@ body {
 	box-shadow: -3px 0 5px rgba(204, 204, 204, 0.5), 3px 0 5px rgba(204, 204, 204, 0.5);
 }
 
+#socialHub { 
+	margin-bottom: 130px; 
+}
+
+
 #socialHub a {
 	color: #003399;
 }
