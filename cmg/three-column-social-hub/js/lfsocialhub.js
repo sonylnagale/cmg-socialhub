@@ -21,6 +21,7 @@ var LF = LF || {};
  * }
  * @returns {LF.lfsocialhub} this instance
  */	
+	
 LF.lfsocialhub = function(opts) {
 	this.opts = opts;
 	
