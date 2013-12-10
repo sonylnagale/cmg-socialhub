@@ -29,6 +29,17 @@ LF.lfsocialhub = function(opts) {
 		return;
 	}
 	
+	// default
+	this.opts.initialMobileCollection = this.opts.collections[0];
+	
+	// find mobile default
+	for (var collection in this.opts.collections) {
+		if (this.opts.collections[collection]['default']) {
+			this.opts.initialMobileCollection = this.opts.collections[collection];
+		}
+	}
+	
+	this.initialMobleCollection = {};
 	this.collections = {};
 	this.views = {};
 	this.links = [];
@@ -221,17 +232,6 @@ LF.lfsocialhub.prototype._setWall = function() {
 				
 		this.desiredCollection.pipe(this.wallView);
 	},this));
-};
-
-/** @private
- * Small getter for current collection by title
- */
-LF.lfsocialhub.prototype._getCollectionByTitle = function(title) {
-	for (var collection in this.opts.collections) {
-		if (this.opts.collections[collection].name == title) {
-			return this.opts.collections[collection].name;
-		}		
-	}
 };
 
 })();
