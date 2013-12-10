@@ -4,7 +4,7 @@ var LF = LF || {};
 (function() {
 
 	var $ = Livefyre.require('streamhub-sdk/jquery');
- 
+  
 /**
  * lfsocialhub
  * Sets up a three-column social hub experience
