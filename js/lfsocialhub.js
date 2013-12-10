@@ -39,7 +39,6 @@ LF.lfsocialhub = function(opts) {
 		}
 	}
 	
-	this.initialMobleCollection = {};
 	this.collections = {};
 	this.views = {};
 	this.links = [];
