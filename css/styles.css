@@ -100,6 +100,11 @@
 	cursor:pointer;
 }
 
+
+#socialHub .content-featured {
+	display:none;
+}
+
 /* Overriding default styles */
 
 #socialHub .content {
