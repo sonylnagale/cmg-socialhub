@@ -9,7 +9,7 @@ var LF = LF || {};
  * lfsocialhub
  * Sets up a three-column social hub experience
  * @author Sonyl Nagale <sonyl@livefyre.com>
- * @version 0.7
+ * @version 0.8
  * @param {Object} opts = {
  * 		el: String (required)
  * 		collections: Array (required) [ name (String): {
