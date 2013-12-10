@@ -51,7 +51,8 @@
                         'name':'reactions',
                         'network': 'coxnews.fyre.co',
                         'siteId': '347553',
-                        'articleId':'custom-1386268298351'
+                        'articleId':'custom-1386268298351',
+                        'default':true
                     }
                 ];
 				                     
@@ -100,8 +101,7 @@
 			<script>
 				var hub = new LF.lfsocialhub({
 					'el':'#wall',
-					'collections':socialHubCollections,
-					'initialMobileCollection': 'news' // which one is displayed in the handheld 1-column view on default
+					'collections':socialHubCollections
 				})
 			</script>
 		</div>
