@@ -169,6 +169,15 @@
 	display:none;
 }
 
+#socialHub .content-action-share:hover {
+	border:none;
+}
+
+#socialHub .content-action-share { 
+	margin: 0px 5px 5px 0px;
+}
+
+
 /** iPad portrait & landscape */
 @media only screen 
 and (min-device-width : 768px) 
