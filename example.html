@@ -102,6 +102,7 @@
              * A Custom RSS ContentView
              */
             function CustomRssContentView (opts) {
+            	console.log(arguments);
                 ContentView.apply(this, arguments);
             }
             inherits(CustomRssContentView, ContentView);
@@ -119,7 +120,7 @@
                 // variables you can use in your template
                 // meta.content.feedEntry will contain some data
                 // from the RSS Feed
-                console.log("Rendering template for custom ContentView", context);
+               // console.log("Rendering template for custom ContentView", context);
 
                 return compiledTemplate.render(context);
             };
@@ -133,6 +134,8 @@
                  * Override ListView#createContentView to create a special ContentView
                  * class for RSS Items
                  */
+                 
+                 console.log('function',this);
                 var ogCreateContentView = this.createContentView;
                 this.createContentView = function (content) {
                     if (content.source === 'feed') {

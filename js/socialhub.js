@@ -2,6 +2,7 @@
     header("Content-type: text/javascript");
 	
 	$files = array(
+		'lfcustomcontent.js',
 		'lfsocialhub.js',
 		'lfpopular.js',
 	);
