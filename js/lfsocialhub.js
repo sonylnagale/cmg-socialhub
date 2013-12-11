@@ -139,7 +139,6 @@ LF.lfsocialhub.prototype._prepData = function() {
             'hogan'
         ],$.proxy(function (ListView, ContentView, Collection, Content, LivefyreContent,
             inherits, hogan) {
-		
 			for (var i = 0; i < this.opts.collections.length; ++i) {
 				var collection = this.opts.collections[i];
 				
@@ -157,8 +156,13 @@ LF.lfsocialhub.prototype._prepData = function() {
 						el: $('#' + collection.name + "Feed")
 					});					
 					
-					var customContent = new LF.lfcustomcontent({'views':'rss'});
-		            customContent.hasCustomContentView.call(this.views[collection.name + "View"]);
+					var opts = {
+							'views': {
+								'rss' : false
+							}
+					}
+					var customContent = new LF.lfcustomcontent(opts);
+		            customContent.hasCustomContentView(opts).call(this.views[collection.name + "View"]);
 
 		            
 		            
