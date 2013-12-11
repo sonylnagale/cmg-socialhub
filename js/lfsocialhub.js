@@ -101,12 +101,6 @@ LF.lfsocialhub = function(opts) {
 		
 		
 			$(window).scroll($.proxy(function() {
-				
-				if (window.pageYOffset >= this.$header.originalTop) {
-					this.$header.addClass('scroll');
-				} else {
-					this.$header.removeClass('scroll');
-				}
 		
 				if (!this.isHandheld && !this.isTablet) { // don't do infinite scroll 
 
