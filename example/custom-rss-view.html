@@ -27,7 +27,15 @@
         <div class="content-attachments"></div>
 
         <div class="content-body">
-            {{{ body }}}
+            <a href="{{ meta.content.feedEntry.link }}" target="_blank">
+            
+            {{#meta.content.title}}
+            	{{{meta.content.title}}}
+            {{/meta.content.title }}
+            {{^meta.content.title}}
+            	{{{body}}}
+            {{/meta.content.title}}
+            </a>
         </div>
 
         {{#featured}}
@@ -36,7 +44,7 @@
 
         <ul class="content-actions">
             <li class="content-action" data-content-action="share">
-                <a class="hub-tooltip-link content-action-share" data-content-action-share-link="{{meta.content.feedEntry.link}}" onClick="doShare(this)" title="Share">
+                <a class="hub-tooltip-link content-action-share" data-content-action-share-link="{{ meta.content.feedEntry.link }}" onClick="doShare(this)" title="Share">
                     <span class="content-action-share-title">Share</span>
                 </a>
             </li>
