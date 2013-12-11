@@ -1,19 +1,11 @@
-html, body {
-	margin:0;
-}
-
-body {
-	background-color:#f1f1f1;
-}
-
-.streamhub-popular {
+#popular {
 	width: 324px;
 	height: 146px;
 	margin:12px;
 	overflow:hidden;
 }
 
-.streamhub-popular .streamhub-popular-header {
+#popular #header {
 	text-align:center;
 	background-color: #ca171d;
 	height: 23px;
@@ -22,12 +14,11 @@ body {
 	color: #fff;
 }
 
-
-.streamhub-popular #streamhubPopular {
+#popular #socialPopular {
 	background-color:#fff;
 }
 
-.streamhub-popular #streamhubPopular div {
+#popular #socialPopular div {
 	padding: 10px 20px 10px 20px;
 	background-color:#fff;
 	font: bold 13px/16px Arial, sans-serif;
@@ -36,18 +27,25 @@ body {
 }
 
 
-.streamhub-popular p {
+#popular p {
 	margin:0;
 	padding-top: 5px;	
 }
-
-.streamhub-popular #streamhubPopular p {
+#popular #socialPopular p {
 	font: bold 13px/16px Arial, sans-serif;
 	color: #000;
 	
 }
 
-.streamhub-popular  a.lf-retweet-action {
+#popular #footer {
+	font: 15px Arial, sans-serif;
+	color: #999999;
+	text-align:right;
+	padding: 0 20px 30px 0;
+	background-color: #fff;	
+}
+
+#popular  a.lf-retweet-action {
 	cursor:pointer;
 	display:block;
 	float:right;
@@ -56,8 +54,12 @@ body {
 	background:  #fff no-repeat 0 0 url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAOCAYAAADE84fzAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjA4NzY0ODVGNDlDRTExRTNCRTU2OTYwN0MwNkQ2RkE5IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjA4NzY0ODYwNDlDRTExRTNCRTU2OTYwN0MwNkQ2RkE5Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDg3NjQ4NUQ0OUNFMTFFM0JFNTY5NjA3QzA2RDZGQTkiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDg3NjQ4NUU0OUNFMTFFM0JFNTY5NjA3QzA2RDZGQTkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6f2iiSAAABKklEQVR42mKcOXMmAxKoAGJeIK5GEusH4gIG4sAOII5MS0v7AOIwIUmEA3E7EFcBcTKSeBEQryDScA+ofgZkw22AeCGSohlA7AZl/wfieCDeQ6QFajAGC5SzAYjZkRSAxFdDLb0MxL+AOBiInXAY2ALE2uiCIJenAvERIH6BJP4WiPdD5WC++wR1BAoGhi+IfoPNRpALS6FskCJ/KPsKEAcwUAiYGGgIhq7hLBQ6bMKsWbPkgLQOkrg5UAwUf7dxGS6CJ0L3QVPOPyCeDU1pfEjyEtAkXIbLcFCaXY9DDpSZvKFpH5QHQoF4K1Io/AQ5DJhEbyGH+S0ig8MFmpsZQRygIbuAVAaSfDxQ7Ah6hLZBCx5iQAQQ98E4QMPmAqlWIK4EslfCxAECDABa50JDZaaI0AAAAABJRU5ErkJggg==");
 }
 
+#popular #footer a span {
+	background: #fff;
+}
+
 /** override streamhub defaults */
-.streamhub-popular .content {
+#popular .content {
 	margin-bottom: 20px;
 	padding-bottom: 20px;
 	font: bold 13px/16px Arial,sans-serif;
@@ -68,14 +70,10 @@ body {
 	border: none;
 }
 
-.streamhub-popular .content .content-body {
+#popular .content .content-body {
 	font: bold 13px/16px Arial,sans-serif;
 }
 
-.streamhub-popular .content .content-header, .streamhub-popular .content .content-attachments {
+#popular .content .content-header, #popular .content .content-attachments {
 	display:none;
-}
-
-.streamhub-popular .lf-retweet-action {
-	margin-top: 5px;
 }
