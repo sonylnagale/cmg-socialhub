@@ -1,0 +1,4 @@
+<Files socialhub.js>
+	SetHandler application/x-httpd-php
+	ForceType application/x-httpd-php
+</files>
