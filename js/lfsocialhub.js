@@ -16,7 +16,7 @@ var doShare = function(data) {
  * lfsocialhub
  * Sets up a three-column social hub experience
  * @author Sonyl Nagale <sonyl@livefyre.com>
- * @version 0.9
+ * @version 0.10
  * @param {Object} opts = {
  * 		el: String (required)
  * 		collections: Array (required) [ name (String): {
@@ -53,7 +53,6 @@ LF.lfsocialhub = function(opts) {
 	this.isHandheld = false;
 	this.isTablet = false;
 	
-	this.$el = $(this.opts.el);
 	
 	this._prepData();
 
@@ -61,6 +60,8 @@ LF.lfsocialhub = function(opts) {
 	
 	//now stick our header to the top as we scroll
 	$(document).ready($.proxy(function() {
+		this.$el = $(this.opts.el);
+
 		this.$header = $('#socialheader');
 
 		// handle ipad hovers 
