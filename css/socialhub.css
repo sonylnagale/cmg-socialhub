@@ -1,0 +1,16 @@
+<?php
+    header("Content-type: text/css");
+	
+	$files = array(
+		'menu.css',
+		'popular.css',
+		'styles.css',
+	);
+	
+	$return = '';
+	
+	foreach ($files as $file) {
+		$return .= file_get_contents($file);
+	}
+	
+	echo $return;
