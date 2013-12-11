@@ -58,11 +58,11 @@ LF.lfsocialhub = function(opts) {
 	this._prepData();
 
 	// cache this dom reference
-	this.$header = $('#socialheader');
 	
 	//now stick our header to the top as we scroll
 	$(document).ready($.proxy(function() {
-		
+		this.$header = $('#socialheader');
+
 		// handle ipad hovers 
 		
 		$("#socialHub #socialmenu li").on("touchstart", function() {
