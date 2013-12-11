@@ -157,7 +157,8 @@ LF.lfsocialhub.prototype._prepData = function() {
 						el: $('#' + collection.name + "Feed")
 					});					
 					
-		            HasCustomRssContentView.call(this.views[collection.name + "View"]);
+					var customContent = new LF.lfcustomcontent({'views':'rss'});
+		            customContent.hasCustomContentView.call(this.views[collection.name + "View"]);
 
 		            
 		            
@@ -169,65 +170,65 @@ LF.lfsocialhub.prototype._prepData = function() {
 			this._setEvents();
 			
 			
-			
-			
-			/**
-             * A Custom RSS ContentView
-             */
-            function CustomRssContentView (opts) {
-                ContentView.apply(this, arguments);
-            }
-            inherits(CustomRssContentView, ContentView);
-
-            CustomRssContentView.prototype.elClass += ' custom-rss-content-view';
-
-            /**
-             * It has a custom template, which we've stored in a script element
-             * above
-             */
-            var mustacheTemplate = this._rssMustache(),
-                compiledTemplate = hogan.compile(mustacheTemplate);
-            CustomRssContentView.prototype.template = function (context) {
-                // remove this later, but here you can see what
-                // variables you can use in your template
-                // meta.content.feedEntry will contain some data
-                // from the RSS Feed
-                //console.log("Rendering template for custom ContentView", context);
-
-                return compiledTemplate.render(context);
-            };
-            
-
-            /**
-             * Mixin to a ContentListView such that it will render a
-             * CustomRssContentView for RSS Content
-             */
-            function HasCustomRssContentView () {
-                /**
-                 * Override ListView#createContentView to create a special ContentView
-                 * class for RSS Items
-                 */
-                var ogCreateContentView = this.createContentView;
-                this.createContentView = function (content) {
-                    if (content.source === 'feed') {
-                        return makeCustomContentView(content);
-                    }
-                    return ogCreateContentView.apply(this, arguments);
-                }
-
-                /**
-                 * Create a rendered custom ContentView for the provided content
-                 */
-                function makeCustomContentView (content) {
-                    var contentView = new CustomRssContentView({
-                        content: content
-                    });
-                    contentView.render();
-                    return contentView;
-                }
-            }
-            
-            
+//			
+//			
+//			/**
+//             * A Custom RSS ContentView
+//             */
+//            function CustomRssContentView (opts) {
+//                ContentView.apply(this, arguments);
+//            }
+//            inherits(CustomRssContentView, ContentView);
+//
+//            CustomRssContentView.prototype.elClass += ' custom-rss-content-view';
+//
+//            /**
+//             * It has a custom template, which we've stored in a script element
+//             * above
+//             */
+//            var mustacheTemplate = this._rssMustache(),
+//                compiledTemplate = hogan.compile(mustacheTemplate);
+//            CustomRssContentView.prototype.template = function (context) {
+//                // remove this later, but here you can see what
+//                // variables you can use in your template
+//                // meta.content.feedEntry will contain some data
+//                // from the RSS Feed
+////                console.log("Rendering template for custom ContentView", context);
+//
+//                return compiledTemplate.render(context);
+//            };
+//            
+//
+//            /**
+//             * Mixin to a ContentListView such that it will render a
+//             * CustomRssContentView for RSS Content
+//             */
+//            function HasCustomRssContentView () {
+//                /**
+//                 * Override ListView#createContentView to create a special ContentView
+//                 * class for RSS Items
+//                 */
+//                var ogCreateContentView = this.createContentView;
+//                this.createContentView = function (content) {
+//                    if (content.source === 'feed') {
+//                        return makeCustomContentView(content);
+//                    }
+//                    return ogCreateContentView.apply(this, arguments);
+//                }
+//
+//                /**
+//                 * Create a rendered custom ContentView for the provided content
+//                 */
+//                function makeCustomContentView (content) {
+//                    var contentView = new CustomRssContentView({
+//                        content: content
+//                    });
+//                    contentView.render();
+//                    return contentView;
+//                }
+//            }
+//            
+//            
             
             
 	},this));
