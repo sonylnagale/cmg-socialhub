@@ -3,6 +3,8 @@ var LF = LF || {};
 var doShare = function(data) {
 	var $ = Livefyre.require('streamhub-sdk/jquery');
 	
+	janrain.engage.share.reset();
+
 	janrain.engage.share.setUrl($(data).data('content-action-share-link'));
 	janrain.engage.share.show();
 	
