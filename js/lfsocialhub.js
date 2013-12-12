@@ -5,6 +5,10 @@ var doShare = function(data) {
 	
 	janrain.engage.share.setUrl($(data).data('content-action-share-link'));
 	janrain.engage.share.show();
+	
+	janrain.events.onModalClose.addHandler(function(response) {
+		janrain.engage.share.reset();
+	});
 };
 
 
