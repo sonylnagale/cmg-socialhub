@@ -166,7 +166,7 @@ LF.lfsocialhub.prototype._prepData = function() {
 				};
 				
 				this.customContent = new LF.lfcustomcontent(opts);
-				console.log(this.customContent)
+				console.log(this.customContent);
 				inherits(this.customContent,ListView);
 
 				this.customContent.hasCustomContentView.call(this.views[collection.name + "View"]);
