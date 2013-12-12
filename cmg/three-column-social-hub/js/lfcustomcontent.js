@@ -63,17 +63,24 @@ LF.lfcustomcontent.prototype.hasCustomContentView = function() {
 LF.lfcustomcontent.prototype.makeCustomContentView = function(content,self) {
 	var template = self.customViews[content.source];
 	var compiledTemplate = hogan.compile(template);
-
+	if (content.source == 'instagram') console.log(content);
+	
 	this.CustomContentView.prototype.template = function(context) {
   	    return compiledTemplate.render(context);
   	};
-	
+
+  	this.CustomContentView.prototype.elClass += ' custom-' + content.source + '-content-view';
+  	
+  	if (content.source == 'instagram') {
+  	  	this.CustomContentView.prototype.elClass += ' content-instagram';
+  	}
+  	
 	var contentView = new this.CustomContentView({
         content: content,
-        attachmentsView: new TiledAttachmentsListView()
+        attachmentsView: new TiledAttachmentsListView({ content: content})
     });
     
-    
+
     contentView.render();
     
     return contentView;
@@ -97,7 +104,6 @@ LF.lfcustomcontent.prototype.CustomContentView = function (opts) {;
 	
 };
 
-LF.lfcustomcontent.prototype.CustomContentView.prototype.elClass += ' custom-' + this.customsource + '-content-view';
 
 LF.lfcustomcontent.prototype.rss = function() {
 	//return 'rss';
@@ -105,7 +111,7 @@ LF.lfcustomcontent.prototype.rss = function() {
 };
 
 LF.lfcustomcontent.prototype.instagram = function() {
-	return '<div class="content-header"><div class="content-header-inner">{{#author.avatar}}<a class="content-author-avatar"><img src="{{author.avatar}}"/></a>{{/author.avatar}}<div class="content-byline"><span class="content-source-logo"></span>{{#author.displayName}}<a class="content-author-name" href="{{author.profileUrl}}" target="_blank">{{author.displayName}}</a>{{/author.displayName}}{{^author.displayName}}<a class="content-author-name" href="{{author.profileUrl}}" target="_blank">{{author.id}}</a>{{/author.displayName}}</div></div></div><div class="content-attachments"></div><div class="content-body">{{{body}}}</div>{{#featured}}<div class="content-featured">Featured</div>{{/featured}}<div class="content-meta">{{#formattedCreatedAt}}<div class="content-created-at">{{{formattedCreatedAt}}}</div>{{/formattedCreatedAt}}</div>';
+	return '<script>LF.meta["{{id}}"]={"url": "{{author.profileUrl}}","image": "{{#attachments}}{{thumbnail_url}}{{/attachments}}","title":"{{meta.content.title}}","description":escape("{{{body}}}")};</script><div class="content-header"><div class="content-header-inner">{{#author.avatar}}<a class="content-author-avatar"><img src="{{author.avatar}}"/></a>{{/author.avatar}}<div class="content-byline"><span class="content-source-logo"></span>{{#author.displayName}}<a class="content-author-name" href="{{author.profileUrl}}" target="_blank">{{author.displayName}}</a>{{/author.displayName}}{{^author.displayName}}<a class="content-author-name" href="{{author.profileUrl}}" target="_blank">{{author.id}}</a>{{/author.displayName}}</div></div></div><div class="content-attachments"></div><div class="content-body">{{{body}}}</div>{{#featured}}<div class="content-featured">Featured</div>{{/featured}}<ul class="content-actions"><li class="content-action" data-content-action="share"><a class="hub-tooltip-link content-action-share" data-content-action-share-link="{{author.profileUrl}}" onClick="doShare(this,\'{{id}}\')" title="Share"><span class="content-action-share-title">Share</span></a></li></ul><div class="content-meta">{{#formattedCreatedAt}}<div class="content-created-at">{{{formattedCreatedAt}}}</div>{{/formattedCreatedAt}}</div>';
 };
 
 })();
