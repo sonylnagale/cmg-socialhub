@@ -131,54 +131,48 @@ LF.lfsocialhub = function(opts) {
  * Prepares the collections and views
  */
 LF.lfsocialhub.prototype._prepData = function() {
-	Livefyre.require([
-            'streamhub-sdk/content/views/content-list-view',
-            'streamhub-sdk/content/views/content-view',
-            'streamhub-sdk/collection',
-            'streamhub-sdk/content',
-            'streamhub-sdk/content/types/livefyre-content',
-            'inherits',
-            'hogan'
-        ],$.proxy(function (ListView, ContentView, Collection, Content, LivefyreContent, InstagramContent,
-            inherits, hogan) {
-			for (var i = 0; i < this.opts.collections.length; ++i) {
-				var collection = this.opts.collections[i];
+	
+	var ContentListView = Livefyre.require('streamhub-sdk/content/views/content-list-view');
+	var Collection = Livefyre.require('streamhub-sdk/collection');
+	var inherits = Livefyre.require('inherits');
+	
+	for (var i = 0; i < this.opts.collections.length; ++i) {
+		var collection = this.opts.collections[i];
+		
+		this.links.push(collection.name); // for the headers
+		
+		this.collections[collection.name + "Collection"] = new Collection({
+			network: collection.network,
+			siteId: collection.siteId,
+			articleId: collection.articleId
+		});
 				
-				this.links.push(collection.name); // for the headers
-				
-				this.collections[collection.name + "Collection"] = new Collection({
-					network: collection.network,
-					siteId: collection.siteId,
-					articleId: collection.articleId
-				});
-						
-				this.views[collection.name + "View"] = new ListView({
-					initial: 50,
-					el: $('#' + collection.name + "Feed")
-				});					
-				
-				var opts = {
-						'views': {
-							'rss' : true,
-							'instagram':true
-							
-						}
-				};
-				
-				this.customContent = new LF.lfcustomcontent(opts);
-				console.log(this.customContent);
-				inherits(this.customContent,ListView);
+		this.views[collection.name + "View"] = new ContentListView({
+			initial: 50,
+			el: $('#' + collection.name + "Feed")
+		});					
+		
+		var opts = {
+				'views': {
+					'rss' : true,
+					'instagram':true
+					
+				}
+		};
+		
+		this.customContent = new LF.lfcustomcontent(opts);
+//		console.log(this.customContent,ContentListView);
+		inherits(this.customContent,ContentListView);
 
-				this.customContent.hasCustomContentView.call(this.views[collection.name + "View"]);
-	            
-	            
-	            
-				this.collections[collection.name + "Collection"].pipe(this.views[collection.name + "View"]);
-			}
-			
-			this._setEvents();
-			
-	},this));
+		this.customContent.hasCustomContentView.call(this.views[collection.name + "View"]);
+        
+        
+        
+		this.collections[collection.name + "Collection"].pipe(this.views[collection.name + "View"]);
+	}
+	
+	this._setEvents();
+
 };
 
 /**
