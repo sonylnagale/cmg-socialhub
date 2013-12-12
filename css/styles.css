@@ -153,6 +153,11 @@
 	z-index:500;
 }
 
+#socialHub .content-body a, #socialHub .content-body a p {
+	color: #000;
+	font-weight: bold;
+}
+
 /** sharing intents */
 
 #socialHub .content-action-share {
