@@ -157,11 +157,12 @@ LF.lfsocialhub.prototype._prepData = function() {
 						'views': {
 							'rss' : false
 						}
-				}
-				var customContent = new LF.lfcustomcontent(opts);
-				inherits(customContent,ListView);
+				};
+				
+				this.customContent = new LF.lfcustomcontent(opts);
+				inherits(this.customContent,ListView);
 
-				customContent.hasCustomContentView.call(this.views[collection.name + "View"]);
+				this.customContent.hasCustomContentView.call(this.views[collection.name + "View"]);
 	            
 	            
 	            
@@ -259,7 +260,11 @@ LF.lfsocialhub.prototype._setWall = function() {
 		    el: this.$el
 		});
 				
+
 		this.desiredCollection.pipe(this.wallView);
+		
+		this.customContent.hasCustomContentView.call(this.wallView);
+
 	},this));
 };
 
