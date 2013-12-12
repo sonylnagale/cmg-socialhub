@@ -139,7 +139,7 @@ LF.lfsocialhub.prototype._prepData = function() {
             'streamhub-sdk/content/types/livefyre-content',
             'inherits',
             'hogan'
-        ],$.proxy(function (ListView, ContentView, Collection, Content, LivefyreContent,
+        ],$.proxy(function (ListView, ContentView, Collection, Content, LivefyreContent, InstagramContent,
             inherits, hogan) {
 			for (var i = 0; i < this.opts.collections.length; ++i) {
 				var collection = this.opts.collections[i];
@@ -159,11 +159,14 @@ LF.lfsocialhub.prototype._prepData = function() {
 				
 				var opts = {
 						'views': {
-							'rss' : false
+							'rss' : true,
+							'instagram':true
+							
 						}
 				};
 				
 				this.customContent = new LF.lfcustomcontent(opts);
+				console.log(this.customContent)
 				inherits(this.customContent,ListView);
 
 				this.customContent.hasCustomContentView.call(this.views[collection.name + "View"]);
