@@ -34,7 +34,9 @@ LF.lfcustomcontent.prototype.hasCustomContentView = function() {
 	var opts = {
 		'views': {
 			'feed' : true,
-			'instagram':true
+			'instagram':true,
+			'twitter':false,
+			'facebook':false
 		}
 	};
 	
@@ -44,15 +46,19 @@ LF.lfcustomcontent.prototype.hasCustomContentView = function() {
      */
     var ogCreateContentView = this.createContentView;
     this.createContentView = function (content) {
-    	if (opts.views[content.source]) {
+    	if (opts.views[content.source] === true) {
     		var customContent = new LF.lfcustomcontent(opts);
     		inherits(customContent.CustomContentView, ContentView);
-    		
-    		
-    		
+
             return customContent.makeCustomContentView(content,customContent);
         }
-        return ogCreateContentView.apply(this, arguments);
+//    	if (content.source == 'twitter') console.log(arguments);
+        
+    	try {
+    		return ogCreateContentView.apply(this, arguments);
+    	} catch (e) {
+    		return;
+    	}
     };
 };
 
@@ -63,8 +69,7 @@ LF.lfcustomcontent.prototype.hasCustomContentView = function() {
 LF.lfcustomcontent.prototype.makeCustomContentView = function(content,self) {
 	var template = self.customViews[content.source];
 	var compiledTemplate = hogan.compile(template);
-//	if (content.source == 'instagram') console.log(content);
-	
+
 	this.CustomContentView.prototype.template = function(context) {
   	    return compiledTemplate.render(context);
   	};
@@ -97,7 +102,6 @@ LF.lfcustomcontent.prototype.CustomContentView = function (opts) {;
 		break;
 	
 	case 'feed':
-	default:
 	    ContentView.apply(this, arguments);
 		break;
 	}
