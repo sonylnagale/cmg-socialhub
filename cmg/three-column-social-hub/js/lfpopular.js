@@ -25,7 +25,7 @@ LF.lfpopular = function(opts) {
 		'el':null,
 		'collections': null,
 		'items': 3, // unimplemented; placeholder
-		'rotationSpeed' : 5000
+		'rotationSpeed' : 6000
 	};
 	
 	this.opts = opts || {};
