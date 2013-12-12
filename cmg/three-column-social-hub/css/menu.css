@@ -19,7 +19,9 @@
 	width: 85px;
 	height: 18px;
 	margin-bottom:10px;
-	background: url(../img/sprite.png) 65px -18px no-repeat;
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAkCAIAAAALj/2wAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3NpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoxZWY0ZDJkMy1iOTVkLTQyZTYtOTg4Mi1mMzI1MjQ1Nzg1NTUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MDg3NjQ4NUM0OUNFMTFFM0JFNTY5NjA3QzA2RDZGQTkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MDg3NjQ4NUI0OUNFMTFFM0JFNTY5NjA3QzA2RDZGQTkiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6YTc4ODU5OWEtZmFhMS00OGNhLWFlYjgtN2I2MmVjNjJhYWQ4IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjFlZjRkMmQzLWI5NWQtNDJlNi05ODgyLWYzMjUyNDU3ODU1NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PlV9ZNYAAAEjSURBVHjaYjwlLstAOmBiIAuMSG1skpJa2zYCSRK0MfPxqq1YzG1kCCSBbKK0MbKyqi6cyyYldT+vEEgC2UARQtoYGZWmTOAxMbmTnPZm1VogCWQDRYDiKM5J5eFH5svW14jGRN3LzvuwczeQ+/Phox/370uXFDJzc386eAinbSKRYY/qm95t2AQXAbKBIkBxFDeNpslRbYNZm+GNS+LpKWgqgCJAcXza3ixfJddYJxTgBxcBsoEiQHE0bSzInMdNrWxSkkqTJ/x59+7ToSN8djZA9ruNm4Hi6JkZLeMA87/6qqVcOjqPqmvlWpu/XblyMyz6/+/fBLRByh/Nzes51dW+37x13Tfw76fPRIUkUN2tiNiv584DSax6RnM3FbUBBBgAdw5vCtsInNwAAAAASUVORK5CYII=);
+	background-repeat: no-repeat;
+	background-position: 65px -18px;
 	line-height:18px;
 	display:block;
 	color: #000;
@@ -28,7 +30,7 @@
 }
 
 #socialHub #socialmenu .title:hover {
-	background: url(../img/sprite.png) 65px 0 no-repeat;
+	backgroud-position: 65px 0;
 }
 
 
@@ -115,7 +117,7 @@
 @media only screen 
 and (max-device-width : 1024px)  { 
 	
-	#socialHub #socialmenu .title.shown {
-		background: url(../img/sprite.png) 65px 0 no-repeat;
+	#socialHub #socialmenu .title.shown {	
+		background-position: 65px 0;
 	}
 }

@@ -39,7 +39,7 @@ LF.lfsocialhub = function(opts) {
 	
 	// default
 	this.opts.initialMobileCollection = this.opts.collections[0];
-	
+
 	// find mobile default
 	for (var collection in this.opts.collections) {
 		if (this.opts.collections[collection]['default']) {
@@ -52,7 +52,6 @@ LF.lfsocialhub = function(opts) {
 	this.links = [];
 	this.isHandheld = false;
 	this.isTablet = false;
-	
 	
 	this._prepData();
 
@@ -86,41 +85,39 @@ LF.lfsocialhub = function(opts) {
 		});
 
 		// sone user-agent detection
-		if ( /iPhone|iPod/i.test(navigator.userAgent) || (/Android/i.test(navigator.userAgent) && screen.width < 1024)) {
+		if ( navigator.userAgent.match(/iPhone/i) || 
+				navigator.userAgent.match(/iPad/i) || 
+				(/Android/i.test(navigator.userAgent) && screen.width < 1024)) {
 			this.isHandheld = true;
 			this.$menu = $($('#socialHub #socialmenu .title')[0]);
-			this.$menu.text(this._getCollectionByTitle(this.opts.initialMobileCollection));
+			this.$menu.text(this.opts.initialMobileCollection.title);
 			$('#socialHub .all').detach();	
 		}
 
 		if ( /iPad/i.test(navigator.userAgent) ) {
 			this.isTablet = true;
 		}
-
 		
 		this.$header.originalTop = this.$header.position().top;
 		
 		
-			$(window).scroll($.proxy(function() {
-		
-				if (!this.isHandheld && !this.isTablet) { // don't do infinite scroll 
+		if (!this.isHandheld && !this.isTablet) { // don't do infinite scroll 
 
-					var offset = Math.ceil($(window).scrollTop() % $(window).height()/10);
+			$(window).scroll($.proxy(function() {
+			
+			
+				var offset = Math.ceil($(window).scrollTop() % $(window).height()/10);
 		
-					if (offset < 5) {
-						for (var view in this.views) {
-							this.views[view].showMore();
-						}
-						if (typeof this.wallView != "undefined") {
-							this.wallView.showMore();
-						}
+				if (offset < 5) {
+					for (var view in this.views) {
+						this.views[view].showMore();
 					}
-				}			
+					if (typeof this.wallView != "undefined") {
+						this.wallView.showMore();
+					}
+				}
+				
 			},this));
-		
-		
-		if (this.isHandheld) { // just use the 1-column view
-			$("#socialHub #socialmenu .filter[data-source='" + this.opts.initialMobileCollection + "']").trigger("click");
 		}
 	},this));
 };
@@ -151,92 +148,28 @@ LF.lfsocialhub.prototype._prepData = function() {
 					articleId: collection.articleId
 				});
 						
-				if (!this.isHandheld) { // don't do this for handheld since we're going to do a 1-column view
-					this.views[collection.name + "View"] = new ListView({
-						initial: 50,
-						el: $('#' + collection.name + "Feed")
-					});					
-					
-					var opts = {
-							'views': {
-								'rss' : false
-							}
-					}
-					var customContent = new LF.lfcustomcontent(opts);
-					inherits(customContent,ListView);
-					//console.log(customContent);
-					customContent.hasCustomContentView.call(this.views[collection.name + "View"]);
-		            
-		            
-		            
-					this.collections[collection.name + "Collection"].pipe(this.views[collection.name + "View"]);
+				this.views[collection.name + "View"] = new ListView({
+					initial: 50,
+					el: $('#' + collection.name + "Feed")
+				});					
+				
+				var opts = {
+						'views': {
+							'rss' : false
+						}
 				}
+				var customContent = new LF.lfcustomcontent(opts);
+				inherits(customContent,ListView);
+
+				customContent.hasCustomContentView.call(this.views[collection.name + "View"]);
+	            
+	            
+	            
+				this.collections[collection.name + "Collection"].pipe(this.views[collection.name + "View"]);
 			}
 			
 			this._setEvents();
 			
-			
-//			
-//			
-//			/**
-//             * A Custom RSS ContentView
-//             */
-//            function CustomRssContentView (opts) {
-//                ContentView.apply(this, arguments);
-//            }
-//            inherits(CustomRssContentView, ContentView);
-//
-//            CustomRssContentView.prototype.elClass += ' custom-rss-content-view';
-//
-//            /**
-//             * It has a custom template, which we've stored in a script element
-//             * above
-//             */
-//            var mustacheTemplate = this._rssMustache(),
-//                compiledTemplate = hogan.compile(mustacheTemplate);
-//            CustomRssContentView.prototype.template = function (context) {
-//                // remove this later, but here you can see what
-//                // variables you can use in your template
-//                // meta.content.feedEntry will contain some data
-//                // from the RSS Feed
-////                console.log("Rendering template for custom ContentView", context);
-//
-//                return compiledTemplate.render(context);
-//            };
-//            
-//
-//            /**
-//             * Mixin to a ContentListView such that it will render a
-//             * CustomRssContentView for RSS Content
-//             */
-//            function HasCustomRssContentView () {
-//                /**
-//                 * Override ListView#createContentView to create a special ContentView
-//                 * class for RSS Items
-//                 */
-//                var ogCreateContentView = this.createContentView;
-//                this.createContentView = function (content) {
-//                    if (content.source === 'feed') {
-//                        return makeCustomContentView(content);
-//                    }
-//                    return ogCreateContentView.apply(this, arguments);
-//                }
-//
-//                /**
-//                 * Create a rendered custom ContentView for the provided content
-//                 */
-//                function makeCustomContentView (content) {
-//                    var contentView = new CustomRssContentView({
-//                        content: content
-//                    });
-//                    contentView.render();
-//                    return contentView;
-//                }
-//            }
-//            
-//            
-            
-            
 	},this));
 };
 
@@ -246,58 +179,70 @@ LF.lfsocialhub.prototype._prepData = function() {
  */
 LF.lfsocialhub.prototype._setEvents = function() {
 	$("#socialHub #socialmenu .all").click($.proxy(function() {
-		$("#socialHub #socialmenu .title").removeClass('shown');
-
-		$("#socialHub #wall").fadeOut();
-		
-		for (var key in this.collections) {
-			this.collections[key].resume(); // restart the other long polls
-		}
-		
-		for (var i = 0; i < this.links.length; ++i) {
-			$('#' + this.links[i] + 'Link').fadeIn().animate({
-				width: "31%"
-			});
-		}
-		
-		$("#socialHub #hub").fadeIn();
+		this.clickEventAll();
 	},this));
 	
-	$("#socialHub #socialmenu .filter").click($.proxy(function(e){
-		$("#socialHub #socialmenu .title").removeClass('shown');
-
-		$("#socialHub #hub").fadeOut($.proxy(function() {
-			this._setWall();
-		},this));
-		
-		for (var key in this.collections) {
-			this.collections[key].pause(); // pause the other long polls
-		}
-				
-		this.desiredCollection = this.collections[($(e.target).data('source') + "Collection")];
-		this.desiredCollection.resume(); // just start the one we want.
-		
-		var desiredLink = eval($(e.target).data('source') + "Link");
-		for (var i = 0; i < this.links.length; ++i) {					
-			
-			if (this.links[i] != $(desiredLink).attr('id').replace('Link','')) {
-				$('#' + this.links[i] + 'Link').fadeOut(250);
-				$('#' + this.links[i] + 'Link').removeClass('only');
-
-			} else {
-				$('#' + this.links[i] + 'Link').delay(500).fadeIn().animate({
-					width: "96%"
-				});
-				$('#' + this.links[i] + 'Link').addClass('only');
-			}
-		}
-		
-		if (this.isHandheld) {
-			this.$menu.text(this._getCollectionByTitle($(e.target).data('source')));
-		}
-
+	$("#socialHub #socialmenu .filter").click($.proxy(function(e) {
+		this.clickEventIndividual(e);
 	},this));
+	
+	if (this.isHandheld) { // just use the 1-column view
+		this.clickEventIndividual(this.opts.initialMobileCollection.name);
+	}
 };
+
+LF.lfsocialhub.prototype.clickEventAll = function() {
+	$("#socialHub #socialmenu .title").removeClass('shown');
+
+	$("#socialHub #wall").fadeOut();
+	
+	for (var key in this.collections) {
+		this.collections[key].resume(); // restart the other long polls
+	}
+	
+	for (var i = 0; i < this.links.length; ++i) {
+		$('#' + this.links[i] + 'Link').fadeIn().animate({
+			width: "31%"
+		});
+	}
+	
+	$("#socialHub #hub").fadeIn();
+};
+
+LF.lfsocialhub.prototype.clickEventIndividual = function(e) {	
+	$("#socialHub #socialmenu .title").removeClass('shown');
+
+	$("#socialHub #hub").fadeOut($.proxy(function() {
+		this._setWall();
+	},this));
+	
+	for (var key in this.collections) {
+		this.collections[key].pause(); // pause the other long polls
+	}
+			
+	this.desiredCollection = (!this.isHandheld) ? this.collections[($(e.target).data('source') + "Collection")] : this.collections[this.opts.initialMobileCollection.name + "Collection"];
+	this.desiredCollection.resume(); // just start the one we want.
+	
+	var desiredLink = (!this.isHandheld) ? eval($(e.target).data('source') + "Link") : '#' + this.opts.initialMobileCollection.name + "Link";
+	for (var i = 0; i < this.links.length; ++i) {					
+		
+		if (this.links[i] != $(desiredLink).attr('id').replace('Link','')) {
+			$('#' + this.links[i] + 'Link').fadeOut(250);
+			$('#' + this.links[i] + 'Link').removeClass('only');
+
+		} else {
+			$('#' + this.links[i] + 'Link').delay(500).fadeIn().animate({
+				width: "96%"
+			});
+			$('#' + this.links[i] + 'Link').addClass('only');
+		}
+	}
+	
+	if (this.isHandheld) {
+		this.$menu.text($(desiredLink).innerHTML);
+	}
+
+}
 
 /**
  * @private
