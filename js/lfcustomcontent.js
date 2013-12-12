@@ -7,6 +7,7 @@ var ContentListView = Livefyre.require('streamhub-sdk/content/views/content-list
 	Collection = Livefyre.require('streamhub-sdk/collection'),
 	Content = Livefyre.require('streamhub-sdk/content'),
 	LivefyreContent = Livefyre.require('streamhub-sdk/content/types/livefyre-content'),
+	InstagramContent = Livefyre.require('streamhub-sdk/content/types/livefyre-instagram-content'),
 	inherits = Livefyre.require('inherits'),
 	hogan = Livefyre.require('hogan');
 
@@ -31,7 +32,7 @@ LF.lfcustomcontent = function(opts) {
 LF.lfcustomcontent.prototype.hasCustomContentView = function() {
 	var opts = {
 		'views': {
-			'feed' : false,
+			'feed' : true,
 			'instagram':true
 		}
 	};
@@ -61,7 +62,7 @@ LF.lfcustomcontent.prototype.makeCustomContentView = function(content,self) {
 	var compiledTemplate = hogan.compile(template);
 	
 	this.CustomContentView.prototype.template = function(context) {
-  	  console.log("Rendering template for custom ContentView", context);
+  	  //console.log("Rendering template for custom ContentView", context);
   	    return compiledTemplate.render(context);
   	};
 	
@@ -83,13 +84,6 @@ LF.lfcustomcontent.prototype.makeCustomContentView = function(content,self) {
 LF.lfcustomcontent.prototype.CustomContentView = function (opts) {;
 
     ContentView.apply(this, arguments);
-};
-
-
-
-LF.lfcustomcontent.prototype.CustomContentView.prototype.template = function(context) {
-  console.log("Rendering template for custom ContentView", context);
-    return context.opts.compiledTemplate.render(context);
 };
 
 LF.lfcustomcontent.prototype.CustomContentView.prototype.elClass += ' custom-' + this.customsource + '-content-view';

@@ -156,7 +156,6 @@ LF.lfsocialhub.prototype._prepData = function() {
 				'views': {
 					'rss' : true,
 					'instagram':true
-					
 				}
 		};
 		
