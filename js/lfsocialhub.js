@@ -3,12 +3,15 @@ LF.meta = {};
 
 var doShare = function(el,id) {
 	var $ = Livefyre.require('streamhub-sdk/jquery');
-	console.log(LF.meta);
-	var content = LF.meta[id];
+
+	var content = LF.meta[id],
+		description = unescape(content.description);
+	
+	description.replace( /<.*?>/g, '' );// strip tags
 	
 	janrain.engage.share.setUrl(content.url);
 	janrain.engage.share.setImage(content.image);
-	janrain.engage.share.setDescription(content.description);
+	janrain.engage.share.setDescription(description);
 	janrain.engage.share.setTitle(content.title)
 	janrain.engage.share.show();
 	
