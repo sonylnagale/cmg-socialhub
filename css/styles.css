@@ -35,6 +35,10 @@
 	color: #003399;
 }
 
+#socialHub a:hover {
+	border:none;
+}
+
 #socialHub #socialheader {
 	height: 35px;
 	background: linear-gradient(to bottom, #01256e, #003399);
