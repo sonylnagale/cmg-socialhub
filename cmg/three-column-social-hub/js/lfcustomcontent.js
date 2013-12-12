@@ -31,7 +31,8 @@ LF.lfcustomcontent = function(opts) {
 LF.lfcustomcontent.prototype.hasCustomContentView = function() {
 	var opts = {
 		'views': {
-			'feed' : true
+			'feed' : false,
+			'instagram':true
 		}
 	};
 	
@@ -60,7 +61,7 @@ LF.lfcustomcontent.prototype.makeCustomContentView = function(content,self) {
 	var compiledTemplate = hogan.compile(template);
 	
 	this.CustomContentView.prototype.template = function(context) {
-  	  //console.log("Rendering template for custom ContentView", context);
+  	  console.log("Rendering template for custom ContentView", context);
   	    return compiledTemplate.render(context);
   	};
 	
@@ -98,7 +99,7 @@ LF.lfcustomcontent.prototype.rss = function() {
 };
 
 LF.lfcustomcontent.prototype.instagram = function() {
-	
+	return '<div class="content-header"><div class="content-header-inner">{{#author.avatar}}<a class="content-author-avatar"><img src="{{author.avatar}}"/></a>{{/author.avatar}}<div class="content-byline"><span class="content-source-logo"></span>{{#author.displayName}}<a class="content-author-name" href="{{author.profileUrl}}" target="_blank">{{author.displayName}}</a>{{/author.displayName}}{{^author.displayName}}<a class="content-author-name" href="{{author.profileUrl}}" target="_blank">{{author.id}}</a>{{/author.displayName}}</div></div></div><div class="content-attachments"></div><div class="content-body">{{{body}}}</div>{{#featured}}<div class="content-featured">Featured</div>{{/featured}}<div class="content-meta">{{#formattedCreatedAt}}<div class="content-created-at">{{{formattedCreatedAt}}}</div>{{/formattedCreatedAt}}</div>';
 };
 
 })();
