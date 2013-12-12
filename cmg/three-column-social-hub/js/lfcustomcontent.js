@@ -8,7 +8,9 @@ var ContentListView = Livefyre.require('streamhub-sdk/content/views/content-list
 	Content = Livefyre.require('streamhub-sdk/content'),
 	LivefyreContent = Livefyre.require('streamhub-sdk/content/types/livefyre-content'),
 	InstagramContentView = Livefyre.require('streamhub-sdk/content/views/instagram-content-view'),
+	ContentViewFactory = Livefyre.require('streamhub-sdk/content/content-view-factory')	
 	inherits = Livefyre.require('inherits'),
+	TiledAttachmentsListView = Livefyre.require('streamhub-sdk/content/views/tiled-attachment-list-view'),
 	hogan = Livefyre.require('hogan');
 
 LF.lfcustomcontent = function(opts) {
@@ -20,7 +22,7 @@ LF.lfcustomcontent = function(opts) {
 		'feed': this.rss(),
 		'instagram': this.instagram()
 	};
-
+	
 	return this;
 };
 
@@ -45,6 +47,9 @@ LF.lfcustomcontent.prototype.hasCustomContentView = function() {
     	if (opts.views[content.source]) {
     		var customContent = new LF.lfcustomcontent(opts);
     		inherits(customContent.CustomContentView, ContentView);
+    		
+    		
+    		
             return customContent.makeCustomContentView(content,customContent);
         }
         return ogCreateContentView.apply(this, arguments);
@@ -58,14 +63,14 @@ LF.lfcustomcontent.prototype.hasCustomContentView = function() {
 LF.lfcustomcontent.prototype.makeCustomContentView = function(content,self) {
 	var template = self.customViews[content.source];
 	var compiledTemplate = hogan.compile(template);
-//	console.log(content);
+
 	this.CustomContentView.prototype.template = function(context) {
   	    return compiledTemplate.render(context);
   	};
 	
 	var contentView = new this.CustomContentView({
         content: content,
-        opts: self
+        attachmentsView: new TiledAttachmentsListView()
     });
     
     
@@ -81,7 +86,6 @@ LF.lfcustomcontent.prototype.makeCustomContentView = function(content,self) {
 LF.lfcustomcontent.prototype.CustomContentView = function (opts) {;
 	switch(opts.content.source) {
 	case 'instagram':
-//		console.log(1)
 		InstagramContentView.apply(this,arguments);
 		break;
 	
@@ -96,7 +100,8 @@ LF.lfcustomcontent.prototype.CustomContentView = function (opts) {;
 LF.lfcustomcontent.prototype.CustomContentView.prototype.elClass += ' custom-' + this.customsource + '-content-view';
 
 LF.lfcustomcontent.prototype.rss = function() {
-	return ' <script>LF.meta["{{id}}"]={"url": "{{meta.content.feedEntry.link}}", "image": "", "title":"{{meta.content.title}}", "description":"{{{body}}}"};</script><div class="content-header"><div class="content-header-inner">{{#author.avatar}}<a class="content-author-avatar"><img src="{{author.avatar}}"/></a>{{/author.avatar}}<div class="content-byline">{{#author.url}}<a class="content-author-name" href="{{author.url}}" target="_blank">{{author.displayName}}</a>{{/author.url}}{{^author.url}}{{#author.profileUrl}}<a class="content-author-name" href="{{author.profileUrl}}" target="_blank">{{author.displayName}}</a>{{/author.profileUrl}}{{^author.profileUrl}}<span class="content-author-name">{{author.displayName}}</span>{{/author.profileUrl}}{{/author.url}}</div></div></div><div class="content-attachments"></div><div class="content-body"><a href="{{meta.content.feedEntry.link}}" target="_blank">{{#meta.content.title}}{{{meta.content.title}}}{{/meta.content.title}}{{^meta.content.title}}{{{body}}}{{/meta.content.title}}</a></div>{{#featured}}<div class="content-featured">Featured</div>{{/featured}}<ul class="content-actions"><li class="content-action" data-content-action="share"><a class="hub-tooltip-link content-action-share" data-content-action-share-link="{{meta.content.feedEntry.link}}" onClick="doShare(this,\'{{id}}\')" title="Share"><span class="content-action-share-title">Share</span></a></li></ul><div class="content-meta">{{#formattedCreatedAt}}<div class="content-created-at">{{{formattedCreatedAt}}}</div>{{/formattedCreatedAt}}</div>';
+	//return 'rss';
+	return '<script>LF.meta["{{id}}"]={"url": "{{meta.content.feedEntry.link}}", "image": "", "title":"{{meta.content.title}}", "description":escape("{{body}}")};</script><div class="content-header"><div class="content-header-inner">{{#author.avatar}}<a class="content-author-avatar"><img src="{{author.avatar}}"/></a>{{/author.avatar}}<div class="content-byline">{{#author.url}}<a class="content-author-name" href="{{author.url}}" target="_blank">{{author.displayName}}</a>{{/author.url}}{{^author.url}}{{#author.profileUrl}}<a class="content-author-name" href="{{author.profileUrl}}" target="_blank">{{author.displayName}}</a>{{/author.profileUrl}}{{^author.profileUrl}}<span class="content-author-name">{{author.displayName}}</span>{{/author.profileUrl}}{{/author.url}}</div></div></div><div class="content-attachments"></div><div class="content-body"><a href="{{meta.content.feedEntry.link}}" target="_blank">{{#meta.content.title}}{{{meta.content.title}}}{{/meta.content.title}}{{^meta.content.title}}{{{body}}}{{/meta.content.title}}</a></div>{{#featured}}<div class="content-featured">Featured</div>{{/featured}}<ul class="content-actions"><li class="content-action" data-content-action="share"><a class="hub-tooltip-link content-action-share" data-content-action-share-link="{{meta.content.feedEntry.link}}" onClick="doShare(this,\'{{id}}\')" title="Share"><span class="content-action-share-title">Share</span></a></li></ul><div class="content-meta">{{#formattedCreatedAt}}<div class="content-created-at">{{{formattedCreatedAt}}}</div>{{/formattedCreatedAt}}</div>';
 };
 
 LF.lfcustomcontent.prototype.instagram = function() {
