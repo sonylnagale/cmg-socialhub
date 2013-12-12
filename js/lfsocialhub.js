@@ -114,10 +114,10 @@ LF.lfsocialhub = function(opts) {
 		
 				if (offset < 5) {
 					for (var view in this.views) {
-						this.views[view].showMore();
+						this.views[view].showMore(15);
 					}
 					if (typeof this.wallView != "undefined") {
-						this.wallView.showMore();
+						this.wallView.showMore(15);
 					}
 				}
 				
