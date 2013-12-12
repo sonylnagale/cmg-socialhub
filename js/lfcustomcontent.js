@@ -20,12 +20,7 @@ LF.lfcustomcontent = function(opts) {
 		'feed': this.rss(),
 		'instagram': this.instagram()
 	}
-	
-//	if (opts == null) {
-//		throw "Error: no options defined";
-//		return;
-//	}
-	
+
 	return this;
 };
 
@@ -84,11 +79,7 @@ LF.lfcustomcontent.prototype.makeCustomContentView = function(content,self) {
 /**
  * A Custom RSS ContentView
  */
-LF.lfcustomcontent.prototype.CustomContentView = function (opts) {
-	
-	
-	//opts.custom.source = opts.content.source;
-	//console.log(this);
+LF.lfcustomcontent.prototype.CustomContentView = function (opts) {;
 
     ContentView.apply(this, arguments);
 };
@@ -109,7 +100,5 @@ LF.lfcustomcontent.prototype.rss = function() {
 LF.lfcustomcontent.prototype.instagram = function() {
 	
 };
-
-//inherits(LF.lfcustomcontent,ContentListView);
 
 })();
