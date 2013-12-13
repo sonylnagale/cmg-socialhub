@@ -93,7 +93,7 @@ LF.lfsocialhub = function(opts) {
 		// sone user-agent detection
 		if ( navigator.userAgent.match(/iPhone/i) || 
 				navigator.userAgent.match(/iPad/i) || 
-				(/Android/i.test(navigator.userAgent) && screen.width < 1024)) {
+				/Android/i.test(navigator.userAgent)) {
 			this.isHandheld = true;
 			this.$menu = $($('#socialHub #socialmenu .title')[0]);
 			this.$menu.text(this.opts.initialMobileCollection.title);
@@ -140,7 +140,7 @@ LF.lfsocialhub.prototype._prepData = function() {
 	var ContentListView = Livefyre.require('streamhub-sdk/content/views/content-list-view');
 	var Collection = Livefyre.require('streamhub-sdk/collection');
 	var inherits = Livefyre.require('inherits');
-	
+	console.log(this.isHandheld);
 	for (var i = 0; i < this.opts.collections.length; ++i) {
 		var collection = this.opts.collections[i];
 		
