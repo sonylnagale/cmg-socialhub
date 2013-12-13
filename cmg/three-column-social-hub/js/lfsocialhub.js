@@ -71,24 +71,19 @@ LF.lfsocialhub = function(opts) {
 
 		// handle ipad hovers 
 		
-		$("#socialHub #socialmenu li").on("touchstart", function() {
-			$("#socialHub #socialmenu ul").show();
-			$("#socialHub #socialmenu .title").toggleClass('shown');
-		});
-	
-		$("#socialHub #socialmenu .filter").on("touchend", function(e) {
-			e.preventDefault();
-			$(e.target).trigger('click');
-			$("#socialHub #socialmenu ul").hide();
-
-		});
+//		$("#socialHub #socialmenu li").on("touchstart", function() {
+//			$("#socialHub #socialmenu ul").show();
+//			$("#socialHub #socialmenu .title").toggleClass('shown');
+//		});
+//	
 		
-		$("#socialHub #socialmenu .all").on("touchend", function(e) {
-			e.preventDefault();
-			$(e.target).trigger('click');
-			$("#socialHub #socialmenu ul").hide();
-
-		});
+//		
+//		$("#socialHub #socialmenu .all").on("touchend", function(e) {
+//			e.preventDefault();
+//			$(e.target).trigger('click');
+//			$("#socialHub #socialmenu ul").hide();
+//
+//		});
 
 		// sone user-agent detection
 		if ( navigator.userAgent.match(/iPhone/i) || 
@@ -124,6 +119,21 @@ LF.lfsocialhub = function(opts) {
 				}
 				
 			},this));
+		} else { // Let's set up the menu now
+			$("#socialHub #socialmenu").click(function() {
+				$("#socialHub #socialmenu ul").show();
+			});
+			
+			$("#socialHub #socialmenu ul li a").click(function() {
+				$("#socialHub #socialmenu ul").hide();
+
+			});
+			
+			$("#socialHub #socialmenu .filter").on("touchend", function(e) {
+				e.preventDefault();
+				$(e.target).trigger('click');
+				$("#socialHub #socialmenu ul").hide();
+			});
 		}
 		
 		this._prepData();
@@ -192,10 +202,8 @@ LF.lfsocialhub.prototype._setEvents = function() {
 	$("#socialHub #socialmenu .filter").click($.proxy(function(e) {
 		this.clickEventIndividual(e);
 	},this));
-	console.log('handheld',this.isHandheld);
 	
 	if (this.isHandheld) { // just use the 1-column view
-		console.log('clicking');
 		this.clickEventIndividual();
 	}
 };
