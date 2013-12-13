@@ -195,7 +195,7 @@ LF.lfsocialhub.prototype._setEvents = function() {
 	
 	if (this.isHandheld) { // just use the 1-column view
 		console.log('clicking');
-		this.clickEventIndividual(this.opts.initialMobileCollection.name);
+		this.clickEventIndividual();
 	}
 };
 
@@ -228,7 +228,7 @@ LF.lfsocialhub.prototype.clickEventIndividual = function(e) {
 		this.collections[key].pause(); // pause the other long polls
 	}
 			
-	this.desiredCollection = (!this.isHandheld) ? this.collections[($(e.target).data('source') + "Collection")] : this.collections[this.opts.initialMobileCollection.name + "Collection"];
+	this.desiredCollection = (typeof e != 'undefined') ? this.collections[($(e.target).data('source') + "Collection")] : this.collections[this.opts.initialMobileCollection.name + "Collection"];
 	this.desiredCollection.resume(); // just start the one we want.
 	
 	var desiredLink = (!this.isHandheld) ? eval($(e.target).data('source') + "Link") : '#' + this.opts.initialMobileCollection.name + "Link";
