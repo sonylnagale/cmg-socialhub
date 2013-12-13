@@ -6,7 +6,7 @@ var doShare = function(el,id) {
 
 	var content = LF.meta[id],
 		description = $(".content-body[data-content-id='" + id + "']").text();
-	console.log(description);
+	//console.log(description);
 	janrain.engage.share.setUrl(content.url);
 	janrain.engage.share.setImage(content.image);
 	janrain.engage.share.setDescription(description);
@@ -17,7 +17,6 @@ var doShare = function(el,id) {
 		janrain.engage.share.reset();
 	});
 };
-
 
 (function() {
 
@@ -48,8 +47,8 @@ LF.lfsocialhub = function(opts) {
 		return;
 	}
 	
-	// default
-	this.opts.initialMobileCollection = this.opts.collections[0];
+	// default your reactions
+	this.opts.initialMobileCollection = this.opts.collections[2];
 
 	// find mobile default
 	for (var collection in this.opts.collections) {
@@ -64,12 +63,8 @@ LF.lfsocialhub = function(opts) {
 	this.isHandheld = false;
 	this.isTablet = false;
 	
-	this._prepData();
-
-	// cache this dom reference
-	
-	//now stick our header to the top as we scroll
-	$(document).ready($.proxy(function() {
+		$(document).ready($.proxy(function() {
+		
 		this.$el = $(this.opts.el);
 
 		this.$header = $('#socialheader');
@@ -130,6 +125,9 @@ LF.lfsocialhub = function(opts) {
 				
 			},this));
 		}
+		
+		this._prepData();
+
 	},this));
 };
 
@@ -193,8 +191,10 @@ LF.lfsocialhub.prototype._setEvents = function() {
 	$("#socialHub #socialmenu .filter").click($.proxy(function(e) {
 		this.clickEventIndividual(e);
 	},this));
+	console.log('handheld',this.isHandheld);
 	
 	if (this.isHandheld) { // just use the 1-column view
+		console.log('clicking');
 		this.clickEventIndividual(this.opts.initialMobileCollection.name);
 	}
 };
@@ -273,10 +273,6 @@ LF.lfsocialhub.prototype._setWall = function() {
 		this.customContent.hasCustomContentView.call(this.wallView);
 
 	},this));
-};
-
-LF.lfsocialhub.prototype._rssMustache = function() {
-	return ' <div class="content-header"><div class="content-header-inner">{{#author.avatar}}<a class="content-author-avatar"><img src="{{author.avatar}}"/></a>{{/author.avatar}}<div class="content-byline">{{#author.url}}<a class="content-author-name" href="{{author.url}}" target="_blank">{{author.displayName}}</a>{{/author.url}}{{^author.url}}{{#author.profileUrl}}<a class="content-author-name" href="{{author.profileUrl}}" target="_blank">{{author.displayName}}</a>{{/author.profileUrl}}{{^author.profileUrl}}<span class="content-author-name">{{author.displayName}}</span>{{/author.profileUrl}}{{/author.url}}</div></div></div><div class="content-attachments"></div><div class="content-body"><a href="{{meta.content.feedEntry.link}}" target="_blank">{{#meta.content.title}}{{{meta.content.title}}}{{/meta.content.title}}{{^meta.content.title}}{{{body}}}{{/meta.content.title}}</a></div>{{#featured}}<div class="content-featured">Featured</div>{{/featured}}<ul class="content-actions"><li class="content-action" data-content-action="share"><a class="hub-tooltip-link content-action-share" data-content-action-share-link="{{meta.content.feedEntry.link}}" onClick="doShare(this)" title="Share"><span class="content-action-share-title">Share</span></a></li></ul><div class="content-meta">{{#formattedCreatedAt}}<div class="content-created-at">{{{formattedCreatedAt}}}</div>{{/formattedCreatedAt}}</div>';
 };
 
 })();
