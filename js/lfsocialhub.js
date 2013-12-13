@@ -140,7 +140,7 @@ LF.lfsocialhub.prototype._prepData = function() {
 	var ContentListView = Livefyre.require('streamhub-sdk/content/views/content-list-view');
 	var Collection = Livefyre.require('streamhub-sdk/collection');
 	var inherits = Livefyre.require('inherits');
-	console.log(this.isHandheld);
+
 	for (var i = 0; i < this.opts.collections.length; ++i) {
 		var collection = this.opts.collections[i];
 		

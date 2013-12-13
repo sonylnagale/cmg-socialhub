@@ -42,9 +42,10 @@ LF.lfcustomcontent.prototype.hasCustomContentView = function() {
 	
 	/**
      * Override ListView#createContentView to create a special ContentView
-     * class for RSS Items
+     * class for certain Items
      */
     var ogCreateContentView = this.createContentView;
+    
     this.createContentView = function (content) {
     	if (opts.views[content.source] === true) {
     		var customContent = new LF.lfcustomcontent(opts);
@@ -52,7 +53,6 @@ LF.lfcustomcontent.prototype.hasCustomContentView = function() {
 
             return customContent.makeCustomContentView(content,customContent);
         }
-//    	if (content.source == 'twitter') console.log(arguments);
         
     	try {
     		return ogCreateContentView.apply(this, arguments);
