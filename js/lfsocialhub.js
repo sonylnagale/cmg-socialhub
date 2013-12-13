@@ -120,11 +120,13 @@ LF.lfsocialhub = function(opts) {
 				
 			},this));
 		} else { // Let's set up the menu now
-			$("#socialHub #socialmenu").click(function() {
+			$("#socialHub #socialmenu").click(function(e) {
+				e.preventDefault();
 				$("#socialHub #socialmenu ul").show();
 			});
 			
-			$("#socialHub #socialmenu ul li a").click(function() {
+			$("#socialHub #socialmenu ul li a").click(function(e) {
+				e.preventDefault();
 				$("#socialHub #socialmenu ul").hide();
 
 			});
