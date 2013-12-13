@@ -120,9 +120,11 @@ LF.lfsocialhub = function(opts) {
 				
 			},this));
 		} else { // Let's set up the menu now
-			$("#socialHub #socialmenu .title").on("touchstart", function(e) {
-				//e.preventDefault();
+			$("#socialHub #socialmenu a.title").on("touchstart", function(e) {
+				e.preventDefault();
 				$("#socialHub #socialmenu ul").show();
+				$("#socialHub #socialmenu .title").addClass('shown');
+
 			});
 			
 //			$("#socialHub #socialmenu ul li a").on("touchstart", function(e) {
@@ -130,10 +132,12 @@ LF.lfsocialhub = function(opts) {
 //				$("#socialHub #socialmenu ul").hide();
 //			});
 //			
-			$("#socialHub #socialmenu .filter").on("touchend", function(e) {
+			$("#socialHub #socialmenu a.filter").on("click", function(e) {
 				e.preventDefault();
-				$(e.target).trigger('click');
+				//$(e.target).trigger('click');
 				$("#socialHub #socialmenu ul").hide();
+				$("#socialHub #socialmenu .title").removeClass('shown');
+
 			});
 		}
 		
