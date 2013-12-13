@@ -120,17 +120,16 @@ LF.lfsocialhub = function(opts) {
 				
 			},this));
 		} else { // Let's set up the menu now
-			$("#socialHub #socialmenu").click(function(e) {
-				e.preventDefault();
+			$("#socialHub #socialmenu .title").on("touchstart", function(e) {
+				//e.preventDefault();
 				$("#socialHub #socialmenu ul").show();
 			});
 			
-			$("#socialHub #socialmenu ul li a").click(function(e) {
-				e.preventDefault();
-				$("#socialHub #socialmenu ul").hide();
-
-			});
-			
+//			$("#socialHub #socialmenu ul li a").on("touchstart", function(e) {
+//				e.preventDefault();
+//				$("#socialHub #socialmenu ul").hide();
+//			});
+//			
 			$("#socialHub #socialmenu .filter").on("touchend", function(e) {
 				e.preventDefault();
 				$(e.target).trigger('click');
