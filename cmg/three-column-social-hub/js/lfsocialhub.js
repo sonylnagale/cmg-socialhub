@@ -63,7 +63,7 @@ LF.lfsocialhub = function(opts) {
 	this.isHandheld = false;
 	this.isTablet = false;
 	
-		$(document).ready($.proxy(function() {
+	$(document).ready($.proxy(function() {
 		
 		this.$el = $(this.opts.el);
 
@@ -92,7 +92,7 @@ LF.lfsocialhub = function(opts) {
 			this.isHandheld = true;
 			this.$menu = $($('#socialHub #socialmenu .title')[0]);
 			this.$menu.text(this.opts.initialMobileCollection.title);
-			$('#socialHub .all').detach();	
+			$('#socialHub .all').detach();
 		}
 
 		if ( /iPad/i.test(navigator.userAgent) ) {
@@ -120,25 +120,40 @@ LF.lfsocialhub = function(opts) {
 				
 			},this));
 		} else { // Let's set up the menu now
-			$("#socialHub #socialmenu a.title").on("touchstart", function(e) {
-				e.preventDefault();
-				$("#socialHub #socialmenu ul").show();
-				$("#socialHub #socialmenu .title").addClass('shown');
-
-			});
-			
-//			$("#socialHub #socialmenu ul li a").on("touchstart", function(e) {
+//			$("#socialHub #socialmenu a.title").on("touchstart", function(e) {
 //				e.preventDefault();
-//				$("#socialHub #socialmenu ul").hide();
+//				$("#socialHub #socialmenu ul").show();
+//				$("#socialHub #socialmenu .title").addClass('shown');
+//
 //			});
 //			
-			$("#socialHub #socialmenu a.filter").on("click", function(e) {
-				e.preventDefault();
-				//$(e.target).trigger('click');
-				$("#socialHub #socialmenu ul").hide();
-				$("#socialHub #socialmenu .title").removeClass('shown');
-
+////			$("#socialHub #socialmenu ul li a").on("touchstart", function(e) {
+////				e.preventDefault();
+////				$("#socialHub #socialmenu ul").hide();
+////			});
+////			
+//			$("#socialHub #socialmenu a.filter").on("click", function(e) {
+//				e.preventDefault();
+//				//$(e.target).trigger('click');
+//				$("#socialHub #socialmenu ul").hide();
+//				$("#socialHub #socialmenu .title").removeClass('shown');
+//
+//			});
+		
+			$("#socialHub #socialmenu").empty();
+			
+			var menuContainer = $("<div id='mobileMenu'><p>View Only</p></div>").appendTo($("#socialHub #socialmenu"));
+			var menu = $("<select id='socialmenu-mobile'>").appendTo($(menuContainer));
+			var options = $("<option class='selection' data-source='news'>News</option><option class='selection' data-source='experts'>Experts</option><option class='selection' selected data-source='reactions'>Your Reactions</option>");
+			
+			$(menu).append($(options));
+			
+			var self = this;
+			
+			$("#socialmenu-mobile").change(function(e) {
+				self.clickEventIndividual($(e.target).find(":selected"));
 			});
+			
 		}
 		
 		this._prepData();
@@ -241,11 +256,24 @@ LF.lfsocialhub.prototype.clickEventIndividual = function(e) {
 	for (var key in this.collections) {
 		this.collections[key].pause(); // pause the other long polls
 	}
-			
-	this.desiredCollection = (typeof e != 'undefined') ? this.collections[($(e.target).data('source') + "Collection")] : this.collections[this.opts.initialMobileCollection.name + "Collection"];
+
+	if (typeof e != 'undefined') {
+		if ($(e).data('source') == 'undefined' || $(e)[0].type == 'click') {
+			console.log(1);
+			this.desiredCollection = this.collections[($(e.target).data('source') + "Collection")]; // this came from a standard click
+			var desiredLink = eval($(e.target).data('source') + "Link");
+		} else {
+			console.log(2);
+			this.desiredCollection = this.collections[($(e).data('source') + "Collection")]; // this came from a mobile menu click
+			var desiredLink = '#' + $(e).data('source') + "Link";
+		}
+	} else {
+		this.desiredCollection = this.collections[this.opts.initialMobileCollection.name + "Collection"]; // this came from a moble initial load
+		var desiredLink = '#' + this.opts.initialMobileCollection.name + "Link";
+	}
+
 	this.desiredCollection.resume(); // just start the one we want.
-	
-	var desiredLink = (!this.isHandheld) ? eval($(e.target).data('source') + "Link") : '#' + this.opts.initialMobileCollection.name + "Link";
+			
 	for (var i = 0; i < this.links.length; ++i) {					
 		
 		if (this.links[i] != $(desiredLink).attr('id').replace('Link','')) {

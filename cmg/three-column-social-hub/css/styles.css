@@ -31,7 +31,7 @@
 }
 
 
-#socialHub a {
+#socialHub .content-body a {
 	color: #003399;
 }
 
@@ -131,7 +131,8 @@
 }
 
 #socialHub .content.content-with-image .content-author-name a, 
-#socialHub .content.content-with-image a.content-author-username {
+#socialHub .content.content-with-image a.content-author-username,
+#socialHub .content.custom-instagram-content-view a.content-author-name {
 	color: #fff;
 }
 
@@ -144,7 +145,7 @@
 	display:none !important;
 }
 
-#socialHub .content-instagram a {
+#socialHub .custom-instagram-content-view a {
 	font: italic 12px/20px Helvetica, Arial, sans-serif;	
 	color: #fff;
 }
