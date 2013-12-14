@@ -113,16 +113,8 @@
 	height: 0;
 }
 
-/** handheld */
-@media only screen 
-and (max-device-width : 1024px)  { 
-	
-	#socialHub #socialmenu .title.shown {	
-		background-position: 65px 0;
-	}
-	
-	#socialHub #socialmenu .title.shown ul {
-		display:block !important;
-	}	
-	
+#socialHub #mobileMenu p {
+	font-size: smaller;
+	text-transform: uppercase;
 }
+
