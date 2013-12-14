@@ -144,7 +144,7 @@ LF.lfsocialhub = function(opts) {
 			
 			var menuContainer = $("<div id='mobileMenu'><p>View Only</p></div>").appendTo($("#socialHub #socialmenu"));
 			var menu = $("<select id='socialmenu-mobile'>").appendTo($(menuContainer));
-			var options = $("<option class='selection' data-source='news'>News</option><option class='selection' data-source='experts'>Experts</option><option class='selection' selected data-source='reactions'>Your Reactions</option>");
+			var options = $("<option class='selection' data-source='news'>News &#9660;</option><option class='selection' data-source='experts'>Experts &#9660;</option><option class='selection' selected data-source='reactions'>Your Reactions &#9660;</option>");
 			
 			$(menu).append($(options));
 			
