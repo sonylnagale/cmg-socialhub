@@ -120,38 +120,30 @@ LF.lfsocialhub = function(opts) {
 				
 			},this));
 		} else { // Let's set up the menu now
-//			$("#socialHub #socialmenu a.title").on("touchstart", function(e) {
-//				e.preventDefault();
-//				$("#socialHub #socialmenu ul").show();
-//				$("#socialHub #socialmenu .title").addClass('shown');
-//
-//			});
-//			
-////			$("#socialHub #socialmenu ul li a").on("touchstart", function(e) {
-////				e.preventDefault();
-////				$("#socialHub #socialmenu ul").hide();
-////			});
-////			
-//			$("#socialHub #socialmenu a.filter").on("click", function(e) {
-//				e.preventDefault();
-//				//$(e.target).trigger('click');
-//				$("#socialHub #socialmenu ul").hide();
-//				$("#socialHub #socialmenu .title").removeClass('shown');
-//
-//			});
 		
 			$("#socialHub #socialmenu").empty();
 			
 			var menuContainer = $("<div id='mobileMenu'><p>View Only</p></div>").appendTo($("#socialHub #socialmenu"));
 			var menu = $("<select id='socialmenu-mobile'>").appendTo($(menuContainer));
-			var options = $("<option class='selection' data-source='news'>News &#9660;</option><option class='selection' data-source='experts'>Experts &#9660;</option><option class='selection' selected data-source='reactions'>Your Reactions &#9660;</option>");
+			var options = $("<option class='selection' data-source='news'>News &#9660;</option><option class='selection' data-source='experts'>Experts &#9660;</option><option class='selection' data-source='reactions'>Your Reactions &#9660;</option>");
+		
 			
 			$(menu).append($(options));
+			
+			
+			if (this.isTablet) {
+				var allMenu = $("<option class='selection' data-source='all' selected>All &#9660;</option>");
+				allMenu.prependTo($("#socialmenu-mobile"));
+			}
 			
 			var self = this;
 			
 			$("#socialmenu-mobile").change(function(e) {
-				self.clickEventIndividual($(e.target).find(":selected"));
+				if ($(e.target).find(":selected").val().match(/All/i)) {
+					self.clickEventAll();
+				} else {
+					self.clickEventIndividual($(e.target).find(":selected"));
+				}
 			});
 			
 		}
