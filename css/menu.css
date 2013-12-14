@@ -118,3 +118,20 @@
 	text-transform: uppercase;
 }
 
+#socialHub #mobileMenu select {
+    padding: 0 8px 5px 8px;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    background-color: #ca171d;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    color:#fff;
+    -webkit-appearance: none;
+    text-transform: uppercase;
+    width:auto;
+}
+
+
