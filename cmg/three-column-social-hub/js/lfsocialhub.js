@@ -26,7 +26,7 @@ var doShare = function(el,id) {
  * lfsocialhub
  * Sets up a three-column social hub experience
  * @author Sonyl Nagale <sonyl@livefyre.com>
- * @version 0.10
+ * @version 0.15
  * @param {Object} opts = {
  * 		el: String (required)
  * 		collections: Array (required) [ name (String): {
@@ -68,22 +68,6 @@ LF.lfsocialhub = function(opts) {
 		this.$el = $(this.opts.el);
 
 		this.$header = $('#socialheader');
-
-		// handle ipad hovers 
-		
-//		$("#socialHub #socialmenu li").on("touchstart", function() {
-//			$("#socialHub #socialmenu ul").show();
-//			$("#socialHub #socialmenu .title").toggleClass('shown');
-//		});
-//	
-		
-//		
-//		$("#socialHub #socialmenu .all").on("touchend", function(e) {
-//			e.preventDefault();
-//			$(e.target).trigger('click');
-//			$("#socialHub #socialmenu ul").hide();
-//
-//		});
 
 		// sone user-agent detection
 		if ( navigator.userAgent.match(/iPhone/i) || 
@@ -188,7 +172,7 @@ LF.lfsocialhub.prototype._prepData = function() {
 		};
 		
 		this.customContent = new LF.lfcustomcontent(opts);
-//		console.log(this.customContent,ContentListView);
+
 		inherits(this.customContent,ContentListView);
 
 		this.customContent.hasCustomContentView.call(this.views[collection.name + "View"]);
@@ -215,7 +199,7 @@ LF.lfsocialhub.prototype._setEvents = function() {
 		this.clickEventIndividual(e);
 	},this));
 	
-	if (this.isHandheld) { // just use the 1-column view
+	if (this.isHandheld && !this.isTablet) { // just use the 1-column view
 		this.clickEventIndividual();
 	}
 };
