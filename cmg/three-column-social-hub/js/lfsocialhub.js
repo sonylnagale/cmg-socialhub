@@ -118,6 +118,8 @@ LF.lfsocialhub = function(opts) {
 			if (this.isTablet) {
 				var allMenu = $("<option class='selection' data-source='all' selected>All &#9660;</option>");
 				allMenu.prependTo($("#socialmenu-mobile"));
+			} else {
+				$("#socialmenu-mobile [data-source='reactions']").attr('selected','selected');
 			}
 			
 			var self = this;
