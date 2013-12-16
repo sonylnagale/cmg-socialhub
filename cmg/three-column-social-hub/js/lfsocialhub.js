@@ -10,7 +10,7 @@ var doShare = function(el,id) {
 	janrain.engage.share.setUrl(content.url);
 	janrain.engage.share.setImage(content.image);
 	janrain.engage.share.setDescription(description);
-	janrain.engage.share.setTitle(content.title)
+	janrain.engage.share.setTitle(content.title);
 	janrain.engage.share.show();
 	
 	janrain.events.onModalClose.addHandler(function(response) {
@@ -40,7 +40,14 @@ var doShare = function(el,id) {
  */	
 	
 LF.lfsocialhub = function(opts) {
-	this.opts = opts;
+	var defaults = {
+		'infiniteScroll':true
+	};
+	
+	
+
+	this.opts = $.extend({},  defaults, opts);
+	
 	
 	if (opts == null) {
 		throw "Error: no options defined";
@@ -88,22 +95,49 @@ LF.lfsocialhub = function(opts) {
 		
 		if (!this.isHandheld && !this.isTablet) { // don't do infinite scroll 
 
+			
+			
 			$(window).scroll($.proxy(function() {
 			
-			
-				var offset = Math.ceil($(window).scrollTop() % $(window).height()/10);
-		
-				if (offset < 5) {
-					for (var view in this.views) {
-						this.views[view].showMore(15);
-					}
-					if (typeof this.wallView != "undefined") {
-						this.wallView.showMore(15);
-					}
+				if (this.opts.infiniteScroll == false) {
+
+					var self = this;
+					
+//					var debouncedScroll = this.debounce($.proxy(function() {
+//						
+//						var offset = Math.ceil($(window).scrollTop() % $(window).height()/10);
+//					
+//						if (offset < 5) {
+//							for (var view in self.views) {
+//								self.views[view].showMore(15);
+//							}
+//							if (typeof self.wallView != "undefined") {
+//								self.wallView.showMore(15);
+//							}
+//						}
+//					},500),self);
+//					
+//					debouncedScroll();	
+					
+					
+					
+										
+					
+					$('.hub-list-more').each($.proxy(function(i,el) {
+						var debouncedCheck = this.debounce(function(i,el) {
+
+							var offset = $(el).offset().top - $(window).scrollTop();
+							if (offset < $(window).height()) {
+								$(el).trigger('click');
+							}
+							
+						},500);
+
+						debouncedCheck(i,el);
+					},this));
 				}
-				
 			},this));
-		} else { // Let's set up the menu now
+		} else { // Let's set up the mobile menu now
 		
 			$("#socialHub #socialmenu").empty();
 			
@@ -237,11 +271,9 @@ LF.lfsocialhub.prototype.clickEventIndividual = function(e) {
 
 	if (typeof e != 'undefined') {
 		if ($(e).data('source') == 'undefined' || $(e)[0].type == 'click') {
-			console.log(1);
 			this.desiredCollection = this.collections[($(e.target).data('source') + "Collection")]; // this came from a standard click
 			var desiredLink = eval($(e.target).data('source') + "Link");
 		} else {
-			console.log(2);
 			this.desiredCollection = this.collections[($(e).data('source') + "Collection")]; // this came from a mobile menu click
 			var desiredLink = '#' + $(e).data('source') + "Link";
 		}
@@ -294,5 +326,35 @@ LF.lfsocialhub.prototype._setWall = function() {
 
 	},this));
 };
+
+/**
+ * Returns a function, that, as long as it continues to be invoked, will not be triggered.
+ * The function will be called after it stops being called for N milliseconds.
+ * Copied from Underscore.js (MIT License) http://underscorejs.org/docs/underscore.html#section-65
+ * @param func {function} The function to debounce
+ * @param wait {number} The number of milliseconds to wait for execution of func
+ * @param immediate {boolean} trigger the function on the leading edge, instead of the trailing.
+ * @return {function} A debounced version of the passed `func`
+ */
+LF.lfsocialhub.prototype.debounce = function(func, wait, immediate) {
+    var timeout, result;
+    return function() {
+        var context = this,
+            args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) {
+                result = func.apply(context, args);
+            }
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) {
+            result = func.apply(context, args);
+        }
+        return result;
+    };
+}
 
 })();
