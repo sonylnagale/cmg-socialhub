@@ -195,7 +195,7 @@ LF.lfsocialhub.prototype._prepData = function() {
 		});
 				
 		this.views[collection.name + "View"] = new ContentListView({
-			initial: (this.isHandheld) ? 5 : 50,
+			initial: (this.isHandheld) ? 5 : 15,
 			showMore: (this.isHandheld) ? 5 : 15,
 			el: $('#' + collection.name + "Feed")
 		});					
