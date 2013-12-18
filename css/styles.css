@@ -160,7 +160,7 @@
 	z-index:500;
 }
 
-#socialHub .hub-list-more, #socialHub .hub-list-more:hover {
+#socialHub.no-infinite .hub-list-more, #socialHub.no-infinite .hub-list-more:hover {
 	width: 32px;
 	height: 32px;
 	background-repeat: no-repeat;
