@@ -96,47 +96,62 @@ LF.lfsocialhub = function(opts) {
 		if (!this.isHandheld && !this.isTablet) { // don't do infinite scroll 
 
 			
-			
-			$(window).scroll($.proxy(function() {
-			
-				if (this.opts.infiniteScroll == false) {
 
-					var self = this;
+				$(window).scroll($.proxy(function() {
 					
-//					var debouncedScroll = this.debounce($.proxy(function() {
-//						
-//						var offset = Math.ceil($(window).scrollTop() % $(window).height()/10);
-//					
-//						if (offset < 5) {
-//							for (var view in self.views) {
-//								self.views[view].showMore(15);
-//							}
-//							if (typeof self.wallView != "undefined") {
-//								self.wallView.showMore(15);
-//							}
-//						}
-//					},500),self);
-//					
-//					debouncedScroll();	
-					
-					
-					
-										
-					
-					$('.hub-list-more').each($.proxy(function(i,el) {
-						var debouncedCheck = this.debounce(function(i,el) {
+					if (this.opts.infiniteScroll == false) {
 
-							var offset = $(el).offset().top - $(window).scrollTop();
-							if (offset < $(window).height()) {
-								$(el).trigger('click');
-							}
+
+						var self = this;
+						
+						var debouncedScroll = this.debounce($.proxy(function() {
 							
-						},500);
+							var offset = Math.ceil($(window).scrollTop() % $(window).height()/10);
+						
+							if (offset < 5) {
+								for (var view in self.views) {
+									self.views[view].showMore(15);
+								}
+								if (typeof self.wallView != "undefined") {
+									self.wallView.showMore(15);
+								}
+							}
+						},500),self);
+						
+						debouncedScroll();	
+						
+						
+						
+											
+						
+						$('.hub-list-more').each($.proxy(function(i,el) {
+							var debouncedCheck = this.debounce(function(i,el) {
+	
+								var offset = $(el).offset().top - $(window).scrollTop();
+								if (offset < $(window).height()) {
+									$(el).trigger('click');
+								}
+								
+							},500);
+	
+							debouncedCheck(i,el);
+						},this));
+				} else {
 
-						debouncedCheck(i,el);
-					},this));
+					var offset = Math.ceil($(window).scrollTop() % $(window).height()/10);
+			
+					if (offset < 5) {
+						for (var view in this.views) {
+							this.views[view].showMore(15);
+						}
+						if (typeof this.wallView != "undefined") {
+							this.wallView.showMore(15);
+						}
+					}
 				}
+
 			},this));
+
 		} else { // Let's set up the mobile menu now
 		
 			$("#socialHub #socialmenu").empty();
