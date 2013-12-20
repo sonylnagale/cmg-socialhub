@@ -1,6 +1,9 @@
 <?php
     header("Content-type: text/css");
 	
+	$version = '1.0';
+	$build_date = date('c');
+	
 	$files = array(
 		'menu.css',
 		'popular.css',
@@ -12,5 +15,8 @@
 	foreach ($files as $file) {
 		$return .= file_get_contents($file);
 	}
+	$versioninfo = "/** Version $version \n Build Date: $build_date */\n\n";
+	
+	echo $versioninfo . $return;
 	
 	echo $return;

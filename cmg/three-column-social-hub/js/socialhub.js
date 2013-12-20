@@ -1,6 +1,9 @@
 <?php
     header("Content-type: text/javascript");
 	
+	$version = '1.0';
+	$build_date = date('c');
+
 	$files = array(
 		'lfcustomcontent.js',
 		'lfsocialhub.js',
@@ -13,4 +16,6 @@
 		$return .= file_get_contents($file);
 	}
 	
-	echo $return;
+	$versioninfo = "// Version $version \n// Build Date: $build_date \n\n";
+	
+	echo $versioninfo . $return;
