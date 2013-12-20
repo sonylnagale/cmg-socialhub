@@ -204,6 +204,10 @@
 	margin: 0px -2px 5px 0px;
 }
 
+#socialHub .content-tweet .content-action-share {
+	margin-right: 5px;
+	top: -7px;
+}
 
 /** iPad portrait & landscape */
 @media only screen 
