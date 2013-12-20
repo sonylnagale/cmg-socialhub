@@ -6,7 +6,6 @@ var doShare = function(el,id) {
 
 	var content = LF.meta[id],
 		description = $(".content-body[data-content-id='" + id + "']").text();
-	console.log(description);
 	janrain.engage.share.setUrl(content.url);
 	janrain.engage.share.setImage(content.image);
 	janrain.engage.share.setDescription(description);
