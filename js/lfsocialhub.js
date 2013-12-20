@@ -41,10 +41,10 @@ var doShare = function(el,id) {
 	
 LF.lfsocialhub = function(opts) {
 	var defaults = {
-		'infiniteScroll':true
+		'infiniteScroll':false
 	};
 	
-	
+	var benignLFtoken = 'eyJ0eXAiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJkb21haW4iOiJjb3huZXdzLmZ5cmUuY28iLCJ1c2VyX2lkIjoiMTkwNmY2MjQtMzk5NS00NTQ4LTlmN2QtNTQ3ZmQ0NDQyZjJmIiwiZXhwaXJlcyI6ODc3ODc0NDM2OTAsImRpc3BsYXlfbmFtZSI6ImxmX3NvbnlsIn0.YOnPbcPzJQ1RBgfWeD-wInT7uBluCYUkRSmW_91dyUE';
 
 	this.opts = $.extend({},  defaults, opts);
 	
@@ -97,45 +97,45 @@ LF.lfsocialhub = function(opts) {
 
 			
 
-				$(window).scroll($.proxy(function() {
+			$(window).scroll($.proxy(function() {
+				
+				if (this.opts.infiniteScroll == false) {
+
+
+					var self = this;
 					
-					if (this.opts.infiniteScroll == false) {
-
-
-						var self = this;
+					var debouncedScroll = this.debounce($.proxy(function() {
 						
-						var debouncedScroll = this.debounce($.proxy(function() {
-							
-							var offset = Math.ceil($(window).scrollTop() % $(window).height()/10);
-						
-							if (offset < 5) {
-								for (var view in self.views) {
-									self.views[view].showMore(15);
-								}
-								if (typeof self.wallView != "undefined") {
-									self.wallView.showMore(15);
-								}
+						var offset = Math.ceil($(window).scrollTop() % $(window).height()/10);
+					
+						if (offset < 5) {
+							for (var view in self.views) {
+								self.views[view].showMore(15);
 							}
-						},500),self);
-						
-						debouncedScroll();	
-						
-						
-						
-											
-						
-						$('.hub-list-more').each($.proxy(function(i,el) {
-							var debouncedCheck = this.debounce(function(i,el) {
-	
-								var offset = $(el).offset().top - $(window).scrollTop();
-								if (offset < $(window).height()) {
-									$(el).trigger('click');
-								}
-								
-							},500);
-	
-							debouncedCheck(i,el);
-						},this));
+							if (typeof self.wallView != "undefined") {
+								self.wallView.showMore(15);
+							}
+						}
+					},500),self);
+					
+					debouncedScroll();	
+					
+					
+					
+										
+					
+					$('.hub-list-more').each($.proxy(function(i,el) {
+						var debouncedCheck = this.debounce(function(i,el) {
+
+							var offset = $(el).offset().top - $(window).scrollTop();
+							if (offset < $(window).height()) {
+								$(el).trigger('click');
+							}
+							
+						},500);
+
+						debouncedCheck(i,el);
+					},this));
 				} else {
 
 					var offset = Math.ceil($(window).scrollTop() % $(window).height()/10);
@@ -370,6 +370,10 @@ LF.lfsocialhub.prototype.debounce = function(func, wait, immediate) {
         }
         return result;
     };
-}
+};
+
+LF.lfsocialhub.prototype.likeContent = function(data) {
+	console.log(data); 
+};
 
 })();
