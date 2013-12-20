@@ -8,7 +8,8 @@ var ContentListView = Livefyre.require('streamhub-sdk/content/views/content-list
 	Content = Livefyre.require('streamhub-sdk/content'),
 	LivefyreContent = Livefyre.require('streamhub-sdk/content/types/livefyre-content'),
 	InstagramContentView = Livefyre.require('streamhub-sdk/content/views/instagram-content-view'),
-	ContentViewFactory = Livefyre.require('streamhub-sdk/content/content-view-factory')	
+	TwitterContentView = Livefyre.require('streamhub-sdk/content/views/twitter-content-view'),
+	ContentViewFactory = Livefyre.require('streamhub-sdk/content/content-view-factory'),
 	inherits = Livefyre.require('inherits'),
 	TiledAttachmentsListView = Livefyre.require('streamhub-sdk/content/views/tiled-attachment-list-view'),
 	hogan = Livefyre.require('hogan');
@@ -20,7 +21,8 @@ LF.lfcustomcontent = function(opts) {
 	
 	this.customViews = {
 		'feed': this.rss(),
-		'instagram': this.instagram()
+		'instagram': this.instagram(),
+		'twitter': this.twitter()
 	};
 	
 	return this;
@@ -35,7 +37,7 @@ LF.lfcustomcontent.prototype.hasCustomContentView = function() {
 		'views': {
 			'feed' : true,
 			'instagram':true,
-			'twitter':false,
+			'twitter':true,
 			'facebook':false
 		}
 	};
@@ -68,7 +70,7 @@ LF.lfcustomcontent.prototype.hasCustomContentView = function() {
  */
 LF.lfcustomcontent.prototype.makeCustomContentView = function(content,self) {
 	var template = self.customViews[content.source];
-	console.log('content',content);
+		
 	var compiledTemplate = hogan.compile(template);
 
 	this.CustomContentView.prototype.template = function(context) {
@@ -79,6 +81,15 @@ LF.lfcustomcontent.prototype.makeCustomContentView = function(content,self) {
   	
   	if (content.source == 'instagram') {
   	  	this.CustomContentView.prototype.elClass += ' content-instagram';
+  	}
+  	
+  	if (content.source == 'twitter') {
+  	  	this.CustomContentView.prototype.elClass += ' content-tweet';
+  	  	this.CustomContentView.prototype.getTemplateContext = function () {
+        	var context = ContentView.prototype.getTemplateContext.call(this);
+        	context.author.twitterUsername = context.author.profileUrl.split('/').pop();
+        	return context;
+  	  	};
   	}
   	
 	var contentView = new this.CustomContentView({
@@ -106,7 +117,7 @@ LF.lfcustomcontent.prototype.CustomContentView = function (opts) {;
 	    ContentView.apply(this, arguments);
 		break;
 	case 'twitter':
-		ContentView.apply(this, arguments);
+		TwitterContentView.apply(this, arguments);
 	}
 	
 };
@@ -122,7 +133,7 @@ LF.lfcustomcontent.prototype.instagram = function() {
 };
 
 LF.lfcustomcontent.prototype.twitter = function() {
-	return '<script>LF.meta["{{id}}"]={"url": "https://twitter.com/statuses/{{tweetId}}","image": "","title":"{{{body}}}"};</script><div class="content-header"><div class="content-header-inner">{{#author.avatar}}<a class="content-author-avatar" href="https://twitter.com/intent/user?user_id={{author.twitterUserId}}" target="_blank"><img src="{{author.avatar}}"/></a>{{/author.avatar}}<div class="content-byline"><a class="hub-tooltip-link tooltip-twitter content-source-logo" href="https://twitter.com/statuses/{{tweetId}}/" target="_blank" title="View on Twitter"></a><div class="content-author-name"><a href="https://twitter.com/intent/user?user_id={{author.twitterUserId}}" target="_blank">{{author.displayName}}</a></div><a class="content-author-username" href="https://twitter.com/intent/user?user_id={{author.twitterUserId}}" target="_blank">@{{author.twitterUsername}}</a></div></div></div><div class="content-attachments"></div><div class="content-body">{{{body}}}</div>{{#featured}}<div class="content-featured">Featured</div>{{/featured}}<ul class="content-actions"><li class="content-action" data-content-action="reply"><a class="hub-tooltip-link content-action-reply" href="https://twitter.com/intent/tweet?in_reply_to={{tweetId}}" title="Reply"><span>Reply</span></a></li><li class="content-action" data-content-action="retweet"><a class="hub-tooltip-link content-action-retweet" href="https://twitter.com/intent/retweet?tweet_id={{tweetId}}" title="Retweet"><span>Retweet</span></a></li><li class="content-action" data-content-action="favorite"><a class="hub-tooltip-link content-action-favorite" href="https://twitter.com/intent/favorite?tweet_id={{tweetId}}" title="Favorite"><span>Favorite</span></a></li></ul><ul class="content-actions"><li class="content-action" data-content-action="share"><a class="hub-tooltip-link content-action-share" data-content-action-share-link="https://twitter.com/statuses/{{tweetId}}" onClick="doShare(this,\'{{id}}\')" title="Share"><span class="content-action-share-title">Share</span></a></li></ul><div class="content-meta">{{#formattedCreatedAt}}<div class="content-created-at"><a href="https://twitter.com/statuses/{{tweetId}}/" target="_blank">{{{formattedCreatedAt}}}</a></div>{{/formattedCreatedAt}}</div>';
+	return '<script>LF.meta["{{id}}"]={"url": "https://twitter.com/statuses/{{tweetId}}","image": "","title":""};</script><div class="content-header"><div class="content-header-inner">{{#author.avatar}}<a class="content-author-avatar" href="https://twitter.com/intent/user?user_id={{author.twitterUserId}}" target="_blank"><img src="{{author.avatar}}"/></a>{{/author.avatar}}<div class="content-byline"><a class="hub-tooltip-link tooltip-twitter content-source-logo" href="https://twitter.com/statuses/{{tweetId}}/" target="_blank" title="View on Twitter"></a><div class="content-author-name"><a href="https://twitter.com/intent/user?user_id={{author.twitterUserId}}" target="_blank">{{author.displayName}}</a></div><a class="content-author-username" href="https://twitter.com/intent/user?user_id={{author.twitterUserId}}" target="_blank">@{{author.twitterUsername}}</a></div></div></div><div class="content-attachments"></div><div class="content-body" data-content-id="{{id}}">{{{body}}}</div>{{#featured}}<div class="content-featured">Featured</div>{{/featured}}<ul class="content-actions"><li class="content-action" data-content-action="reply"><a class="hub-tooltip-link content-action-reply" href="https://twitter.com/intent/tweet?in_reply_to={{tweetId}}" title="Reply"><span>Reply</span></a></li><li class="content-action" data-content-action="retweet"><a class="hub-tooltip-link content-action-retweet" href="https://twitter.com/intent/retweet?tweet_id={{tweetId}}" title="Retweet"><span>Retweet</span></a></li><li class="content-action" data-content-action="favorite"><a class="hub-tooltip-link content-action-favorite" href="https://twitter.com/intent/favorite?tweet_id={{tweetId}}" title="Favorite"><span>Favorite</span></a></li></ul><ul class="content-actions"><li class="content-action" data-content-action="share"><a class="hub-tooltip-link content-action-share" data-content-action-share-link="https://twitter.com/statuses/{{tweetId}}" onClick="doShare(this,\'{{id}}\')" title="Share"><span class="content-action-share-title">Share</span></a></li></ul><div class="content-meta">{{#formattedCreatedAt}}<div class="content-created-at"><a href="https://twitter.com/statuses/{{tweetId}}/" target="_blank">{{{formattedCreatedAt}}}</a></div>{{/formattedCreatedAt}}</div>';
 };
 
 })();
