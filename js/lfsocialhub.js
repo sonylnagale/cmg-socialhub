@@ -43,8 +43,6 @@ LF.lfsocialhub = function(opts) {
 		'infiniteScroll':false
 	};
 	
-	var benignLFtoken = 'eyJ0eXAiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJkb21haW4iOiJjb3huZXdzLmZ5cmUuY28iLCJ1c2VyX2lkIjoiMTkwNmY2MjQtMzk5NS00NTQ4LTlmN2QtNTQ3ZmQ0NDQyZjJmIiwiZXhwaXJlcyI6ODc3ODc0NDM2OTAsImRpc3BsYXlfbmFtZSI6ImxmX3NvbnlsIn0.YOnPbcPzJQ1RBgfWeD-wInT7uBluCYUkRSmW_91dyUE';
-
 	this.opts = $.extend({},  defaults, opts);
 	
 	
