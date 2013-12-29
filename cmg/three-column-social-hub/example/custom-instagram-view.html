@@ -10,7 +10,7 @@
     <div class="content-header-inner">
         {{#author.avatar}}
             <a class="content-author-avatar">
-                <img src="{{ author.avatar }}" />
+                <img src="{{ author.avatar }}" onerror="this.src = \'\'"/>
             </a>
         {{/author.avatar}}
         <div class="content-byline">
