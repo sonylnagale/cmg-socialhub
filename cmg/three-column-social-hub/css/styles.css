@@ -209,6 +209,13 @@
 	top: -7px;
 }
 
+
+@-moz-document url-prefix() {
+	.content .content-body {
+		word-break: normal !important;
+	}
+}
+
 /** iPad portrait & landscape */
 @media only screen 
 and (min-device-width : 768px) 

@@ -1,7 +1,7 @@
 <?php
     header("Content-type: text/css");
 	
-	$version = '1.1.1';
+	$version = '1.1.2';
 	$build_date = date('c');
 	
 	$files = array(
@@ -17,6 +17,14 @@
 	}
 	$versioninfo = "/** Version $version \n Build Date: $build_date */\n\n";
 	
-	echo $versioninfo . $return;
+	$releasenotes =<<<EOF
+
+	RELEASE NOTES:
+	v1.1.2: Allow proper word wrapping in FF. @todo IE
+	v1.1.1: Sync
+	
+EOF;
+	
+	echo $versioninfo . $releasenotes . $return;
 	
 	echo $return;
