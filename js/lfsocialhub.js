@@ -117,10 +117,6 @@ LF.lfsocialhub = function(opts) {
 					
 					debouncedScroll();	
 					
-					
-					
-										
-					
 					$('.hub-list-more').each($.proxy(function(i,el) {
 						var debouncedCheck = this.debounce(function(i,el) {
 
@@ -203,7 +199,8 @@ LF.lfsocialhub.prototype._prepData = function() {
 		this.collections[collection.name + "Collection"] = new Collection({
 			network: collection.network,
 			siteId: collection.siteId,
-			articleId: collection.articleId
+			articleId: collection.articleId,
+			replies: true 
 		});
 				
 		this.views[collection.name + "View"] = new ContentListView({
