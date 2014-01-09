@@ -209,11 +209,8 @@
 	top: -7px;
 }
 
-
-@-moz-document url-prefix() {
-	.content .content-body {
-		word-break: normal !important;
-	}
+.content .content-body {
+	word-break: normal !important;
 }
 
 /** iPad portrait & landscape */
