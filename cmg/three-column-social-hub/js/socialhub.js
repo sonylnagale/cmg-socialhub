@@ -21,7 +21,8 @@
 	$releasenotes = <<<EOF
 /**	
 	RELEASE NOTES
-	
+
+	v1.1.4: Empty out Janrain share info since reset() doesn't appear to work
 	v1.1.3: Sync
 	v1.1.2: Sync
 	v1.1.1: Allow Facebook replies
