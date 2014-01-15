@@ -14,6 +14,12 @@ var doShare = function(el,id) {
 	
 	janrain.events.onModalClose.addHandler(function(response) {
 		janrain.engage.share.reset();
+		
+		// since reset doesn't appear to work...
+		janrain.engage.share.setUrl(null);
+		janrain.engage.share.setImage(null);
+		janrain.engage.share.setDescription(null);
+		janrain.engage.share.setTitle(null);
 	});
 };
 
@@ -365,10 +371,6 @@ LF.lfsocialhub.prototype.debounce = function(func, wait, immediate) {
         }
         return result;
     };
-};
-
-LF.lfsocialhub.prototype.likeContent = function(data) {
-	console.log(data); 
 };
 
 })();

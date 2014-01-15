@@ -1,3 +1,5 @@
+<script>LF.meta["{{id}}"]={"url": "{{meta.content.feedEntry.link}}", "image": "", "title":"{{meta.content.title}}"};</script>
+
        <div class="content-header">
         <div class="content-header-inner">
             {{#author.avatar}}
@@ -24,7 +26,7 @@
         </div>
         </div>
 
-        <div class="content-attachments"></div>
+        <div class="content-attachments">{{#attachments.0}}<img src="{{attachments.0.url}}" />{{/attachments.0}}</div>
 
         <div class="content-body">
             <a href="{{ meta.content.feedEntry.link }}" target="_blank">
@@ -44,7 +46,7 @@
 
         <ul class="content-actions">
             <li class="content-action" data-content-action="share">
-                <a class="hub-tooltip-link content-action-share" data-content-action-share-link="{{ meta.content.feedEntry.link }}" onClick="doShare(this)" title="Share">
+                <a class="hub-tooltip-link content-action-share" data-content-action-share-link="{{ meta.content.feedEntry.link }}" onClick="doShare(this,\'{{id}}\')" title="Share">
                     <span class="content-action-share-title">Share</span>
                 </a>
             </li>
