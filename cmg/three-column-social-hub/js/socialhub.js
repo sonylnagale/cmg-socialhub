@@ -1,7 +1,7 @@
 <?php
     header("Content-type: text/javascript");
 	
-	$version = '1.1.4';
+	$version = '1.1.5';
 	$build_date = date('c');
 
 	$files = array(
@@ -22,6 +22,7 @@
 /**	
 	RELEASE NOTES
 
+	v1.1.5: Merge hotfix1 (instagram onerror for avatar)
 	v1.1.4: Empty out Janrain share info since reset() doesn't appear to work
 	v1.1.3: Sync
 	v1.1.2: Sync
