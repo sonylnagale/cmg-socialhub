@@ -214,6 +214,7 @@
 
 .content .content-body {
 	word-break: normal !important;
+	word-wrap: break-word;
 }
 
 /** iPad portrait & landscape */
