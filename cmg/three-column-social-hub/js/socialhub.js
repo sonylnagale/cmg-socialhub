@@ -1,7 +1,7 @@
 <?php
     header("Content-type: text/javascript");
 	
-	$version = '1.1.7';
+	$version = '1.1.8';
 	$build_date = date('c');
 
 	$files = array(
@@ -22,6 +22,7 @@
 /**	
 	RELEASE NOTES
 	
+	v1.1.8: Add mobile class for mobile browsers
 	v1.1.7: Sync
 	v1.1.6: Sync
 	v1.1.5: Merge hotfix1 (instagram onerror for avatar), remove RSS images until QA ready

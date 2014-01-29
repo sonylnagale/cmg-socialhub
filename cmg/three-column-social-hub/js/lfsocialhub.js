@@ -31,7 +31,6 @@ var doShare = function(el,id) {
  * lfsocialhub
  * Sets up a three-column social hub experience
  * @author Sonyl Nagale <sonyl@livefyre.com>
- * @version 0.15
  * @param {Object} opts = {
  * 		el: String (required)
  * 		collections: Array (required) [ name (String): {
@@ -79,11 +78,13 @@ LF.lfsocialhub = function(opts) {
 
 		this.$header = $('#socialheader');
 
+		
 		// sone user-agent detection
 		if ( navigator.userAgent.match(/iPhone/i) || 
 				navigator.userAgent.match(/iPad/i) || 
 				/Android/i.test(navigator.userAgent)) {
 			this.isHandheld = true;
+			this.$el.addClass('mobile');
 			this.$menu = $($('#socialHub #socialmenu .title')[0]);
 			this.$menu.text(this.opts.initialMobileCollection.title);
 			$('#socialHub .all').detach();
@@ -332,7 +333,10 @@ LF.lfsocialhub.prototype._setWall = function() {
 		var WallView = Livefyre.require('streamhub-wall');
 		
 		this.wallView = new WallView({
-		    el: this.$el
+		    el: this.$el,
+			initial: (this.isHandheld) ? 10 : 30,
+			showMore: (this.isHandheld) ? 10 : 50,
+
 		});
 				
 
