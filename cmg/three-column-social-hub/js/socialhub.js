@@ -1,7 +1,7 @@
 <?php
     header("Content-type: text/javascript");
 	
-	$version = '1.1.9';
+	$version = '1.1.10';
 	$build_date = date('c');
 
 	$files = array(
@@ -22,6 +22,7 @@
 /**	
 	RELEASE NOTES
 	
+	v1.1.10: Sync
 	v1.1.9: Sync
 	v1.1.8: Add mobile class for mobile browsers
 	v1.1.7: Sync

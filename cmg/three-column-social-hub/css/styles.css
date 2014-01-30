@@ -270,6 +270,10 @@ and (max-device-width : 480px) {
  	/** no rules just for this */
 }
 
+body.sh-mobile #socialHub #hub .feed {
+	min-width: 100%;
+}
+
 #socialHub #wall.mobile .content-container {
 	min-width: 100%;
 }
