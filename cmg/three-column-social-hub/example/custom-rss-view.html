@@ -1,4 +1,8 @@
-<script>LF.meta["{{id}}"]={"url": "{{meta.content.feedEntry.link}}", "image": "", "title":"{{meta.content.title}}"};</script>
+<script>LF.meta["{{id}}"] = {
+		"url": "{{meta.content.feedEntry.link}}", 
+		{{#attachments.0}}"image":"{{attachments}}",{{/attachments.0}}
+		"title":"{{meta.content.title}}"};
+</script>
 
        <div class="content-header">
         <div class="content-header-inner">
