@@ -270,6 +270,9 @@ and (max-device-width : 480px) {
  	/** no rules just for this */
 }
 
+#socialHub #wall.mobile .content-container {
+	min-width: 100%;
+}
 
 #socialHub #wall.mobile .hub-list-more {
 	display:inherit !important;
