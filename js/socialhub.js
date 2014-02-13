@@ -1,7 +1,7 @@
 <?php
     header("Content-type: text/javascript");
 	
-	$version = '1.1.6';
+	$version = '1.2.0';
 	$build_date = date('c');
 
 	$files = array(
@@ -21,7 +21,7 @@
 	$releasenotes = <<<EOF
 /**	
 	RELEASE NOTES
-	
+	v1.2.0.build1: Sponsored content preview
 	v1.1.6: Sync
 	v1.1.5: Merge hotfix1 (instagram onerror for avatar), remove RSS images until QA ready
 	v1.1.4: Empty out Janrain share info since reset() doesn't appear to work
