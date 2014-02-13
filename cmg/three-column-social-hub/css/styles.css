@@ -219,13 +219,23 @@
 
 /** Sponsored content */
 #socialHub #sponsored-header h3 {
-  height: 43px;
-  background-color: #999;
-  color: #fff;
+	margin: 0;
+	padding-left: 15px;
+	height: 43px;
+	background-color: #999;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: normal;
+	font-size: 15px;
 }
- 
+
 #socialHub .sponsored-content {
-  border: 1px solid #999;
+	border: 1px solid #999;
+}
+
+.sh-tablet #socialHub #sponsored-header h3 {
+	padding-left: 10px;
+	font-size: 14px;
 }
 /** iPad portrait & landscape */
 @media only screen 
