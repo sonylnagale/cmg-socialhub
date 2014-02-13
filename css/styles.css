@@ -216,6 +216,17 @@
 	word-break: normal !important;
 }
 
+
+/** Sponsored content */
+#socialHub #sponsored-header h3 {
+  height: 43px;
+  background-color: #999;
+  color: #fff;
+}
+ 
+.sponsored-content.content-tweet {
+  border: 1px solid #999;
+}
 /** iPad portrait & landscape */
 @media only screen 
 and (min-device-width : 768px) 
