@@ -13,7 +13,8 @@ var ContentListView = Livefyre.require('streamhub-sdk/content/views/content-list
 	ContentViewFactory = Livefyre.require('streamhub-sdk/content/content-view-factory'),
 	inherits = Livefyre.require('inherits'),
 	TiledAttachmentsListView = Livefyre.require('streamhub-sdk/content/views/tiled-attachment-list-view'),
-	hogan = Livefyre.require('hogan');
+	hogan = Livefyre.require('hogan'),
+	$ = Livefyre.require('jquery');
 
 LF.lfcustomcontent = function(opts) {
 	this.custom = {
@@ -34,16 +35,8 @@ LF.lfcustomcontent = function(opts) {
 /**
  * Identify if we want a custom view
  */
-LF.lfcustomcontent.prototype.hasCustomContentView = function() {
-	var opts = {
-		'views': {
-			'feed' : true,
-			'instagram':true,
-			'twitter':true,
-			'facebook':true
-		}
-	};
-	
+LF.lfcustomcontent.prototype.hasCustomContentView = function(opts) {
+
 	/**
      * Override ListView#createContentView to create a special ContentView
      * class for certain Items
@@ -55,7 +48,7 @@ LF.lfcustomcontent.prototype.hasCustomContentView = function() {
     		var customContent = new LF.lfcustomcontent(opts);
     		inherits(customContent.CustomContentView, ContentView);
 
-            return customContent.makeCustomContentView(content,customContent);
+            return customContent.makeCustomContentView(content,customContent, opts);
         }
         
     	try {
@@ -70,7 +63,7 @@ LF.lfcustomcontent.prototype.hasCustomContentView = function() {
 /**
  * Create a rendered custom ContentView for the provided content
  */
-LF.lfcustomcontent.prototype.makeCustomContentView = function(content,self) {
+LF.lfcustomcontent.prototype.makeCustomContentView = function(content,self, opts) {
 	var template = self.customViews[content.source];
 	var compiledTemplate = hogan.compile(template);
 
@@ -85,9 +78,29 @@ LF.lfcustomcontent.prototype.makeCustomContentView = function(content,self) {
   	}
   	
   	if (content.source == 'twitter') {
+  		
+
+  		var twitterUsername = content.author.profileUrl.split('/').pop();
+  		if (twitterUsername == opts.sponsor.author) {
+  			var isSponsored = 1;
+  			
+  			if (opts.sponsor.hashtag != '' && opts.sponsor.hashtag != undefined) {
+  				if (content.body.indexOf(opts.sponsor.hashtag) == -1) {
+  					isSponsored = 0;
+  				}
+  			}
+  			
+  			if (isSponsored) {
+  	  			content.sponsored = opts.sponsor.author;
+  	  			this.CustomContentView.elClass += ' sponsored-content sponsored-content-author-' + opts.sponsor.author;
+
+  			}
+  	  	} 
+  	  		
   	  	this.CustomContentView.prototype.elClass += ' content-tweet';
   	  	this.CustomContentView.prototype.getTemplateContext = function () {
         	var context = ContentView.prototype.getTemplateContext.call(this);
+        	
         	try {
         		context.author.twitterUsername = context.author.profileUrl.split('/').pop();
         	} catch(e) {
@@ -151,7 +164,7 @@ LF.lfcustomcontent.prototype.instagram = function() {
 };
 
 LF.lfcustomcontent.prototype.twitter = function() {
-	return '<script>LF.meta["{{id}}"]={"url": "https://twitter.com/statuses/{{tweetId}}","image": "","title":""};</script><div class="content-header"><div class="content-header-inner">{{#author.avatar}}<a class="content-author-avatar" href="https://twitter.com/intent/user?user_id={{author.twitterUserId}}" target="_blank"><img src="{{author.avatar}}" onerror="this.src=\'\'"/></a>{{/author.avatar}}<div class="content-byline"><a class="hub-tooltip-link tooltip-twitter content-source-logo" href="https://twitter.com/statuses/{{tweetId}}/" target="_blank" title="View on Twitter"></a><div class="content-author-name"><a href="https://twitter.com/intent/user?user_id={{author.twitterUserId}}" target="_blank">{{author.displayName}}</a></div><a class="content-author-username" href="https://twitter.com/intent/user?user_id={{author.twitterUserId}}" target="_blank">@{{author.displayName}}</a></div></div></div><div class="content-attachments"></div><div class="content-body" data-content-id="{{id}}">{{{body}}}</div>{{#featured}}<div class="content-featured">Featured</div>{{/featured}}<ul class="content-actions"><li class="content-action" data-content-action="share"><a class="hub-tooltip-link content-action-share" data-content-action-share-link="https://twitter.com/statuses/{{tweetId}}" onClick="doShare(this,\'{{id}}\')" title="Share"><span class="content-action-share-title">Share</span></a></li></ul><ul class="content-actions"><li class="content-action" data-content-action="reply"><a class="hub-tooltip-link content-action-reply" href="https://twitter.com/intent/tweet?in_reply_to={{tweetId}}" title="Reply"><span>Reply</span></a></li><li class="content-action" data-content-action="retweet"><a class="hub-tooltip-link content-action-retweet" href="https://twitter.com/intent/retweet?tweet_id={{tweetId}}" title="Retweet"><span>Retweet</span></a></li><li class="content-action" data-content-action="favorite"><a class="hub-tooltip-link content-action-favorite" href="https://twitter.com/intent/favorite?tweet_id={{tweetId}}" title="Favorite"><span>Favorite</span></a></li></ul><div class="content-meta">{{#formattedCreatedAt}}<div class="content-created-at"><a href="https://twitter.com/statuses/{{tweetId}}/" target="_blank">{{{formattedCreatedAt}}}</a></div>{{/formattedCreatedAt}}</div>';
+	return '<script>LF.meta["{{id}}"]={"url": "https://twitter.com/statuses/{{tweetId}}","image": "","title":""};</script><div class="content-header">{{#sponsored}}<div id="sponsored-header"><h3>Sponsored Content</h3></div>{{/sponsored}}<div class="content-header-inner">{{#author.avatar}}<a class="content-author-avatar" href="https://twitter.com/intent/user?user_id={{author.twitterUserId}}" target="_blank"><img src="{{author.avatar}}" onerror="this.src=\'http://d2eb2o7oouhk1h.cloudfront.net/50.png\'"/></a>{{/author.avatar}}<div class="content-byline"><a class="hub-tooltip-link tooltip-twitter content-source-logo" href="https://twitter.com/statuses/{{tweetId}}/" target="_blank" title="View on Twitter"></a><div class="content-author-name"><a href="https://twitter.com/intent/user?user_id={{author.twitterUserId}}" target="_blank">{{author.displayName}}</a></div><a class="content-author-username" href="https://twitter.com/intent/user?user_id={{author.twitterDisplayName}}" target="_blank">@{{author.twitterUsername}}</a></div></div></div><div class="content-attachments"></div><div class="content-body" data-content-id="{{id}}">{{{body}}}</div>{{#featured}}<div class="content-featured">Featured</div>{{/featured}}<ul class="content-actions"><li class="content-action" data-content-action="share"><a class="hub-tooltip-link content-action-share" data-content-action-share-link="https://twitter.com/statuses/{{tweetId}}" onClick="doShare(this,\'{{id}}\')" title="Share"><span class="content-action-share-title">Share</span></a></li></ul><ul class="content-actions"><li class="content-action" data-content-action="reply"><a class="hub-tooltip-link content-action-reply" href="https://twitter.com/intent/tweet?in_reply_to={{tweetId}}" title="Reply"><span>Reply</span></a></li><li class="content-action" data-content-action="retweet"><a class="hub-tooltip-link content-action-retweet" href="https://twitter.com/intent/retweet?tweet_id={{tweetId}}" title="Retweet"><span>Retweet</span></a></li><li class="content-action" data-content-action="favorite"><a class="hub-tooltip-link content-action-favorite" href="https://twitter.com/intent/favorite?tweet_id={{tweetId}}" title="Favorite"><span>Favorite</span></a></li></ul><div class="content-meta">{{#formattedCreatedAt}}<div class="content-created-at"><a href="https://twitter.com/statuses/{{tweetId}}/" target="_blank">{{{formattedCreatedAt}}}</a></div>{{/formattedCreatedAt}}</div>';
 };
 
 LF.lfcustomcontent.prototype.facebook = function() {

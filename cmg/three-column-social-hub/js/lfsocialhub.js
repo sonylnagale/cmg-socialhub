@@ -199,7 +199,6 @@ LF.lfsocialhub.prototype._prepData = function() {
 
 	for (var i = 0; i < this.opts.collections.length; ++i) {
 		var collection = this.opts.collections[i];
-		
 		this.links.push(collection.name); // for the headers
 		
 		this.collections[collection.name + "Collection"] = new Collection({
@@ -214,23 +213,27 @@ LF.lfsocialhub.prototype._prepData = function() {
 			showMore: (this.isHandheld) ? 5 : 15,
 			el: $('#' + collection.name + "Feed")
 		});					
-		
+
 		var opts = {
 				'views': {
 					'rss' : true,
 					'instagram':true,
 					'twitter':true
+				},
+				'sponsor': {
+					'author': collection.sponsorHandle,
+					'hashtag': collection.sponsorHashtag
 				}
 		};
+		
 		
 		this.customContent = new LF.lfcustomcontent(opts);
 
 		inherits(this.customContent,ContentListView);
+		
 
-		this.customContent.hasCustomContentView.call(this.views[collection.name + "View"]);
-        
-        
-        
+		this.customContent.hasCustomContentView.call(this.views[collection.name + "View"], opts);
+                
 		this.collections[collection.name + "Collection"].pipe(this.views[collection.name + "View"]);
 	}
 	

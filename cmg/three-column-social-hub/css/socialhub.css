@@ -1,7 +1,7 @@
 <?php
     header("Content-type: text/css");
 	
-	$version = '1.1.6';
+	$version = '1.2.0';
 	$build_date = date('c');
 	
 	$files = array(
@@ -20,7 +20,8 @@
 	$releasenotes =<<<EOF
 /**
 	RELEASE NOTES:
-	
+
+	v1.2.0.build1: Sponsored content preview
 	v1.1.6: White link for RSS author name when image is present
 	v1.1.5: Sync
 	v1.1.4: Sync

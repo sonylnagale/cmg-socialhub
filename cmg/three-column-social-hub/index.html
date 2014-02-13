@@ -47,10 +47,11 @@
                     },
                     {
                         'name':'reactions',
-                        'network': 'coxnews.fyre.co',
-                        'siteId': '347553',
-                        'articleId':'custom-1386268298351',
-                        'default':true
+                        'network': 'client-solutions.fyre.co',
+                        'siteId': '333682',
+                        'articleId':'sn-1392132980128'
+                        'sponsorHandle':'livefyresonyl',
+                        'sponsorHashtag': 'testsponsor'
                     }
                 ];
 				                     
@@ -98,9 +99,10 @@
 			
 			<script>
 				var hub = new LF.lfsocialhub({
-					'el':'#wall',
-					'collections':socialHubCollections
-				})
+	                'el':document.getElementById('wall'),
+	                'collections':socialHubCollections
+	            });
+
 			</script>
 		</div>
 	</div>
