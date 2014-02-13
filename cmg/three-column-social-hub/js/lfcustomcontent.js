@@ -92,7 +92,7 @@ LF.lfcustomcontent.prototype.makeCustomContentView = function(content,self, opts
   			
   			if (isSponsored) {
   	  			content.sponsored = opts.sponsor.author;
-  	  			this.CustomContentView.elClass += ' sponsored-content sponsored-content-author-' + opts.sponsor.author;
+  	  			this.CustomContentView.prototype.elClass += ' sponsored-content sponsored-content-author-' + opts.sponsor.author;
 
   			}
   	  	} 
