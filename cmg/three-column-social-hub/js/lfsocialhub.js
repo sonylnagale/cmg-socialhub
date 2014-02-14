@@ -59,13 +59,6 @@ LF.lfsocialhub = function(opts) {
 	
 	// default your reactions
 	this.opts.initialMobileCollection = this.opts.collections[2];
-
-	// find mobile default
-	for (var collection in this.opts.collections) {
-		if (this.opts.collections[collection]['default']) {
-			this.opts.initialMobileCollection = this.opts.collections[collection];
-		}
-	}
 	
 	this.collections = {};
 	this.views = {};
@@ -214,7 +207,7 @@ LF.lfsocialhub.prototype._prepData = function() {
 			el: $('#' + collection.name + "Feed")
 		});					
 
-		var opts = {
+		this.viewopts = {
 				'views': {
 					'rss' : true,
 					'instagram':true,
@@ -232,7 +225,7 @@ LF.lfsocialhub.prototype._prepData = function() {
 		inherits(this.customContent,ContentListView);
 		
 
-		this.customContent.hasCustomContentView.call(this.views[collection.name + "View"], opts);
+		this.customContent.hasCustomContentView.call(this.views[collection.name + "View"], this.viewopts);
                 
 		this.collections[collection.name + "Collection"].pipe(this.views[collection.name + "View"]);
 	}
@@ -341,7 +334,7 @@ LF.lfsocialhub.prototype._setWall = function() {
 
 		this.desiredCollection.pipe(this.wallView);
 		
-		this.customContent.hasCustomContentView.call(this.wallView);
+		this.customContent.hasCustomContentView.call(this.wallView, this.viewopts);
 
 	},this));
 };
