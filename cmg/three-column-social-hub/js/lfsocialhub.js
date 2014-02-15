@@ -220,7 +220,7 @@ LF.lfsocialhub.prototype._prepData = function() {
 		};
 		
 		
-		this.customContent = new LF.lfcustomcontent(opts);
+		this.customContent = new LF.lfcustomcontent(this.viewopts);
 
 		inherits(this.customContent,ContentListView);
 		
