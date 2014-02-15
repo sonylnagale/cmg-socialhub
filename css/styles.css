@@ -144,8 +144,7 @@
 
 #socialHub .content.content-with-image .content-author-name a, 
 #socialHub .content.content-with-image a.content-author-username,
-#socialHub .content.custom-instagram-content-view a.content-author-name,
-#socialHub .content.custom-feed-content-view.content-with-image a.content-author-name {
+#socialHub .content.custom-instagram-content-view a.content-author-name {
 	color: #fff;
 }
 
