@@ -21,6 +21,8 @@
 	$releasenotes = <<<EOF
 /**	
 	RELEASE NOTES
+	
+	v1.2.0.build2: Resolve mobile problem (must pass opts to all)
 	v1.2.0.build1: Sponsored content preview
 	v1.1.6: Sync
 	v1.1.5: Merge hotfix1 (instagram onerror for avatar), remove RSS images until QA ready
