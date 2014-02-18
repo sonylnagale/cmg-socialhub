@@ -209,9 +209,10 @@ LF.lfsocialhub.prototype._prepData = function() {
 
 		this.viewopts = {
 				'views': {
-					'rss' : true,
+					'feed' : true,
 					'instagram':true,
-					'twitter':true
+					'twitter':true,
+					'facebook':true
 				},
 				'sponsor': {
 					'author': collection.sponsorHandle,
