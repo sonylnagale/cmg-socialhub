@@ -79,7 +79,7 @@ LF.lfcustomcontent.prototype.makeCustomContentView = function(content,self, opts
   			var isSponsored = 1;
   			
   			if (opts.sponsor.hashtag != '' && opts.sponsor.hashtag != undefined) {
-  				if (content.body.indexOf(opts.sponsor.hashtag) == -1) {
+  				if (content.body.indexOf('#' + opts.sponsor.hashtag) == -1) {
   					isSponsored = 0;
   				}
   			}
