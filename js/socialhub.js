@@ -1,7 +1,7 @@
 <?php
     header("Content-type: text/javascript");
 	
-	$version = '1.2.0';
+	$version = '1.2.1';
 	$build_date = date('c');
 
 	$files = array(
@@ -22,6 +22,7 @@
 /**	
 	RELEASE NOTES
 	
+	v1.2.1: Only hashtag with # will be used
 	v1.2.0.build2: Resolve mobile problem (must pass opts to all)
 	v1.2.0.build1: Sponsored content preview
 	v1.1.6: Sync
