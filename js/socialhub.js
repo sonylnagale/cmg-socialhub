@@ -1,7 +1,7 @@
 <?php
     header("Content-type: text/javascript");
 	
-	$version = '1.2.3';
+	$version = '1.2.4';
 	$build_date = date('c');
 
 	$files = array(
@@ -22,6 +22,7 @@
 /**	
 	RELEASE NOTES
 	
+	v1.2.4: Resetting sponsored variable on content as well
 	v1.2.3: Sync
 	v1.2.2: Making sure sponsored variable is reset
 	v1.2.1: Only hashtag with # will be used
