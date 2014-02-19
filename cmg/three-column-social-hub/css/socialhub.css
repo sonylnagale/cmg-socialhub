@@ -1,7 +1,7 @@
 <?php
     header("Content-type: text/css");
 	
-	$version = '1.2.3';
+	$version = '1.2.4';
 	$build_date = date('c');
 	
 	$files = array(
@@ -21,6 +21,7 @@
 /**
 	RELEASE NOTES:
 	
+	v1.2.4: Sync
 	v1.2.3: RSS author name (missed during the branch)
 	v1.2.2: Sync
 	v1.2.1: Sync
