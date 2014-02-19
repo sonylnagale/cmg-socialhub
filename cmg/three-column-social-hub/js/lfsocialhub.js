@@ -220,6 +220,7 @@ LF.lfsocialhub.prototype._prepData = function() {
 				}
 		};
 		
+		this.collections[collection.name + "Collection"].viewopts = this.viewopts;
 		
 		this.customContent = new LF.lfcustomcontent(this.viewopts);
 
@@ -332,10 +333,9 @@ LF.lfsocialhub.prototype._setWall = function() {
 		    el: this.$el
 		});
 				
-
 		this.desiredCollection.pipe(this.wallView);
 		
-		this.customContent.hasCustomContentView.call(this.wallView, this.viewopts);
+		this.customContent.hasCustomContentView.call(this.wallView, this.desiredCollection.viewopts);
 
 	},this));
 };
