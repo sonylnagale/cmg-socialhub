@@ -73,10 +73,10 @@ LF.lfcustomcontent.prototype.makeCustomContentView = function(content,self, opts
   	
   	if (content.source == 'twitter') {
   		
-
+  		var isSponsored = 0;
   		var twitterUsername = content.author.profileUrl.split('/').pop();
   		if (twitterUsername == opts.sponsor.author) {
-  			var isSponsored = 1;
+  			isSponsored = 1;
   			
   			if (opts.sponsor.hashtag != '' && opts.sponsor.hashtag != undefined) {
   				if (content.body.indexOf('#' + opts.sponsor.hashtag) == -1) {
