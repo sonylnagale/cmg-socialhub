@@ -69,10 +69,15 @@ LF.lfsocialhub = function(opts) {
 	$(document).ready($.proxy(function() {
 		
 		this.$el = $(this.opts.el);
+		
+		// Prevent
+		$('body').delegate("#socialHub .content-source-logo", "click", function(e) {
+			e.stopPropagation();
+		});
 
 		this.$header = $('#socialheader');
 
-		// sone user-agent detection
+		// some user-agent detection
 		if ( navigator.userAgent.match(/iPhone/i) || 
 				navigator.userAgent.match(/iPad/i) || 
 				/Android/i.test(navigator.userAgent)) {
