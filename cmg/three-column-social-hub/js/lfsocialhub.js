@@ -72,17 +72,9 @@ LF.lfsocialhub = function(opts) {
 		
 		this.$el = $(this.opts.el);
 		
-		// Do content logo
-//		$("#socialHub").on("click", ".content-source-logo", function(e) {
-//			e.preventDefault();
-//			e.stopPropagation();
-//			return false;
-//		});
-		
 		// Do Sharing
 		$("#socialHub").on("click", ".content-action span.content-action-share", function(e) {
 			var id = $(e.target).data('content-id');
-			console.log(e.target);
 			
 			var content = LF.meta[id],
 			description = $(".content-body[data-content-id='" + id + "']").text();
