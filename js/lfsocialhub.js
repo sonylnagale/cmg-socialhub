@@ -1,30 +1,6 @@
 var LF = LF || {};
 LF.meta = {};
 
-var doShare = function(el,id) {
-	console.log(el,id);
-	return false;
-	var $ = Livefyre.require('streamhub-sdk/jquery');
-
-	var content = LF.meta[id],
-		description = $(".content-body[data-content-id='" + id + "']").text();
-	janrain.engage.share.setUrl(content.url);
-	janrain.engage.share.setImage(content.image);
-	janrain.engage.share.setDescription(description);
-	janrain.engage.share.setTitle(content.title);
-	janrain.engage.share.show();
-	
-	janrain.events.onModalClose.addHandler(function(response) {
-		janrain.engage.share.reset();
-		
-		// since reset doesn't appear to work...
-		janrain.engage.share.setUrl(null);
-		janrain.engage.share.setImage(null);
-		janrain.engage.share.setDescription(null);
-		janrain.engage.share.setTitle(null);
-	});
-};
-
 (function() {
 
 	var $ = Livefyre.require('streamhub-sdk/jquery');
@@ -98,11 +74,6 @@ LF.lfsocialhub = function(opts) {
 
 		});
 
-		$("#socialHub").on("click", ".content-action-retweet", function(e) {
-			console.log('h3');
-		});
-
-			
 		this.$header = $('#socialheader');
 
 		// some user-agent detection
