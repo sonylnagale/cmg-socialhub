@@ -1,7 +1,7 @@
 <?php
     header("Content-type: text/css");
 	
-	$version = '1.2.6';
+	$version = '1.2.7';
 	$build_date = date('c');
 	
 	$files = array(
@@ -21,6 +21,7 @@
 /**
 	RELEASE NOTES:
 	
+	v1.2.7: Moving share button for proper event propagation
 	v1.2.6: Sync
 	v1.2.5: Sync
 	v1.2.4: Sync

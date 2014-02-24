@@ -2,6 +2,8 @@ var LF = LF || {};
 LF.meta = {};
 
 var doShare = function(el,id) {
+	console.log(el,id);
+	return false;
 	var $ = Livefyre.require('streamhub-sdk/jquery');
 
 	var content = LF.meta[id],
@@ -70,11 +72,45 @@ LF.lfsocialhub = function(opts) {
 		
 		this.$el = $(this.opts.el);
 		
-		// Prevent
-		$('body').delegate("#socialHub .content-source-logo", "click", function(e) {
+		// Do content logo
+//		$("#socialHub").on("click", ".content-source-logo", function(e) {
+//			e.preventDefault();
+//			e.stopPropagation();
+//			return false;
+//		});
+		
+		// Do Sharing
+		$("#socialHub").on("click", ".content-action span.content-action-share", function(e) {
+			var id = $(e.target).data('content-id');
+			console.log(e.target);
+			
+			var content = LF.meta[id],
+			description = $(".content-body[data-content-id='" + id + "']").text();
+			janrain.engage.share.setUrl(content.url);
+			janrain.engage.share.setImage(content.image);
+			janrain.engage.share.setDescription(description);
+			janrain.engage.share.setTitle(content.title);
+			janrain.engage.share.show();
+			
+			janrain.events.onModalClose.addHandler(function(response) {
+				janrain.engage.share.reset();
+				
+				// since reset doesn't appear to work...
+				janrain.engage.share.setUrl(null);
+				janrain.engage.share.setImage(null);
+				janrain.engage.share.setDescription(null);
+				janrain.engage.share.setTitle(null);
+			});
+			e.preventDefault();
 			e.stopPropagation();
+
 		});
 
+		$("#socialHub").on("click", ".content-action-retweet", function(e) {
+			console.log('h3');
+		});
+
+			
 		this.$header = $('#socialheader');
 
 		// some user-agent detection

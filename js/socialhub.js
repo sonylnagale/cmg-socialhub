@@ -1,7 +1,7 @@
 <?php
     header("Content-type: text/javascript");
 	
-	$version = '1.2.6';
+	$version = '1.2.7';
 	$build_date = date('c');
 
 	$files = array(
@@ -22,6 +22,7 @@
 /**	
 	RELEASE NOTES
 	
+	v1.2.7: moving custom share button for proper event propagation and using an internal method for share
 	v1.2.6: Preventing propagation when source icon is clicked.
 	v1.2.5: Sponsored variable passes through to wall view
 	v1.2.4: Resetting sponsored variable on content as well
