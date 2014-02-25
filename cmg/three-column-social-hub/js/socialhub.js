@@ -22,6 +22,7 @@
 /**	
 	RELEASE NOTES
 	
+	v1.2.10: Changes for logo triggering share
 	v1.2.9: Bump
 	v1.2.8: Cleanup bump
 	v1.2.7: Moving custom share button for proper event propagation and using an internal method for share
