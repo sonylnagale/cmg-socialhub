@@ -1,7 +1,7 @@
 <?php
     header("Content-type: text/javascript");
 	
-	$version = '1.2.9';
+	$version = '1.2.10';
 	$build_date = date('c');
 
 	$files = array(
