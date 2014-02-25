@@ -48,7 +48,6 @@ LF.lfsocialhub = function(opts) {
 		this.$el = $(this.opts.el);
 		
 		$("#socialHub").on("click", ".content-source-logo", function(e) {
-			console.log(e);
 			e.preventDefault();
 			window.open($(e.target)[0].href);
 			e.stopImmediatePropagation();
@@ -57,7 +56,6 @@ LF.lfsocialhub = function(opts) {
 		// Do Sharing
 
 		$("#socialHub").on("click", ".content-action-share", function(e) {
-			console.log(e);
 			if (e.isTrigger) {
 				return;
 			}

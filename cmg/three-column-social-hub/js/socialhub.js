@@ -1,7 +1,7 @@
 <?php
     header("Content-type: text/javascript");
 	
-	$version = '1.2.10';
+	$version = '1.2.11';
 	$build_date = date('c');
 
 	$files = array(
@@ -22,6 +22,7 @@
 /**	
 	RELEASE NOTES
 	
+	v1.2.11: Darned console.logs
 	v1.2.10: Changes for logo triggering share
 	v1.2.9: Bump
 	v1.2.8: Cleanup bump
