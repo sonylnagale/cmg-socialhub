@@ -45,11 +45,22 @@ LF.lfsocialhub = function(opts) {
 	this.isTablet = false;
 	
 	$(document).ready($.proxy(function() {
-		
 		this.$el = $(this.opts.el);
 		
+		$("#socialHub").on("click", ".content-source-logo", function(e) {
+			console.log(e);
+			e.preventDefault();
+			window.open($(e.target)[0].href);
+			e.stopImmediatePropagation();
+		});
+		
 		// Do Sharing
-		$("#socialHub").on("click", ".content-action span.content-action-share", function(e) {
+
+		$("#socialHub").on("click", ".content-action-share", function(e) {
+			console.log(e);
+			if (e.isTrigger) {
+				return;
+			}
 			var id = $(e.target).data('content-id');
 			
 			var content = LF.meta[id],
