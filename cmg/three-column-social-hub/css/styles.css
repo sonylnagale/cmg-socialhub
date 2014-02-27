@@ -179,7 +179,9 @@
 	font-weight: bold;
 }
 
-
+.content p {
+	margin:0 !important;
+}
 /** sharing intents */
 
 #socialHub .content-action-share {
