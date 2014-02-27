@@ -65,7 +65,9 @@ LF.lfsocialhub = function(opts) {
 			description = $(".content-body[data-content-id='" + id + "']").text();
 			janrain.engage.share.setUrl(content.url);
 			janrain.engage.share.setImage(content.image);
-			janrain.engage.share.setDescription(description);
+			if (description != content.title) { // make sure no duplicatation of content
+				janrain.engage.share.setDescription(description);
+			}
 			janrain.engage.share.setTitle(content.title);
 			janrain.engage.share.show();
 			
