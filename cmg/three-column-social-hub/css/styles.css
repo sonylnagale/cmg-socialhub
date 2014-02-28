@@ -126,12 +126,14 @@
 	border-radius:0;
 }
 
-#socialHub .content-body {
+#socialHub .content-body, #socialHub .content-body .MsoNormal {
 	font: bold 18px/28px Helvetica, Arial, sans-serif;
 	color: #000;
 }
 
-
+#socialHub .content-body a img {
+	width:100%;
+}
 #socialHub a.content-author-username {
 	position: relative;
 	top: -6px
