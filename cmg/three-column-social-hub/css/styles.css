@@ -133,6 +133,7 @@
 
 #socialHub .content-body a img {
 	width:100%;
+	border:none;
 }
 #socialHub a.content-author-username {
 	position: relative;
