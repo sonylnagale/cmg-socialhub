@@ -1,7 +1,7 @@
 <?php
     header("Content-type: text/javascript");
 	
-	$version = '1.2.11';
+	$version = '1.2.12';
 	$build_date = date('c');
 
 	$files = array(
@@ -22,6 +22,8 @@
 /**	
 	RELEASE NOTES
 	
+	v1.3.0: JANUS-2209 checking the sharing text
+	v1.2.12: Sync
 	v1.2.11: Darned console.logs
 	v1.2.10: Changes for logo triggering share
 	v1.2.9: Bump
